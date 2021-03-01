@@ -18,7 +18,7 @@ function ValidateForm(){
         var requiredField = form[field];
 
         //Check if value is null or whitespace
-        if(!requiredField.value || requiredField.value.test(/^\s*$/)){
+        if(!requiredField.value || requiredField.value.match(/^\s*$/)){
             var label = requiredField.labels[0];
             //Push the label of the field to the error list
             errorList.push(label)
@@ -56,6 +56,6 @@ function ResetForm(){
 
         //Reset error message
         var errorMessage = document.querySelector("#errorMessage");
-        errorMessage.innerText = ""
+        errorMessage.innerText = "";
     }
 }
