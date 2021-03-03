@@ -3,6 +3,8 @@
 
     //Get returned errors if there are any
     $errorList = $_SESSION["ErrorFields"] ?? [];
+    //Get any fields that have already been filled in
+    $filledFields = $_SESSION["FilledFields"] ?? [];
     session_unset();
 ?>
 
@@ -26,23 +28,23 @@
             <form action="controllers/comingSoonControl.php" name="feedback" method="post" onsubmit="return ValidateForm()">
                 <p>
                     <label for="firstName" <?= in_array("firstName", $errorList) ? 'class="error"' : '' ?> >First Name *</label>
-                    <input type="text" id="firstName" name="firstName" required>
+                    <input type="text" id="firstName" name="firstName" required value="<?= $filledFields["firstName"] ?? "" ?>">
                 </p>
                 <p>
                     <label for="lastName" <?= in_array("lastName", $errorList) ? 'class="error"' : '' ?>>Last Name *</label>
-                    <input type="text" id="lastName" name="lastName" required>
+                    <input type="text" id="lastName" name="lastName" required value="<?= $filledFields["lastName"] ?? "" ?>">
                 </p>
                 <p>
                     <label for="contactNumber">Contact Number</label>
-                    <input type="tel" name="contactNumber" id="contactNumber">
+                    <input type="tel" name="contactNumber" id="contactNumber" value="<?= $filledFields["contactNumber"] ?? "" ?>">
                 </p>
                 <p>
                     <label for="email" <?= in_array("email", $errorList) ? 'class="error"' : '' ?>>Email *</label>
-                    <input type="email" name="email" id="email" required>
+                    <input type="email" name="email" id="email" required value="<?= $filledFields["email"] ?? "" ?>">
                 </p>
                 <p>
                     <label for="question" <?= in_array("question", $errorList) ? 'class="error"' : '' ?>>Question *</label>
-                    <textarea name="question" id="question" cols="30" rows="10" required></textarea>
+                    <textarea name="question" id="question" cols="30" rows="10" required><?= $filledFields["question"] ?? "" ?></textarea>
                 </p>
 
                 <p id="errorMessage">
@@ -55,7 +57,7 @@
 
                 <div class="formButtons">
                     <input type="submit" value="Submit">
-                    <input type="button" value="Reset" onclick="ResetForm()">
+                    <input type="reset" value="Reset" onclick="ResetForm()">
                 </div>
                 
             </form>

@@ -28,6 +28,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         //Put missing fields into session and redirect back to original form page
         $_SESSION["ErrorFields"] = $missingFields;
+        // Put any entered fields into a session to be redirected back
+        $_SESSION["FilledFields"] = $_POST;
         header("Location: ../comingSoon.php");
         die();
     } else{
