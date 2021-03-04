@@ -25,6 +25,17 @@ function ValidateForm(){
         }
     }
 
+    //If email isn't missing
+    if(!errorList.includes("email")){
+        let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        //If email isn't valid, push label to error list
+        if(!emailRegex.test(form["email"])){
+            let label = form["email"].labels[0];
+            errorList.push(label);
+        }
+    }
+
     if (errorList.length > 0){
         //Apply error class for styling to all error labels
         for(var label of errorList){
