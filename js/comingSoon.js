@@ -58,9 +58,9 @@ function ResetForm(){
     var form = document.forms["feedback"];
 
     for(var element of form){
-        //Skip over the buttons
+        //Skip over the buttons and fieldset
         if (element.parentElement.classList.contains("formButtons")) continue;
-
+        if (element.nodeName == "FIELDSET") continue;
         //Reset field to blank and remove error class from label
         element.value = "";
         element.labels[0].classList.remove("error");
