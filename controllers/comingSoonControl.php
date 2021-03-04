@@ -11,23 +11,29 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         "question"
     ];
 
-    //Required fields that don't have a value
-    $missingFields = [];
+    //Required fields that don't have a value or email that isn't valid
+    $errorFields = [];
 
     foreach($requiredFields as $field){
         $value = $_POST[$field];
 
         //If a required field doesn't have a value, push field name to missing fields
         if(empty($value)){
-            array_push($missingFields, $field);
+            array_push($errorFields, $field);
         }
     }
 
-    if(sizeof($missingFields) > 0){
+    if(!in_array("email", $errorFields)){
+        if(!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)){
+            array_push($errorFields, "email");
+        }
+    }
+
+    if(sizeof($errorFields) > 0){
         session_start();
 
         //Put missing fields into session and redirect back to original form page
-        $_SESSION["ErrorFields"] = $missingFields;
+        $_SESSION["ErrorFields"] = $errorFields;
         // Put any entered fields into a session to be redirected back
         $_SESSION["FilledFields"] = $_POST;
         header("Location: ../comingSoon.php");
