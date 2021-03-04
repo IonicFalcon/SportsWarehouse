@@ -4,6 +4,7 @@
  */
 function ValidateForm(){
     var errorList = [];
+    var errorMessages = [];
 
     var form = document.forms["feedback"];
     //Required fields here, as required attribute could be removed by user
@@ -22,6 +23,7 @@ function ValidateForm(){
             var label = requiredField.labels[0];
             //Push the label of the field to the error list
             errorList.push(label)
+            errorMessages.push(`${label.innerText} is a required field`);
         }
     }
 
@@ -30,9 +32,10 @@ function ValidateForm(){
         let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         //If email isn't valid, push label to error list
-        if(!emailRegex.test(form["email"])){
+        if(!emailRegex.test(form["email"].value)){
             let label = form["email"].labels[0];
             errorList.push(label);
+            errorMessages.push("Email is invalid");
         }
     }
 
@@ -43,7 +46,15 @@ function ValidateForm(){
         }
 
         var errorMessage = document.querySelector("#errorMessage");
-        errorMessage.innerText = "Please check the marked fields."
+
+        var output = "";
+        for(var message of errorMessages){
+            output += message + "\n";
+        }
+
+        output += "Please check the marked fields";
+
+        errorMessage.innerText = output
 
         return false;
     }
