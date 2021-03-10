@@ -24,7 +24,7 @@ PHP and a database.
 
 **Due Date: TBA**
 
-## Deliverable D: Customer Purchasin and Administration
+## Deliverable D: Customer Purchasing and Administration
 Add functionality to the website to allow customers to purchase products and to allow staff
 to maintain products.
 
