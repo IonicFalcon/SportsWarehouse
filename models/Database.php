@@ -23,23 +23,33 @@
             }
         }
 
-        //Connect to database
+        /**
+         * Connect to Database
+         */
         private function Connect(){
             $dsn = "mysql:host=" . $this->serverName . ";dbname=" . $this->dbName;
             $this->connection = new PDO($dsn, $this->username, $this->password);
         }
         
-        //Disconnect to database
+        /**
+         * Disconnect from Database
+         */
         private function Disconnect(){
             $this->connection = NULL;
         }
 		
 		//PHP doesn't support method overloading
-        //Execute a Regular SQL Query
+        /**
+         * Execute SQL Query
+         *
+         * @param string $query Query to be Execute
+         * @param array $params Optional Parameters for the query in an Associative Array
+         * @param string $className Optional Class name for filling returned values into a Class
+         * @return array
+         */
         public function ExecuteSQL($query, $params = null, $className = null){
             //Connect to database
             $this->Connect();
-
             //Prepare query
             $sql = $this->connection->prepare($query);
 
@@ -67,7 +77,13 @@
             return $sql->fetchAll();
         }
 
-        //Execute a Scalar SQL query (DELETE, INSERT, etc)
+        /**
+         * Execute a Scalar SQL Query (DELELE, INSERT, etc)
+         *
+         * @param string $query  Query to be executed
+         * @param array $params Optional parameters for the query
+         * @return void|string   Returns string on error, else returns nothing
+         */
         public function ScalarSQL($query, $params = null){
             $this->Connect();
 
