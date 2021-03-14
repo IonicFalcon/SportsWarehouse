@@ -56,7 +56,12 @@
             //If params exist, bind them to query
             if(!is_null($params)){
                 foreach($params as $param => $value){
-                    $sql->bindParam($param, $value);
+                    //Value can be an array that holds the value and the PDO datatype (PDO::PARAM_INT,)
+                    if(is_array($value)){
+                        $sql->bindParam($param, $value[0], $value[1]);
+                    } else{ 
+                        $sql->bindParam($param, $value);
+                    }
                 }
             }
 
@@ -91,7 +96,11 @@
 
             if(!is_null($params)){
                 foreach($params as $param => $value){
-                    $sql->bindParam($param, $value);
+                    if(is_array($value)){
+                        $sql->bindParam($param, $value[0], $value[1]);
+                    } else{ 
+                        $sql->bindParam($param, $value);
+                    }
                 }
             }
 
