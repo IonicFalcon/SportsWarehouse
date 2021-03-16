@@ -15,7 +15,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coming Soon - SportsWarehouse</title>
-    <link rel="stylesheet" href="css/comingSoon.css">
+    <link rel="stylesheet" href="css/comingSoon.min.css">
 </head>
 <body>
     <div class="root">
@@ -68,6 +68,6 @@
         </main>
     </div>
 
-    <script src="js/comingSoon.js"></script>
+    <script src="js/comingSoon.min.js"></script>
 </body>
 </html>
