@@ -10,13 +10,13 @@ Create a one-page website showing the company logo and a message indicating they
 selling sports equipment online soon. The page must contain a contact form that can be
 filled out by the visitors of the website to ask questions
 
-**Due Date: 25/3/21**
+~~**Due Date: 25/3/21**~~
 
 ## Deliverable B: Static Website Design
 Use the provided Photoshop design to create the website home page using HTML and CSS.
 It will be given to the design manager for approval before it is converted to a PHP website.
 
-**Due Date: TBA**
+**Due Date: 21/4/21**
 
 ## Deliverable C: Customer Browsing
 Add functionality to the website to allow customers to browse and search products using
