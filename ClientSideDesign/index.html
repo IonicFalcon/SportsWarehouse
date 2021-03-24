@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Warehouse</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+</head>
+<body>
+    <div class="root">
+        <header class="siteHeader">
+            <div class="topBar">
+                <nav class="siteNav">
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About SW</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">View Products</a></li>
+                        <li><a href="#" class="login">Login</a></li>
+                    </ul>               
+                </nav>
+
+                <div class="userOptions">
+                    <a href="#" class="login">Login</a>
+                    <a href="#" class="viewCart">
+                        <p>View Cart</p>
+                        <span class="cartTotal">0 Items</span>
+                    </a>
+                </div>
+            </div>
+            <div class="siteBanner">
+                <a href="index.html" class="siteLogo" aria-label="Sports Warehouse">
+                    <img src="images/LogoLarge.gif" alt="Sports Warehouse Logo">
+                </a>
+            
+                <form method="get" class="search">
+                    <input type="text" name="search" id="searchBox" aria-label="Search Products" placeholder="Search Products">
+                    <button type="submit" class="searchButton" aria-label="Search">
+                        <p><img src="images/search-solid.svg" alt="Search"></p>
+                    </button>
+                </form>
+            </div>
+            <div class="categoryBar">
+                <nav class="categoryNav">
+                    <ul>
+                        <li><a href="#">Shoes</a></li>
+                        <li><a href="#">Helmets</a></li>
+                        <li><a href="#">Pants</a></li>
+                        <li><a href="#">Tops</a></li>
+                        <li><a href="#">Balls</a></li>
+                        <li><a href="#">Equipment</a></li>
+                        <li><a href="#">Training Gear</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <main>
+            <div class="slider splide">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li class="splide__slide" id="slideBall">
+                            <div class="slideDescription">
+                                <p>View our brand new range of</p>
+                                <h2>Sports Balls</h2>
+                                <a href="#" class="linkButton">Shop Now</a>
+                            </div>
+                        </li>
+                        <li class="splide__slide" id="slideArmour">
+                            <div class="slideDescription">
+                                <p>Get protected with the new range of</p>
+                                <h2>Protective Helmets</h2>
+                                <a href="#" class="linkButton">Shop Now</a>
+                            </div>
+                        </li>
+                        <li class="splide__slide" id="slideRace">
+                            <div class="slideDescription">
+                                <p>Get ready to race with our professional</p>
+                                <h2>Training Gear</h2>
+                                <a href="#" class="linkButton">Shop Now</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <section id="featuredProducts">
+                <h2>Featured Products</h2>
+                <ul>
+                    <li>
+                        <a href="#" class="featuredProduct">
+                            <article class="productCard">
+                                <picture>
+                                    <source media="(min-width: 400px)" srcset="images/soccer-ball-small.png">
+                                    <img src="images/soccer-ball.png" alt="Product Image">
+                                </picture>
+                                <p class="productPrice"><span class="productSale">$34.95</span> was <s>$46.00</s></p>
+                                <h3 class="productName">adidas Euro16 Top Soccer Ball</h3>
+                            </article>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="featuredProduct">
+                            <article class="productCard">
+                                <picture>
+                                    <source media="(min-width: 400px)" srcset="images/skate-helmet-small.png">
+                                    <img src="images/skate-helmet.png" alt="Product Image">
+                                </picture>
+                                <p class="productPrice">$70.00</p>
+                                <h3 class="productName">Pro-tec Classic Stake Helmet</h3>
+                            </article>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="featuredProduct">
+                            <article class="productCard">
+                                <picture>
+                                    <source media="(min-width: 400px)" srcset="images/water-bottle-small.png">
+                                    <img src="images/water-bottle.png" alt="Product Image">
+                                </picture>
+                                <p class="productPrice"><span class="productSale">$15.00</span> was <s>$17.50</s></p>
+                                <h3 class="productName">Nike Sport 600ml Water Bottle</h3>
+                            </article>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="featuredProduct">
+                            <article class="productCard">
+                                <picture>
+                                    <source media="(min-width: 400px)" srcset="images/boxing-gloves-small.png">
+                                    <img src="images/boxing-gloves.png" alt="Product Image">
+                                </picture>
+                                <p class="productPrice">$79.95</p>
+                                <h3 class="productName">Sting ArmaPlus Boxing Gloves</h3>
+                            </article>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="featuredProduct">
+                            <article class="productCard">
+                                <picture>
+                                    <source media="(min-width: 400px)" srcset="images/football-boots-small.png">
+                                    <img src="images/football-boots.png" alt="Product Image">
+                                </picture>
+                                <p class="productPrice">$160.00</p>
+                                <h3 class="productName">Asics Gel Lethal Tigreor 8 IT Men's FG Boots</h3>
+                            </article>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+            <section class="brandsAndPartnerships">
+                <h2>Our Brands and Partnerships</h2>
+                <p>These are some of our top brands and partnerships. <span>The best of the best is here.</span></p>
+
+                <ul class="partnerships">
+                    <li><img src="images/logo_nike.png" alt="Nike Logo"></li>
+                    <li><img src="images/logo_adidas.png" alt="Adidas Logo"></li>
+                    <li><img src="images/logo_skins.png" alt="Skins Logo"></li>
+                    <li><img src="images/logo_asics.png" alt="Asics Logo"></li>
+                    <li><img src="images/logo_newbalance.png" alt="New Balance Logo"></li>
+                    <li><img src="images/logo_wilson.png" alt="Wilson Logo"></li>
+                </ul>
+            </section>
+        </main>
+        <footer class="siteFooter">
+            <div class="footerGroups">
+                <div class="footerSiteNav">
+                    <nav class="siteNav">
+                        <h2>Site Navigation</h2>
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">About SW</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">View Products</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="footerProductCategories">
+                    <nav class="categoryNav">
+                        <h2>Product Categories</h2>
+                        <ul>
+                            <li><a href="#">Shoes</a></li>
+                            <li><a href="#">Helmets</a></li>
+                            <li><a href="#">Pants</a></li>
+                            <li><a href="#">Tops</a></li>
+                            <li><a href="#">Balls</a></li>
+                            <li><a href="#">Equipment</a></li>
+                            <li><a href="#">Training Gear</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="footerContact">
+                    <h2>Contact Sports Warehouse</h2>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <img src="images/facebook.svg" alt="Facebook Logo">
+                                <p>Facebook</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="images/twitter.svg" alt="Twitter Logo">
+                                <p>Twitter</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="images/other_contact.svg" alt="Contact Logo">
+                                <p>Other</p>
+                                <ul>
+                                    <li>Online Form</li>
+                                    <li>Email</li>
+                                    <li>Phone</li>
+                                    <li>Address</li>
+                                </ul>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyrightDetails">
+                <small><p>&copy; Copyright 2020 Sports Warehouse. All rights reserved. Website made by Awesomesauce Design</p></small>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js">
+        //new Splide(".splide").mount();
+    </script>
+</body>
+</html>
