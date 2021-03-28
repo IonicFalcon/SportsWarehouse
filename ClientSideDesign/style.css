@@ -1,0 +1,377 @@
+:root{
+    --primaryBlue: #00aced;
+    --secondaryBlue: #006989;
+    --deepBlue: #002936;
+    --grey: #595959;
+    --primaryOrange: #ff690c;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    font-family: "Open Sans", Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+
+.siteHeader a{
+    color: white;
+}
+
+.topBar{
+    background-color: var(--primaryBlue);
+    color: white;
+    padding: 0.25em 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header a{
+    text-decoration: none;
+}
+
+.iconButton{
+    display: flex;
+    align-items: center;
+}
+
+.iconButton::before{
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    padding-right: 10px;
+    font-size: 1.2em;
+}
+
+.desktopNav{
+    display: none;
+}
+
+.mobileNav{
+    background-color: var(--primaryBlue);
+    padding: 0 10px;
+    padding-bottom: 75px;
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+    display: none;
+}
+
+.mobileNav.checked{
+    display: block;
+}
+
+.hamburgerMenu > input{
+    display: none;
+}
+
+.mobileNav ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mobileNav li{
+    padding: 10px 0;
+    padding-left: 3.5em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+
+.mobileNav li > a{
+    position: relative;
+}
+
+.mobileNav li > a::before{
+    position: absolute;
+    left: -1.5em;
+    font-family: "Font Awesome 5 Free";
+    content: "\f111";
+}
+
+.mobileNav li > a:not(.login):before{
+    font-size: 0.75em;
+    left: -2em;
+    top: 0.25em;
+}
+
+.login.iconButton::before{
+    content: "\f023";
+}
+
+.hamburgerIcon::before{
+    content: "\f0c9";
+}
+
+.viewCart::before{
+    content: "\f07a";
+}
+
+.userOptions .login{
+    display: none;
+}
+
+
+.viewCart * {
+    display: inline-block;
+}
+
+a.viewCart .cartTotal{
+    background-color: rgba(0, 0, 0, 0.15);
+    border-radius: 2em;
+    padding: 10px 20px;
+    margin-left: 5px;
+}
+
+.siteLogo img{
+    max-width: 100%;
+}
+
+.siteBanner{
+    text-align: center;
+    padding: 1em;
+}
+
+.siteBanner form{
+    margin-top: 1em;
+}
+
+.siteBanner input{
+    padding: 1em;
+    border-radius: 2em;
+}
+
+.siteBanner #searchBox{
+    width: 70%;
+}
+
+.siteBanner button{
+    background-color: var(--deepBlue);
+    color: white;
+    padding: 1em;
+    border: none;
+    border-radius: 50%;
+}
+
+.categoryBar{
+    background-color: var(--deepBlue);
+    color: white;
+}
+
+.categoryBar ul{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 10px;
+    padding-bottom: 0;
+}
+
+.categoryBar li{
+    display: inline-block;
+    flex-basis: 48%;
+    margin-bottom: 10px;
+}
+
+.categoryBar li > a{
+    padding: 0.625em;
+    display: block;
+    border: 1px solid var(--primaryBlue);
+    border-radius: 10px;
+}
+
+.categoryBar li > a::after{
+    content: ">";
+    color: var(--primaryBlue);
+    position: sticky;
+    left: 100%;
+}
+
+.categoryBar li > a.selected{
+    background-color: var(--primaryBlue);
+}
+
+.categoryBar li > a.selected::after{
+    color: white;
+}
+
+.slider{
+    display: none;
+}
+
+main section{
+    margin-top: 2em;
+}
+
+main section > *:not(:first-child){
+    padding: 0 1em;
+}
+
+main section h2{
+    margin: 0;
+    padding: 1em 0 1em 2em;
+    font-weight: normal;
+    color: white;
+    background-color: var(--primaryOrange);
+    font-size: 1.125em;
+    border-radius: 3em 0 0 3em;
+    margin-left: 0.6em;
+    margin-bottom: 1em;
+}
+
+.featuredProducts ul{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0;
+}
+
+.featuredProducts li{
+    display: inline-block;
+    flex-basis: 140px;
+}
+
+.featuredProduct{
+    text-decoration: none;
+    text-align: center;
+}
+
+.productCard .productPrice{
+    font-size: 1.4em; /* 21px Equivilant */
+    color: var(--grey);
+    font-weight: bold;
+}
+
+.productCard .productPrice.productSale{
+    font-variant: small-caps;
+    font-size: 1em;
+    font-weight: normal;
+}
+
+.productCard .productPrice.productSale span{
+    font-size: 1.4em;
+    font-weight: bold;
+    color: var(--primaryOrange);
+}
+
+.productCard .productPrice.productSale p{
+    margin: 0;
+}
+
+.productCard h3{
+    font-weight: normal;
+    font-size: 0.9375em;
+    color: var(--secondaryBlue);
+}
+
+.brandsAndPartnerships p{
+    font-weight: lighter;
+    margin: 0;
+}
+
+.brandsAndPartnerships p > span{
+    color: var(--primaryBlue);
+}
+
+.partnerships{
+    background-color: var(--deepBlue);
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+.partnerships li{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1em 5px;
+}
+
+.siteFooter .footerGroups{
+    background-color: var(--primaryBlue);
+    color: white;
+    padding: 0.625em;
+}
+
+.siteFooter .footerGroups h2{
+    font-weight: lighter;
+    font-size: 1.375em; /* 22px equivilant */
+}
+
+.siteFooter .footerGroups a{
+    color: white;
+    text-decoration: none;
+    font-size: 0.875em;
+}
+
+.siteFooter .footerGroups ul{
+    padding-left: 1em;
+}
+
+.siteFooter .footerGroups li{
+    display: block;
+}
+
+.siteFooter .footerGroups li::before{
+    content: "";
+    display: inline-block;
+    background-color: var(--secondaryBlue);
+    width: 10px;
+    height: 6px;
+    border-radius: 50% 0 0 50%;
+    position: relative;
+    left: -0.625em;
+}
+
+.footerProductCategories {
+    display: none;
+}
+
+.footerGroups .footerContact ul{
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+}
+
+.footerContact li{
+    display: block;
+    text-align: center;
+}
+
+.footerGroups .footerContact li::before{
+    content: none;
+}
+
+.footerContact .contactIcon i{
+    font-size: 2.75em;
+    height: 2em;
+    position: relative;
+    top: 25%;
+}
+
+.contactIcon > .iconCircle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5.5em;
+    height: 5.5em;
+    border: 1px solid white;
+    border-radius: 50%;
+}
+
+.footerContact #contactOther ul{
+    display: none;
+}
+
+.copyrightDetails{
+    text-align: center;
+    padding: 1em;
+    font-size: 0.75em;
+}
+
+.copyrightDetails p{
+    margin: 0;
+}
+
+
+/* TODO: Breakpoint Design for Desktop (Above 400px), possibility for tablets */

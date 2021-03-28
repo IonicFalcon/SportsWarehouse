@@ -5,30 +5,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sports Warehouse</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+    <script src="https://kit.fontawesome.com/0b7408c7cc.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="root">
         <header class="siteHeader">
             <div class="topBar">
-                <nav class="siteNav">
+                <div class="hamburgerMenu">
+                    <input type="checkbox" name="mobileHamburger" id="mobileHamburger" onchange="mobileMenu(this)">
+                    <label for="mobileHamburger" class="iconButton hamburgerIcon">Menu</label>
+                </div>
+
+                <nav class="siteNav desktopNav">
                     <ul>
                         <li><a href="#">Home</a></li>
                         <li><a href="#">About SW</a></li>
                         <li><a href="#">Contact Us</a></li>
                         <li><a href="#">View Products</a></li>
-                        <li><a href="#" class="login">Login</a></li>
                     </ul>               
                 </nav>
 
                 <div class="userOptions">
-                    <a href="#" class="login">Login</a>
-                    <a href="#" class="viewCart">
+                    <a href="#" class="login iconButton">Login</a>
+                    <a href="#" class="viewCart iconButton">
                         <p>View Cart</p>
                         <span class="cartTotal">0 Items</span>
                     </a>
                 </div>
             </div>
+
+            <nav class="mobileNav siteNav">
+                <ul>
+                    <li><a href="#" class="login iconButton">Login</a></li>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About SW</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">View Products</a></li>
+                </ul>  
+            </nav>
+
             <div class="siteBanner">
                 <a href="index.html" class="siteLogo" aria-label="Sports Warehouse">
                     <img src="images/LogoLarge.gif" alt="Sports Warehouse Logo">
@@ -37,7 +54,7 @@
                 <form method="get" class="search">
                     <input type="text" name="search" id="searchBox" aria-label="Search Products" placeholder="Search Products">
                     <button type="submit" class="searchButton" aria-label="Search">
-                        <p><img src="images/search-solid.svg" alt="Search"></p>
+                        <i class="fas fa-search"></i>
                     </button>
                 </form>
             </div>
@@ -45,7 +62,7 @@
                 <nav class="categoryNav">
                     <ul>
                         <li><a href="#">Shoes</a></li>
-                        <li><a href="#">Helmets</a></li>
+                        <li><a href="#" class="selected">Helmets</a></li>
                         <li><a href="#">Pants</a></li>
                         <li><a href="#">Tops</a></li>
                         <li><a href="#">Balls</a></li>
@@ -83,17 +100,24 @@
                     </ul>
                 </div>
             </div>
-            <section id="featuredProducts">
+            <section class="featuredProducts">
                 <h2>Featured Products</h2>
                 <ul>
                     <li>
                         <a href="#" class="featuredProduct">
                             <article class="productCard">
-                                <picture>
-                                    <source media="(min-width: 400px)" srcset="images/soccer-ball-small.png">
-                                    <img src="images/soccer-ball.png" alt="Product Image">
-                                </picture>
-                                <p class="productPrice"><span class="productSale">$34.95</span> was <s>$46.00</s></p>
+                                <img srcset= "images/soccer-ball-small.png 137w,
+                                              images/soccer-ball.png 171w"
+                                     sizes=  "(max-width: 400px) 137px,
+                                              171px"
+                                     src=    "images/soccer-ball.png"
+                                     alt=    "Product Image">
+
+                                <div class="productPrice productSale">
+                                    <span>$34.95</span>
+                                    <p>was <s>$46.00</s></p>
+                                </div>
+
                                 <h3 class="productName">adidas Euro16 Top Soccer Ball</h3>
                             </article>
                         </a>
@@ -101,11 +125,17 @@
                     <li>
                         <a href="#" class="featuredProduct">
                             <article class="productCard">
-                                <picture>
-                                    <source media="(min-width: 400px)" srcset="images/skate-helmet-small.png">
-                                    <img src="images/skate-helmet.png" alt="Product Image">
-                                </picture>
-                                <p class="productPrice">$70.00</p>
+                                <img srcset= "images/skate-helmet-small.png 124w,
+                                              images/skate-helmet.png 164w"
+                                     sizes=  "(max-width: 400px) 124px,
+                                              164px"
+                                     src=    "images/skate-helmet.png"
+                                     alt=    "Product Image">
+
+                                <div class="productPrice">
+                                    <p>$70.00</p>
+                                </div>
+
                                 <h3 class="productName">Pro-tec Classic Stake Helmet</h3>
                             </article>
                         </a>
@@ -113,11 +143,17 @@
                     <li>
                         <a href="#" class="featuredProduct">
                             <article class="productCard">
-                                <picture>
-                                    <source media="(min-width: 400px)" srcset="images/water-bottle-small.png">
-                                    <img src="images/water-bottle.png" alt="Product Image">
-                                </picture>
-                                <p class="productPrice"><span class="productSale">$15.00</span> was <s>$17.50</s></p>
+                                <img srcset= "images/water-bottle-small.png 109w,
+                                              images/water-bottle.png 135w"
+                                     sizes=  "(max-width: 400px) 109px,
+                                              135px"
+                                     src=    "images/water-bottle.png"
+                                     alt=    "Product Image">
+                                
+                                <div class="productPrice productSale">
+                                    <span>$15.00</span>
+                                    <p>was <s>$17.50</s></p>
+                                </div>
                                 <h3 class="productName">Nike Sport 600ml Water Bottle</h3>
                             </article>
                         </a>
@@ -125,11 +161,16 @@
                     <li>
                         <a href="#" class="featuredProduct">
                             <article class="productCard">
-                                <picture>
-                                    <source media="(min-width: 400px)" srcset="images/boxing-gloves-small.png">
-                                    <img src="images/boxing-gloves.png" alt="Product Image">
-                                </picture>
-                                <p class="productPrice">$79.95</p>
+                                <img srcset= "images/boxing-gloves-small.png 138w,
+                                              images/boxing-gloves.png 163w"
+                                     sizes=  "(max-width: 400px) 138px,
+                                              163px"
+                                     src=    "images/boxing-gloves.png"
+                                     alt=    "Product Image">
+
+                                <div class="productPrice">
+                                    <p>$79.95</p>
+                                </div>
                                 <h3 class="productName">Sting ArmaPlus Boxing Gloves</h3>
                             </article>
                         </a>
@@ -137,11 +178,16 @@
                     <li>
                         <a href="#" class="featuredProduct">
                             <article class="productCard">
-                                <picture>
-                                    <source media="(min-width: 400px)" srcset="images/football-boots-small.png">
-                                    <img src="images/football-boots.png" alt="Product Image">
-                                </picture>
-                                <p class="productPrice">$160.00</p>
+                                <img srcset= "images/football-boots-small.png 133w,
+                                              images/football-boots.png 167w"
+                                     sizes=  "(max-width: 400px) 133px,
+                                              167px"
+                                     src=    "images/football-boots.png"
+                                     alt=    "Product Image">
+
+                                <div class="productPrice">
+                                    <p>$160.00</p>
+                                </div>
                                 <h3 class="productName">Asics Gel Lethal Tigreor 8 IT Men's FG Boots</h3>
                             </article>
                         </a>
@@ -150,7 +196,8 @@
             </section>
             <section class="brandsAndPartnerships">
                 <h2>Our Brands and Partnerships</h2>
-                <p>These are some of our top brands and partnerships. <span>The best of the best is here.</span></p>
+                <p>These are some of our top brands and partnerships.</p> 
+                <p><span>The best of the best is here.</span></p>
 
                 <ul class="partnerships">
                     <li><img src="images/logo_nike.png" alt="Nike Logo"></li>
@@ -194,20 +241,26 @@
                     <h2>Contact Sports Warehouse</h2>
                     <ul>
                         <li>
-                            <a href="#">
-                                <img src="images/facebook.svg" alt="Facebook Logo">
+                            <a href="#" id="contactFacebook" class="contactIcon">
+                                <div class="iconCircle">
+                                    <i class="fab fa-facebook-f"></i>
+                                </div>
                                 <p>Facebook</p>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
-                                <img src="images/twitter.svg" alt="Twitter Logo">
+                            <a href="#" id="contactTwitter" class="contactIcon">
+                                <div class="iconCircle">
+                                    <i class="fab fa-twitter"></i>
+                                </div>
                                 <p>Twitter</p>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
-                                <img src="images/other_contact.svg" alt="Contact Logo">
+                            <a href="#" id="contactOther" class="contactIcon">
+                                <div class="iconCircle">
+                                    <i class="fas fa-paper-plane"></i>
+                                </div>
                                 <p>Other</p>
                                 <ul>
                                     <li>Online Form</li>
@@ -221,13 +274,32 @@
                 </div>
             </div>
             <div class="copyrightDetails">
-                <small><p>&copy; Copyright 2020 Sports Warehouse. All rights reserved. Website made by Awesomesauce Design</p></small>
+                <small>
+                    <p>&copy; Copyright 2020 Sports Warehouse.</p>
+                    <p>All rights reserved.</p>
+                    <p>Website made by Awesomesauce Design</p>
+                </small>
             </div>
         </footer>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js">
         //new Splide(".splide").mount();
+    </script>
+    <script>
+        window.FontAwesomeConfig = {
+            searchPseudoElements: true
+        }
+
+        function mobileMenu(hamburgerMenu){
+            let mobileMenu = document.querySelector(".mobileNav");
+
+            if(hamburgerMenu.checked){
+                mobileMenu.classList.add("checked");
+            } else{
+                mobileMenu.classList.remove("checked");
+            }
+        }
     </script>
 </body>
 </html>
