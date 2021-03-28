@@ -58,9 +58,9 @@
                 foreach($params as $param => $value){
                     //Value can be an array that holds the value and the PDO datatype (PDO::PARAM_INT, etc)
                     if(is_array($value)){
-                        $sql->bindParam($param, $value[0], $value[1]);
+                        $sql->bindValue($param, $value[0], $value[1]);
                     } else{ 
-                        $sql->bindParam($param, $value);
+                        $sql->bindValue($param, $value);
                     }
                 }
             }
@@ -97,9 +97,9 @@
 			if(!is_null($params)){
 				foreach($params as $param => $value){
 					if(is_array($value)){
-						$sql->bindParam($param, $value[0], $value[1]);
+						$sql->bindValue($param, $value[0], $value[1]);
 					} else{
-						$sql->bindParam($param, $value);
+						$sql->bindValue($param, $value);
 					}
 				}
 			}
@@ -126,9 +126,9 @@
             if(!is_null($params)){
                 foreach($params as $param => $value){
                     if(is_array($value)){
-                        $sql->bindParam($param, $value[0], $value[1]);
+                        $sql->bindValue($param, $value[0], $value[1]);
                     } else{ 
-                        $sql->bindParam($param, $value);
+                        $sql->bindValue($param, $value);
                     }
                 }
             }
