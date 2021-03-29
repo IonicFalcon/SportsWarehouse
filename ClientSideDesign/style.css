@@ -199,7 +199,7 @@ a.viewCart .cartTotal{
     color: white;
 }
 
-.slider{
+.slider, .bx-wrapper{
     display: none;
 }
 
@@ -271,10 +271,15 @@ main section h2{
 .brandsAndPartnerships p{
     font-weight: lighter;
     margin: 0;
+    padding: 0 1em;
 }
 
 .brandsAndPartnerships p > span{
     color: var(--primaryBlue);
+}
+
+.brandsAndPartnerships .brandContent{
+    padding: 0;
 }
 
 .partnerships{
@@ -377,6 +382,10 @@ main section h2{
 }
 
 @media only screen and (min-width: 450px){
+    main section h2{
+        margin-bottom: 1.25em;
+    }
+
     .wrapper{
         width: 75%;
         margin: auto;
@@ -389,6 +398,7 @@ main section h2{
     .topBar > .wrapper{
         display: flex;
         justify-content: space-between;
+        padding: 0;
     }
 
     .hamburgerMenu, .mobileNav{
@@ -450,18 +460,18 @@ main section h2{
         margin-bottom: 1.25em;
     }
 
-    .categoryNav ul{
+    .categoryBar .categoryNav ul{
         flex-wrap: nowrap;
         justify-content: initial;
         padding: 0.625em 2em;
     }
 
-    .categoryNav li{
+    .categoryBar .categoryNav li{
         flex-basis: auto;
         margin-bottom: 0;
     }
 
-    .categoryNav li > a{
+    .categoryBar .categoryNav li > a{
         border: none;
         border-radius: 3em 0 0 3em;
         padding: 0.625em 1em;
@@ -475,7 +485,7 @@ main section h2{
         display: none;
     }
 
-    .slider{
+    .slider, .bx-wrapper{
         display: block;
     }
 
@@ -492,7 +502,7 @@ main section h2{
     }
 
     .slider > *{
-        width: 851px;
+        width: 1000px;
         height: 300px;
         position: relative;
     }
@@ -505,7 +515,7 @@ main section h2{
         height: 100%;
         width: 35%;
         border: 3px solid white;
-        border-radius: 50% 0 0 50%;
+        border-radius: 9.375em 0 0 9.375em;
         text-align: center;
         display: flex;
         flex-direction: column;
@@ -561,6 +571,97 @@ main section h2{
         background-color: var(--primaryBlue) !important;
     }
 
+    .productCard{
+        min-width: 11.625em;
+        height: 100%;
+        border: 1px solid #f4f4f4;
+        border-radius: 5px;
+        padding: 0.75em 1em;
+    }
 
+    .productCard:hover{
+        box-shadow: 1px 1px 3px var(--primaryOrange);
+    }
+
+    .productCard .productImage{
+        min-height: 200px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .productCard .productPrice p{
+        margin: 0;
+    }
+
+    .productCard .productPrice.productSale p{
+        display: inline;
+    }
+
+    .brandsAndPartnerships .brandContent{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0;
+        padding-left: 3em;
+    }
+
+    .brandsAndPartnerships .brandDescription{
+        width: 12.5em;
+        margin-right: 2.5em;
+    }
+
+    .brandsAndPartnerships .partnerships{
+        display: flex;
+        justify-content: space-evenly;
+        flex-basis: 700px;
+        margin: 0;
+        border-radius: 3.125em 0 0 3.125em;
+        flex: auto;
+    }
+
+    main section:last-child{
+        margin-bottom: 2.5em;
+    }
+
+    .siteFooter{
+        background-color: var(--primaryBlue);
+    }
+
+    .footerProductCategories{
+        display: block;
+    }
+
+    .siteFooter .footerGroups{
+        padding: 0;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .footerGroups > *{
+        flex-basis: 33%;
+        padding: 1.25em;
+    }
+
+    .footerGroups h2{
+        margin-top: 0;
+    }
+
+    .footerGroups > *:nth-child(even){
+        background-color: var(--primaryOrange);
+    }
+
+    .footerContact #contactOther ul{
+        display: block;
+        color: black;
+    }
+
+    .siteFooter .copyrightDetails{
+        background-color: white;
+    }
+
+    .copyrightDetails small > *{
+        display: inline;
+        color: #595959;
+    }
 }
-
