@@ -22,6 +22,9 @@ body{
 .topBar{
     background-color: var(--primaryBlue);
     color: white;
+}
+
+.topBar > .wrapper{
     padding: 0.25em 1em;
     display: flex;
     justify-content: space-between;
@@ -373,5 +376,191 @@ main section h2{
     margin: 0;
 }
 
+@media only screen and (min-width: 450px){
+    .wrapper{
+        width: 75%;
+        margin: auto;
+    }
 
-/* TODO: Breakpoint Design for Desktop (Above 400px), possibility for tablets */
+    .topBar{
+        padding: 0.625em 0;
+    }
+
+    .topBar > .wrapper{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .hamburgerMenu, .mobileNav{
+        display: none;
+    }
+
+    .desktopNav{
+        display: block;
+    }
+
+    .desktopNav ul{
+        display: flex;
+        padding: 0;
+        margin: 0;
+    }
+
+    .desktopNav li,
+    .desktopNav a{
+        display: block;
+    }
+
+    .desktopNav a{
+        padding: 1em 0.5em;
+    }
+
+    .userOptions{
+        display: flex;
+        align-items: center;
+    }
+
+    .userOptions > *:not(:last-child){
+        margin-right: 2em;
+    }
+
+    .userOptions .login{
+        display: block;
+    }
+
+    .siteBanner{
+        padding: 1em 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .siteBanner form{
+        margin: 0;
+        width: inherit;
+        text-align: right;
+    }
+
+    .siteBanner #searchBox{
+        min-width: 33%;
+        width: initial;
+    }
+
+    .categoryBar{
+        border-radius: 3em 0 0 3em;
+        margin-bottom: 1.25em;
+    }
+
+    .categoryNav ul{
+        flex-wrap: nowrap;
+        justify-content: initial;
+        padding: 0.625em 2em;
+    }
+
+    .categoryNav li{
+        flex-basis: auto;
+        margin-bottom: 0;
+    }
+
+    .categoryNav li > a{
+        border: none;
+        border-radius: 3em 0 0 3em;
+        padding: 0.625em 1em;
+    }
+
+    .categoryBar li:not(:last-child){
+        margin-right: 0.5em;
+    }
+
+    .categoryBar li > a::after{
+        display: none;
+    }
+
+    .slider{
+        display: block;
+    }
+
+    .slider #slideBall{
+        background-image: url("images/slideSoccer.png");
+    }
+
+    .slider #slideArmour{
+        background-image: url("images/slideArmour.png");
+    }
+
+    .slider #slideRace{
+        background-image: url("images/slideRace.png");
+    }
+
+    .slider > *{
+        width: 851px;
+        height: 300px;
+        position: relative;
+    }
+
+    .slider .slideDescription{
+        position: absolute;
+        right: 0;
+        background-color: var(--primaryBlue);
+        color: white;
+        height: 100%;
+        width: 35%;
+        border: 3px solid white;
+        border-radius: 50% 0 0 50%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2.5em;
+        font-size: 1.125em;
+        font-weight: lighter;
+    }
+
+
+    .slideDescription p {
+        margin: 0;
+    }
+
+    .slideDescription h2{
+        font-size: 2.5em;
+        font-weight: lighter;
+        margin: 0;
+        line-height: 1.2em;
+    }
+
+    .slideDescription .linkButton{
+        color: white;
+        text-decoration: none;
+        display: block;
+        background-color: var(--secondaryBlue);
+        padding: 0.625em 0;
+        width: 8.125em;
+        border-radius: 1em;
+        margin-top: 1em;
+    }
+
+    .bx-wrapper{
+        margin: auto;
+        margin-bottom: 1em !important;
+    }
+
+    .bx-wrapper .bx-pager{
+        bottom: 5px !important;
+    }
+
+    .bx-wrapper a.bx-pager-link{
+        background-color: var(--secondaryBlue) !important;
+        border: 1px solid white !important;
+        width: 16px !important;
+        height: 16px !important;
+        border-radius: 50% !important;
+        -webkit-border-radius: 50% !important;
+        -moz-border-radius: 50% !important;
+    }
+
+    .bx-wrapper a.bx-pager-link.active{
+        background-color: var(--primaryBlue) !important;
+    }
+
+
+}
+

@@ -6,33 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sports Warehouse</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
     <script src="https://kit.fontawesome.com/0b7408c7cc.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="root">
         <header class="siteHeader">
             <div class="topBar">
-                <div class="hamburgerMenu">
-                    <input type="checkbox" name="mobileHamburger" id="mobileHamburger" onchange="mobileMenu(this)">
-                    <label for="mobileHamburger" class="iconButton hamburgerIcon">Menu</label>
-                </div>
-
-                <nav class="siteNav desktopNav">
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About SW</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">View Products</a></li>
-                    </ul>               
-                </nav>
-
-                <div class="userOptions">
-                    <a href="#" class="login iconButton">Login</a>
-                    <a href="#" class="viewCart iconButton">
-                        <p>View Cart</p>
-                        <span class="cartTotal">0 Items</span>
-                    </a>
+                <div class="wrapper">
+                    <div class="hamburgerMenu">
+                        <input type="checkbox" name="mobileHamburger" id="mobileHamburger" onchange="mobileMenu(this)">
+                        <label for="mobileHamburger" class="iconButton hamburgerIcon">Menu</label>
+                    </div>
+    
+                    <nav class="siteNav desktopNav">
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">About SW</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">View Products</a></li>
+                        </ul>               
+                    </nav>
+    
+                    <div class="userOptions">
+                        <a href="#" class="login iconButton">Login</a>
+                        <a href="#" class="viewCart iconButton">
+                            <p>View Cart</p>
+                            <span class="cartTotal">0 Items</span>
+                        </a>
+                    </div>
                 </div>
             </div>
 
@@ -46,7 +48,7 @@
                 </ul>  
             </nav>
 
-            <div class="siteBanner">
+            <div class="siteBanner wrapper">
                 <a href="index.html" class="siteLogo" aria-label="Sports Warehouse">
                     <img src="images/LogoLarge.gif" alt="Sports Warehouse Logo">
                 </a>
@@ -58,7 +60,7 @@
                     </button>
                 </form>
             </div>
-            <div class="categoryBar">
+            <div class="categoryBar wrapper">
                 <nav class="categoryNav">
                     <ul>
                         <li><a href="#">Shoes</a></li>
@@ -72,32 +74,28 @@
                 </nav>
             </div>
         </header>
-        <main>
-            <div class="slider splide">
-                <div class="splide__track">
-                    <ul class="splide__list">
-                        <li class="splide__slide" id="slideBall">
-                            <div class="slideDescription">
-                                <p>View our brand new range of</p>
-                                <h2>Sports Balls</h2>
-                                <a href="#" class="linkButton">Shop Now</a>
-                            </div>
-                        </li>
-                        <li class="splide__slide" id="slideArmour">
-                            <div class="slideDescription">
-                                <p>Get protected with the new range of</p>
-                                <h2>Protective Helmets</h2>
-                                <a href="#" class="linkButton">Shop Now</a>
-                            </div>
-                        </li>
-                        <li class="splide__slide" id="slideRace">
-                            <div class="slideDescription">
-                                <p>Get ready to race with our professional</p>
-                                <h2>Training Gear</h2>
-                                <a href="#" class="linkButton">Shop Now</a>
-                            </div>
-                        </li>
-                    </ul>
+        <main class="wrapper">
+            <div class="slider">
+                <div id="slideBall">
+                    <div class="slideDescription">
+                        <p>View our brand new range of</p>
+                        <h2>Sports Balls</h2>
+                        <a href="#" class="linkButton">Shop Now</a>
+                    </div>
+                </div>
+                <div id="slideArmour">
+                    <div class="slideDescription">
+                        <p>Get protected with the new range of</p>
+                        <h2>Protective Helmets</h2>
+                        <a href="#" class="linkButton">Shop Now</a>
+                    </div>
+                </div>
+                <div id="slideRace">
+                    <div class="slideDescription">
+                        <p>Get ready to race with our professional</p>
+                        <h2>Training Gear</h2>
+                        <a href="#" class="linkButton">Shop Now</a>
+                    </div>
                 </div>
             </div>
             <section class="featuredProducts">
@@ -283,9 +281,10 @@
         </footer>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js">
-        //new Splide(".splide").mount();
-    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
+
     <script>
         window.FontAwesomeConfig = {
             searchPseudoElements: true
@@ -300,6 +299,15 @@
                 mobileMenu.classList.remove("checked");
             }
         }
+
+        $(document).ready(function(){
+            $(".slider").bxSlider({
+                auto: true,
+                stopAutoOnClick: true,
+                slideWidth: 851,
+                controls: false
+            });
+        })
     </script>
 </body>
 </html>
