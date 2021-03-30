@@ -22,7 +22,7 @@ It will be given to the design manager for approval before it is converted to a 
 Add functionality to the website to allow customers to browse and search products using
 PHP and a database.
 
-**Due Date: TBA**
+**Due Date: 5/5/21**
 
 ## Deliverable D: Customer Purchasing and Administration
 Add functionality to the website to allow customers to purchase products and to allow staff
