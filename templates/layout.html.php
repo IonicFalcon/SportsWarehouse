@@ -1,3 +1,16 @@
+<?php
+    session_start();
+
+    if(isset($_SESSION["ShoppingCart"])){
+        include "models/ShoppingCart.php";
+        
+        $shoppingCart = unserialize($_SESSION["ShoppingCart"]);
+        $cartSize = sizeof($shoppingCart->Items);
+    } else{
+        $cartSize = 0;
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,7 +55,7 @@
                         <a href="#" class="login iconButton">Login</a>
                         <a href="#" class="viewCart iconButton">
                             <p>View Cart</p>
-                            <span class="cartTotal">0 Items</span>
+                            <span class="cartTotal"><?= $cartSize ?> Item/s</span>
                         </a>
                     </div>
                 </div>
