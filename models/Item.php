@@ -10,6 +10,7 @@ class Item extends DatabaseEntity{
     public $Description;
     public $Featured;
     public $Category;
+    public $Quantity;
     
     /**
      * Get all items from database
