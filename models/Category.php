@@ -1,4 +1,5 @@
 <?php
+include_once "DatabaseEntity.php";
 
 class Category extends DatabaseEntity{
     public $CategoryID;

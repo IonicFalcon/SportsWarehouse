@@ -1,4 +1,5 @@
 <?php
+include_once "DatabaseEntity.php";
 
 class Item extends DatabaseEntity{
     public $ItemID;
@@ -16,9 +17,9 @@ class Item extends DatabaseEntity{
      * @return Item[]
      */
     public static function GetAllItems(){
-        include "Category.php";
+        include_once "Category.php";
 
-        $query = "SELECT `ItemID`, `ItemName`, `Photo`, `Price`, `SalePrice`, `Description`, `Featured` FROM `Items`";
+        $query = "SELECT `ItemID`, `ItemName`, `Photo`, `Price`, `SalePrice`, `Description`, `Featured` FROM `Item`";
         $itemList = Item::DB()->ExecuteSQL($query, null, "Item");
 
         foreach($itemList as $item){
@@ -35,9 +36,9 @@ class Item extends DatabaseEntity{
      * @return Item
      */
     public static function GetItemFromID($id){
-        include "Category.php";
+        include_once "Category.php";
 
-        $query = "SELECT `ItemID`, `ItemName`, `Photo`, `Price`, `SalePrice`, `Description`, `Featured` FROM `Items` WHERE `ItemID` = :id";
+        $query = "SELECT `ItemID`, `ItemName`, `Photo`, `Price`, `SalePrice`, `Description`, `Featured` FROM `Item` WHERE `ItemID` = :id";
         $param = [
             ":id" => $id
         ];
@@ -55,9 +56,9 @@ class Item extends DatabaseEntity{
      * @return Item[]
      */
     public static function SearchItems($searchQuery){
-        include "Category.php";
+        include_once "Category.php";
 
-        $query = "SELECT `ItemID`, `ItemName`, `Photo`, `Price`, `SalePrice`, `Description`, `Featured` FROM `Items` WHERE `ItemName` LIKE :name";
+        $query = "SELECT `ItemID`, `ItemName`, `Photo`, `Price`, `SalePrice`, `Description`, `Featured` FROM `Item` WHERE `ItemName` LIKE :name";
         $param = [
             ":name" => "%" . $searchQuery . "%"
         ];
@@ -67,6 +68,20 @@ class Item extends DatabaseEntity{
         foreach($itemList as $item){
             $item->Category = Category::GetCategoryFromItemID($item->ItemID);
         }
+
+        return $itemList;
+    }
+
+    public static function GetFeaturedItems(){
+        include_once "Category.php";
+
+        $query = "SELECT `ItemID`, `ItemName`, `Photo`, `Price`, `SalePrice`, `Description`, `Featured` FROM `Item` WHERE `Featured` = 1";
+        $itemList = Item::DB()->ExecuteSQL($query, null, "Item");
+
+        foreach($itemList as $item){
+            $item->Category = Category::GetCategoryFromItemID($item->ItemID);
+        }
+
 
         return $itemList;
     }

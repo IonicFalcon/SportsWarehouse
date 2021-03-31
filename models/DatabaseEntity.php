@@ -5,8 +5,8 @@
  */
 abstract class DatabaseEntity{
     protected static function DB(){
-        include "Database.php";
-        include "../settings/DBSettings.php";
+        include_once "Database.php";
+        include "settings/DBSettings.php";
 
         return new Database($serverName, $username, $password, $dbName);
     }
