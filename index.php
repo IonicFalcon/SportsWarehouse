@@ -1,7 +1,25 @@
 <?php
 
-// Currently, the homepage doesn't exist. This is to redirect a user to the coming soon page instead
-// The actual homepage will replace this
-// This saves having to rename the commng soon page away from index.php in the future
-header("Location: comingSoon.php");
-die();
+$pageTitle = "Sports Warehouse";
+
+//Add CSS and JavaScript file locations needed for this page
+$CSSSources = [
+    "https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css"
+];
+$JSSources = [
+    "https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js",
+    "js/index.js"
+];
+
+require_once "models/Item.php";
+require_once "models/Category.php";
+
+$featuredItems = Item::GetFeaturedItems();
+$categories = Category::GetAllCategories();
+
+ob_start();
+
+include "templates/index.html.php";
+
+$mainOutput = ob_get_clean();
+include "templates/layout.html.php";
