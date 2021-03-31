@@ -24,6 +24,10 @@ body{
     color: white;
 }
 
+.topBar, .mobileNav{
+    font-size: 0.875em; /* 14px Equivilant */
+}
+
 .topBar > .wrapper{
     padding: 0.25em 1em;
     display: flex;
@@ -233,6 +237,7 @@ main section h2{
 .featuredProducts li{
     display: inline-block;
     flex-basis: 140px;
+    min-height: 300px;
 }
 
 .featuredProduct{
@@ -240,10 +245,21 @@ main section h2{
     text-align: center;
 }
 
+.productCard .productImage{
+    min-height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .productCard .productPrice{
     font-size: 1.4em; /* 21px Equivilant */
     color: var(--grey);
     font-weight: bold;
+}
+
+.productCard .productPrice > p{
+    margin-top: 0.5em;
 }
 
 .productCard .productPrice.productSale{
@@ -286,13 +302,14 @@ main section h2{
     background-color: var(--deepBlue);
     display: grid;
     grid-template-columns: auto auto auto;
+    padding: 0;
 }
 
 .partnerships li{
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1em 5px;
+    padding: 1em 0.5em;
 }
 
 .siteFooter .footerGroups{
@@ -382,14 +399,10 @@ main section h2{
 }
 
 @media only screen and (min-width: 450px){
-    main section h2{
-        margin-bottom: 1.25em;
-    }
-
     .wrapper{
         width: 90%;
         margin: auto;
-        max-width: 1280px;
+        max-width: 1440px;
     }
 
     .topBar{
@@ -445,6 +458,10 @@ main section h2{
         align-items: center;
     }
 
+    .siteLogo img{
+        max-width: none;
+    }
+
     .siteBanner form{
         margin: 0;
         width: inherit;
@@ -454,6 +471,10 @@ main section h2{
     .siteBanner #searchBox{
         min-width: 33%;
         width: initial;
+    }
+
+    .siteBanner .searchButton{
+        cursor: pointer;
     }
 
     .categoryBar{
@@ -470,12 +491,17 @@ main section h2{
     .categoryBar .categoryNav li{
         flex-basis: auto;
         margin-bottom: 0;
+        font-size: 1.125em; /* 18px Equilivant */
     }
 
     .categoryBar .categoryNav li > a{
         border: none;
         border-radius: 3em 0 0 3em;
         padding: 0.625em 1em;
+    }
+
+    .categoryBar .categoryNav li > a:not(.selected):hover{
+        background-color: var(--secondaryBlue);
     }
 
     .categoryBar li:not(:last-child){
@@ -514,14 +540,14 @@ main section h2{
         background-color: var(--primaryBlue);
         color: white;
         height: 100%;
-        width: 35%;
+        width: 30%;
         border: 3px solid white;
         border-radius: 9.375em 0 0 9.375em;
         text-align: center;
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 2.5em;
+        padding: 2.5em 2em 2.5em 4.5em;
         font-size: 1.125em;
         font-weight: lighter;
     }
@@ -572,6 +598,11 @@ main section h2{
         background-color: var(--primaryBlue) !important;
     }
 
+    .featuredProducts li {
+        margin: 0.25em;
+        flex-basis: 210px;
+    }
+
     .productCard{
         min-width: 11.625em;
         height: 100%;
@@ -589,6 +620,7 @@ main section h2{
         display: flex;
         flex-direction: row;
         align-items: center;
+        justify-content: center;
     }
 
     .productCard .productPrice p{
@@ -637,6 +669,10 @@ main section h2{
         padding: 0;
         display: flex;
         justify-content: space-around;
+    }
+
+    .siteFooter .footerGroups a:not(.contactIcon):hover{
+        text-decoration: underline;
     }
 
     .footerGroups > *{
