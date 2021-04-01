@@ -19,4 +19,7 @@ if(isset($_GET["id"]) && $_GET["id"] != ""){
     $mainOutput = ob_get_clean();
     include "templates/layout.html.php";
 
+} else{
+    header("Location: searchProducts.php");
+    die();
 }
