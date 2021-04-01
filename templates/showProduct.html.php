@@ -42,3 +42,14 @@
         </div>
     </div>
 </div>
+
+<div class="cartConfirmation hidden">
+    <button class="closeConfirmation">X</button>
+    <div class="confirmationDetails">
+        <h2>Item Successfully Added to Cart!</h2>
+        <div class="confirmationOptions">
+                <button id="continue">Continue Shopping</button>
+                <button id="viewCart">View Cart</button>
+        </div>
+    </div>
+</div>
