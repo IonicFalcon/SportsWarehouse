@@ -5,9 +5,7 @@
         <span class="breadcrumb-element"><?= $item->ItemName ?></span>
     </div>
     <div class="productInfo">
-        <div class="zoomContainer">
-            <img src="images/productImages/<?= $item->Photo ?>" alt="<?= $item->ItemName ?> Image">
-        </div>
+        <img src="images/productImages/<?= $item->Photo ?>" alt="<?= $item->ItemName ?> Image">
         <div class="productInfoDescription">
             <h2><?= $item->ItemName ?></h2>
             <?php
