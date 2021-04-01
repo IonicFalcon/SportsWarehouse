@@ -5,7 +5,9 @@
         <span class="breadcrumb-element"><?= $item->ItemName ?></span>
     </div>
     <div class="productInfo">
-        <img src="images/productImages/<?= $item->Photo ?>" alt="<?= $item->ItemName ?> Image">
+        <div class="zoomContainer">
+            <img src="images/productImages/<?= $item->Photo ?>" alt="<?= $item->ItemName ?> Image">
+        </div>
         <div class="productInfoDescription">
             <h2><?= $item->ItemName ?></h2>
             <?php
@@ -28,10 +30,15 @@
             <p class="productDescription"><?= $item->Description ?></p>
 
             <form action="controllers/shoppingCartController.php" id="addToCart">
-                <input type="number" name="quantity" id="itemQuantity">
+                <label for="itemQuantity">Quantity</label>
+                <input type="number" name="quantity" id="itemQuantity" min="1" max="25" value="1">
                 <input type="hidden" name="itemID" value="<?= $item->ItemID ?>">
                 <button type="submit">
-                    <p>Add to Cart</p>
+                    <p>
+                        <i class="fas fa-cart-plus"></i>
+                        Add to Cart
+                    </p>
+                    
                 </button>
             </form>
         </div>
