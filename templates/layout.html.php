@@ -182,25 +182,9 @@
         //Import any other relevant files for the specific page
         if(isset($JSSources)){
             foreach($JSSources as $file){
-                // Javascript Modules need to be declared differently, so whether it is a module is stored in an array
-                if(is_array($file)){
-                    if($file[1] === true){
-                        ?>
-                            <script type="module" src="<?= $file[0] ?>"></script>
-                        <?php
-                    } else{
-                        ?>
-                            <script src="<?= $file[0] ?>"></script>
-                        <?php
-                    }
-                    ?>
-
-                    <?php
-                } else{
-                    ?>
-                        <script src="<?=$file?>"></script>
-                    <?php
-                }
+                ?>
+                    <script src="<?=$file?>"></script>
+                <?php
             }
         }
     ?>
