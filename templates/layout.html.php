@@ -5,9 +5,9 @@
         include "models/ShoppingCart.php";
         
         $shoppingCart = unserialize($_SESSION["ShoppingCart"]);
-        $cartSize = sizeof($shoppingCart->Items);
+        $cartSize = $shoppingCart->ItemCount();
     } else{
-        $cartSize = 0;
+        $cartSize = "0 Items";
     }
 ?>
 
@@ -55,7 +55,7 @@
                         <a href="#" class="login iconButton">Login</a>
                         <a href="#" class="viewCart iconButton">
                             <p>View Cart</p>
-                            <span class="cartTotal"><?= $cartSize ?> Item/s</span>
+                            <span class="cartTotal"><?= $cartSize ?></span>
                         </a>
                     </div>
                 </div>
@@ -182,9 +182,25 @@
         //Import any other relevant files for the specific page
         if(isset($JSSources)){
             foreach($JSSources as $file){
-                ?>
-                    <script src="<?=$file?>"></script>
-                <?php
+                // Javascript Modules need to be declared differently, so whether it is a module is stored in an array
+                if(is_array($file)){
+                    if($file[1] === true){
+                        ?>
+                            <script type="module" src="<?= $file[0] ?>"></script>
+                        <?php
+                    } else{
+                        ?>
+                            <script src="<?= $file[0] ?>"></script>
+                        <?php
+                    }
+                    ?>
+
+                    <?php
+                } else{
+                    ?>
+                        <script src="<?=$file?>"></script>
+                    <?php
+                }
             }
         }
     ?>
