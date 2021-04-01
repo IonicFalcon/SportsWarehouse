@@ -49,7 +49,7 @@ class ShoppingCart{
      */
     public function AddItem($item){
         foreach($this->Items as $shoppingCartItem){
-            if($item->ItemID === $shoppingCartItem){
+            if($item->ItemID === $shoppingCartItem->ItemID){
                 $shoppingCartItem->Quantity += $item->Quantity;
                 return;
             }
