@@ -13,9 +13,20 @@ $("#addToCart").submit(function(event) {
             
             let shoppingCart = document.querySelector(".cartTotal");
             shoppingCart.innerHTML = returnData.CartItems;
+
+            ToggleModal();
         },
         datatype: "json",
         processData: false,
         contentType: false
     });
 });
+
+$(".cartModal .closeConfirmation").click(function(){
+    ToggleModal();
+});
+
+function ToggleModal(){
+    let modal = document.querySelector(".cartModal");
+    modal.classList.toggle("hidden");
+}

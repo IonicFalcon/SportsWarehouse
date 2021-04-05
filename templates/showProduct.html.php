@@ -43,13 +43,18 @@
     </div>
 </div>
 
-<div class="cartConfirmation hidden">
-    <button class="closeConfirmation">X</button>
-    <div class="confirmationDetails">
-        <h2>Item Successfully Added to Cart!</h2>
-        <div class="confirmationOptions">
-                <button id="continue">Continue Shopping</button>
-                <button id="viewCart">View Cart</button>
+<div class="cartModal hidden">
+    <div class="cartConfirmation">
+        <button class="closeConfirmation">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="confirmationDetails">
+            <img src="images/productImages/<?= $item->Photo ?>" alt="<?= $item->ItemName ?> Image">
+            <h2>Item Successfully Added to Cart!</h2>
+            <div class="confirmationOptions">
+                <a href="searchProducts.php" id="continue" class="linkButton">Continue Shopping</a>
+                <a href="viewCart.php" id="viewCart" class="linkButton">View Cart</a>
+            </div>
         </div>
     </div>
 </div>

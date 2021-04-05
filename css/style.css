@@ -480,6 +480,66 @@ span.breadcrumb-element{
     font-size: 1.125em;
 }
 
+.cartModal{
+    background-color: rgba(0,0,0,0.5);
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cartModal.hidden{
+    display: none;
+}
+
+.cartModal .cartConfirmation{
+    background-color: white;
+    max-width: 750px;
+    margin: 1em;
+    padding: 1em 2em;
+    text-align: right;
+}
+
+.cartConfirmation .closeConfirmation{
+    border: none;
+    background-color: inherit;
+    font-size: 1.25em;
+    color: var(--grey);
+}
+
+.cartConfirmation .confirmationDetails{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1em;
+    text-align: left;
+}
+
+.cartConfirmation .confirmationDetails > img{
+    display: none;
+}
+
+.cartConfirmation .confirmationOptions > .linkButton{
+    display: inline-block;
+    width: 100%;
+    background-color: var(--primaryBlue);
+    color: white;
+    font-size: 1em;
+    padding: 1em 2em;
+    text-align: center;
+    text-decoration: none;
+    border: 2px solid black;
+}
+
+.cartConfirmation .confirmationOptions > .linkButton:not(:last-child){
+    margin-bottom: 0.25em;
+}
+
 @media only screen and (min-width: 450px){
     .wrapper{
         width: 90%;
@@ -812,5 +872,17 @@ span.breadcrumb-element{
         padding-bottom: 1.27em;
     }
     
+    .cartModal .cartConfirmation{
+        width: 60%;
+    }
+
+    .cartConfirmation .confirmationDetails{
+        flex-direction: row;
+    }
+
+    .cartConfirmation .confirmationDetails > img{
+        display: block;
+        width: 150px;
+    }
     
 }
