@@ -53,7 +53,7 @@
     
                     <div class="userOptions">
                         <a href="#" class="login iconButton">Login</a>
-                        <a href="#" class="viewCart iconButton">
+                        <a href="viewCart.php" class="viewCart iconButton">
                             <p>View Cart</p>
                             <span class="cartTotal"><?= $cartSize ?></span>
                         </a>
