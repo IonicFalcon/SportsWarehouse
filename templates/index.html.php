@@ -21,7 +21,7 @@
         </div>
     </div>
 </div>
-<section class="featuredProducts">
+<section class="featuredProducts productList">
     <h2>Featured Products</h2>
     <ul>
         <?php
@@ -29,10 +29,10 @@
                 ?>
                     <li>
 
-                        <a href="showProduct.php?id=<?= $item->ItemID ?>" class="featuredProduct">
-                            <article class="productCard">
+                        <a href="showProduct.php?id=<?= $item->ItemID ?>" class="featuredProduct productCard">
+                            <article>
                                 <div class="productImage">
-                                    <img src="images/productImages/<?= $item->Photo ?>" alt="<?= $item->ItemName?> Image">
+                                    <img src="<?= $item->ProductImage() ?>" alt="<?= $item->ItemName?> Image">
                                 </div>
     
                                 <?php
