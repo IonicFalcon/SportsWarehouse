@@ -211,7 +211,7 @@ main section{
     margin-top: 2em;
 }
 
-main section > *:not(:first-child){
+main section > *:not(h2){
     padding: 0 1em;
 }
 
@@ -227,20 +227,20 @@ main section h2{
     margin-bottom: 1em;
 }
 
-.featuredProducts ul{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+.productList ul, ul.productList{
+    display: grid;
+    grid-template-columns: repeat(2, 140px);
     margin: 0;
+    justify-content: space-around;
 }
 
-.featuredProducts li{
+
+.productList li{
     display: inline-block;
-    flex-basis: 140px;
     min-height: 300px;
 }
 
-.featuredProduct{
+.productCard{
     text-decoration: none;
     text-align: center;
 }
@@ -406,6 +406,18 @@ main section h2{
     padding: 1.5em 10px;
 }
 
+.breadcrumb{
+    margin-bottom: 1em;
+}
+
+.breadcrumb-element{
+    color: var(--primaryOrange);
+}
+
+.breadcrumb-element:last-child{
+    color: var(--grey);
+}
+
 .breadcrumb-element:not(:last-child)::after{
     content: ">";
     color: var(--primaryBlue);
@@ -413,13 +425,9 @@ main section h2{
 }
 
 a.breadcrumb-element{
-    color: var(--primaryOrange);
     text-decoration: none;
 }
 
-span.breadcrumb-element{
-    color: var(--grey);
-}
 
 .productInfo img{
     width: 100%;
@@ -740,12 +748,20 @@ span.breadcrumb-element{
         background-color: var(--primaryBlue) !important;
     }
 
-    .featuredProducts li {
+    .productList ul, ul.productList{
+        grid-template-columns: repeat(auto-fit, 210px);
+    }
+
+    ul.productList:not(.featuredProducts){
+        justify-content: normal;
+    }
+
+    .productList li {
         margin: 0.25em;
         flex-basis: 210px;
     }
 
-    .productCard{
+    .productCard > article{
         min-width: 11.625em;
         height: 100%;
         border: 1px solid #f4f4f4;
@@ -753,7 +769,7 @@ span.breadcrumb-element{
         padding: 0.75em 1em;
     }
 
-    .productCard:hover{
+    .productCard > article:hover{
         box-shadow: 1px 1px 3px var(--primaryOrange);
     }
 
