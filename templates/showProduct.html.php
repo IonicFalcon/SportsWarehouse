@@ -5,7 +5,7 @@
         <span class="breadcrumb-element"><?= $item->ItemName ?></span>
     </div>
     <div class="productInfo">
-        <img src="images/productImages/<?= $item->Photo ?>" alt="<?= $item->ItemName ?> Image">
+        <img src="<?= $item->ProductImage() ?>" alt="<?= $item->ItemName ?> Image">
         <div class="productInfoDescription">
             <h2><?= $item->ItemName ?></h2>
             <?php
@@ -49,10 +49,10 @@
             <i class="fas fa-times"></i>
         </button>
         <div class="confirmationDetails">
-            <img src="images/productImages/<?= $item->Photo ?>" alt="<?= $item->ItemName ?> Image">
+            <img src="<?= $item->ProductImage() ?>" alt="<?= $item->ItemName ?> Image">
             <h2>Item Successfully Added to Cart!</h2>
             <div class="confirmationOptions">
-                <a href="searchProducts.php" id="continue" class="linkButton">Continue Shopping</a>
+                <a href="searchProducts.php?cat=<?= $item->Category->CategoryID ?>" id="continue" class="linkButton">Continue Shopping</a>
                 <a href="viewCart.php" id="viewCart" class="linkButton">View Cart</a>
             </div>
         </div>
