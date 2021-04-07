@@ -11,6 +11,16 @@ class Item extends DatabaseEntity{
     public $Featured;
     public $Category;
     public $Quantity;
+
+    public function ProductImage(){
+        $defaultPath = "images/productImages/";
+
+        if(isset($this->Photo)){
+            return $defaultPath . $this->Photo;
+        } else{
+            return $defaultPath . "placeholder.png";
+        }
+    }
     
     /**
      * Get all items from database
@@ -49,29 +59,6 @@ class Item extends DatabaseEntity{
         $item->Category = Category::GetCategoryFromItemID($item->ItemID);
         return $item;
     }
-    
-    /**
-     * Return a list of items based on a search query
-     *
-     * @param  string $searchQuery
-     * @return Item[]
-     */
-    public static function SearchItems($searchQuery){
-        include_once "Category.php";
-
-        $query = "SELECT `ItemID`, `ItemName`, `Photo`, `Price`, `SalePrice`, `Description`, `Featured` FROM `Item` WHERE `ItemName` LIKE :name";
-        $param = [
-            ":name" => "%" . $searchQuery . "%"
-        ];
-        
-        $itemList = Item::DB()->ExecuteSQL($query, $param, "Item");
-
-        foreach($itemList as $item){
-            $item->Category = Category::GetCategoryFromItemID($item->ItemID);
-        }
-
-        return $itemList;
-    }
 
     public static function GetFeaturedItems(){
         include_once "Category.php";
@@ -85,5 +72,29 @@ class Item extends DatabaseEntity{
 
 
         return $itemList;
+    }
+    
+    /**
+     * Return an array of items given a search query. Used for when SQL query needs to be generated in the controller due to many variations in parameters to the query (e.g. Limit, Order, Category, Search Query)
+     *
+     * @param  string $query
+     * @param  array $params
+     * @return Item[]
+     */
+    public static function SearchForItems($query, $params = null){
+        include_once "Category.php";
+
+        $itemList = Item::DB()->ExecuteSQL($query, $params, "Item");
+
+        foreach($itemList as $item){
+            $item->Category = Category::GetCategoryFromItemID($item->ItemID);
+        }
+
+        return $itemList;
+    }
+
+    public static function GetItemCount(){
+        $query = "SELECT COUNT(*) FROM `Item`";
+        return Item::DB()->ExecuteSQLSingleVal($query);
     }
 }
