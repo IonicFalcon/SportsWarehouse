@@ -47,7 +47,7 @@
                             <li><a href="index.php">Home</a></li>
                             <li><a href="#">About SW</a></li>
                             <li><a href="#">Contact Us</a></li>
-                            <li><a href="searchProducts.php">View Products</a></li>
+                            <!-- <li><a href="searchProducts.php">View Products</a></li> -->
                         </ul>               
                     </nav>
     
@@ -67,7 +67,7 @@
                     <li><a href="index.php">Home</a></li>
                     <li><a href="#">About SW</a></li>
                     <li><a href="#">Contact Us</a></li>
-                    <li><a href="searchProducts.php">View Products</a></li>
+                    <!-- <li><a href="searchProducts.php">View Products</a></li> -->
                 </ul>  
             </nav>
 
@@ -76,7 +76,7 @@
                     <img src="images/LogoLarge.gif" alt="Sports Warehouse Logo">
                 </a>
             
-                <form method="get" class="search">
+                <form method="get" class="search" action="searchProducts.php">
                     <input type="text" name="search" id="searchBox" aria-label="Search Products" placeholder="Search Products">
                     <button type="submit" class="searchButton" aria-label="Search">
                         <i class="fas fa-search"></i>
@@ -110,7 +110,7 @@
                                 <li><a href="index.php">Home</a></li>
                                 <li><a href="#">About SW</a></li>
                                 <li><a href="#">Contact Us</a></li>
-                                <li><a href="searchProducts.php">View Products</a></li>
+                                <!-- <li><a href="searchProducts.php">View Products</a></li> -->
                                 <li><a href="#">Privacy Policy</a></li>
                             </ul>
                         </nav>
