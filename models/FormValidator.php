@@ -5,7 +5,7 @@ class FormValidator{
     private $_errorFields = [];
 
     public function CheckEmpty($fieldName){
-        if(!isset($_POST[$fieldName]) || empty($_POST[$fieldName])){
+        if(!isset($_REQUEST[$fieldName]) || empty($_REQUEST[$fieldName])){
             array_push($this->_errorFields, $fieldName);
 
             $this->isValid = false;
@@ -14,8 +14,8 @@ class FormValidator{
     }
 
     public function CheckEmail($email){
-        if(isset($_POST[$email])){
-            if (!filter_var($_POST[$email], FILTER_VALIDATE_EMAIL)){
+        if(isset($_REQUEST[$email])){
+            if (!filter_var($_REQUEST[$email], FILTER_VALIDATE_EMAIL)){
                 array_push($this->_errorFields, $email);
 
                 $this->isValid = false;
@@ -30,20 +30,20 @@ class FormValidator{
         }
     }
 
-    public function SetValue($fieldName){
-        if(isset($_POST[$fieldName])){
+    public static function SetValue($fieldName){
+        if(isset($_REQUEST[$fieldName])){
             return htmlentities($_POST[$fieldName]);
         }
     }
 
-    public function SetSelected($fieldName, $fieldValue){
-        if(isset($_POST[$fieldName]) && $_POST[$fieldName] === $fieldValue){
+    public static function SetSelected($fieldName, $fieldValue){
+        if(isset($_REQUEST[$fieldName]) && $_REQUEST[$fieldName] === $fieldValue){
             return "selected";
         }
     }
 
-    public function SetChecked($fieldName, $fieldValue){
-        if(isset($_POST[$fieldName]) && $_POST[$fieldName] === $fieldValue){
+    public static function SetChecked($fieldName, $fieldValue){
+        if(isset($_REQUEST[$fieldName]) && $_REQUEST[$fieldName] === $fieldValue){
             return "checked";
         }
     }
