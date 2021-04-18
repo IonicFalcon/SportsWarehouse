@@ -1,46 +1,4 @@
 <?php
-/**
- * Build upon a base query to include extra details from query string. For example, how data should be sorted or limited
- *
- * @param &string $baseQuery
- * @return void
- */
-function BuildQuery(&$baseQuery){
-    if(isset($_GET["sort"]) && $_GET["sort"] != ""){
-        switch($_GET["sort"]){
-            case "AToZ":
-                $baseQuery .= "ORDER BY `ItemName` ";
-                break;
-            case "ZToA":
-                $baseQuery .= "ORDER BY `ItemName` DESC ";
-                break;
-            case "priceLow":
-                $baseQuery .= "ORDER BY `SalePrice` DESC, `Price` DESC ";
-                break;
-            case "priceHigh":
-                $baseQuery .= "ORDER BY `SalePrice`, `Price` ";
-                break;
-            case "featured":
-                $baseQuery .= "AND `Featured` = 1 ";
-                break;
-        }
-    }
-
-    $limit = 6;
-    $page = 0;
-
-    if(isset($_GET["limit"]) && $_GET["limit"] != ""){
-        $limit = $_GET["limit"];
-    }
-
-    if(isset($_GET["page"]) && $_GET["page"] != ""){
-        $page = $_GET["page"];
-    }
-
-    $baseQuery .= "LIMIT $limit OFFSET " . $limit * $page;
-
-    $baseQuery = trim($baseQuery);
-}
 
 if(!isset($_GET["cat"]) && !isset($_GET["search"])){
     header("Location: index.php");
@@ -70,30 +28,30 @@ if(isset($_GET["cat"]) && $_GET["cat"] != ""){
     $pageTitle = "Search Results - Sports Warehouse";
 }
 
-BuildQuery($baseQuery);
+if(isset($_GET["sort"]) && $_GET["sort"] != ""){
+    switch($_GET["sort"]){
+        case "AToZ":
+            $baseQuery .= "ORDER BY `ItemName`";
+            break;
+        case "ZToA":
+            $baseQuery .= "ORDER BY `ItemName` DESC";
+            break;
+        case "priceLow":
+            $baseQuery .= "ORDER BY `SalePrice`, `Price`";
+            break;
+        case "priceHigh":
+            $baseQuery .= "ORDER BY `SalePrice` DESC, `Price` DESC";
+            break;
+        case "featured":
+            $baseQuery .= "AND `Featured` = 1";
+            break;
+    }
+} else{
+    $baseQuery .= "ORDER BY `ItemName`";
+}
+
 $items = Item::SearchForItems($baseQuery, $param);
 $categories = Category::GetAllCategories();
-
-$searchStart = 1;
-$limit = 6;
-
-if(isset($_GET["limit"]) && $_GET["limit"] != ""){
-    $limit = $_GET["limit"];
-    $page = 0;
-    
-    if(isset($_GET["page"]) && $_GET["page"] != ""){
-        $page = $_GET["page"];
-    }
-    
-    $searchStart = $limit * $page + 1;
-    $searchEnd = $searchStart + $limit;
-}
-
-
-$totalItems = sizeof($items);
-if($limit > $totalItems){
-    $searchEnd = $totalItems;
-}
 
 $JSSources = [
     "js/searchProducts.js"

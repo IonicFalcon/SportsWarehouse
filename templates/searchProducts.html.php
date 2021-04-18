@@ -33,68 +33,10 @@
                 <option value="priceHigh" <?= FormValidator::SetSelected("sort", "priceHigh") ?>>Price High-Low</option>
                 <option value="featured" <?= FormValidator::SetSelected("sort", "featured") ?>>Featured Product</option>
             </select>
-            <select name="limit" id="sortLimit">
-                <option value="6" <?= FormValidator::SetSelected("limit", "6") ?>>6</option>
-                <option value="12" <?= FormValidator::SetSelected("limit", "12") ?>>12</option>
-                <option value="18" <?= FormValidator::SetSelected("limit", "18") ?>>18</option>
-                <option value="24" <?= FormValidator::SetSelected("limit", "24") ?>>24</option>
-                <option value="30" <?= FormValidator::SetSelected("limit", "30") ?>>30</option>
-                <option value="36" <?= FormValidator::SetSelected("limit", "36") ?>>36</option>
-            </select>
             <input type="hidden" name="cat" value="<?= isset($category) ? $category->CategoryID : "" ?>">
             <input type="hidden" name="search" value="<?= isset($_GET['search']) ? $_GET['search'] : "" ?>">
             
         </form>
-        <nav class="searchNavigation">
-            <p>Displaying <?= $searchStart ?> - <?= $searchEnd ?> of <?= $totalItems ?></p>
-            <ul>
-                <?php
-                    if($searchStart != 1){
-                        ?>
-                            <li>
-                                <a href="">
-                                    <i class="fas fa-fast-backward"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <i class="fas fa-step-backward"></i>
-                                </a>
-                            </li>
-                        <?php
-                    }
-
-                    $pageIndex = 1;
-                    for($i = 0; $i < $totalItems; $i++){
-                        if($i % $limit == 0){
-                            ?>
-                                <li>
-                                    <a href="">
-                                        <?= $pageIndex ?>
-                                    </a>
-                                </li>
-                            <?php
-                            $pageIndex++;
-                        }
-                    }
-
-                    if($searchEnd != $totalItems){
-                        ?>
-                            <li>
-                                <a href="">
-                                    <i class="fas fa-step-forward"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <i class="fas fa-fast-forward"></i>
-                                </a>
-                            </li>
-                        <?php
-                    }
-                ?>
-            </ul>
-        </nav>
     </div>
     <ul class="productList">
         <?php
@@ -132,53 +74,4 @@
             }
         ?>
     </ul>
-    <nav class="searchNavigation">
-        <ul>
-            <?php
-                if($searchStart != 1){
-                    ?>
-                        <li>
-                            <a href="">
-                                <i class="fas fa-fast-backward"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <i class="fas fa-step-backward"></i>
-                            </a>
-                        </li>
-                    <?php
-                }
-
-                $pageIndex = 1;
-                for($i = 0; $i < $totalItems; $i++){
-                    if($i % $limit == 0){
-                        ?>
-                            <li>
-                                <a href="">
-                                    <?= $pageIndex ?>
-                                </a>
-                            </li>
-                        <?php
-                        $pageIndex++;
-                    }
-                }
-
-                if($searchEnd != $totalItems){
-                    ?>
-                        <li>
-                            <a href="">
-                                <i class="fas fa-step-forward"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <i class="fas fa-fast-forward"></i>
-                            </a>
-                        </li>
-                    <?php
-                }
-            ?>
-        </ul>
-    </nav>
 </section>
