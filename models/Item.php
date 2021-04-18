@@ -12,6 +12,12 @@ class Item extends DatabaseEntity{
     public $Category;
     public $Quantity;
 
+        
+    /**
+     * Return a defined image path for item's image
+     *
+     * @return string
+     */
     public function ProductImage(){
         $defaultPath = "images/productImages/";
 
@@ -23,7 +29,7 @@ class Item extends DatabaseEntity{
     }
     
     /**
-     * Get all items from database
+     * Return all items from database
      *
      * @return Item[]
      */
@@ -41,7 +47,7 @@ class Item extends DatabaseEntity{
     }
     
     /**
-     * Get item from database given the item's ID
+     * Return item from database given the item's ID
      *
      * @param  string $id
      * @return Item
@@ -59,7 +65,12 @@ class Item extends DatabaseEntity{
         $item->Category = Category::GetCategoryFromItemID($item->ItemID);
         return $item;
     }
-
+    
+    /**
+     * Return all items from database marked as Featured
+     *
+     * @return Item[]
+     */
     public static function GetFeaturedItems(){
         include_once "Category.php";
 
@@ -76,7 +87,9 @@ class Item extends DatabaseEntity{
     
     /**
      * Return an array of items given a search query. Used for when SQL query needs to be generated in the controller due to many variations in parameters to the query (e.g. Limit, Order, Category, Search Query)
-     *
+     * 
+     * If any other function would return the required data, DO NOT USE THIS METHOD. This method is entended to catch edge-cases. When ever possible, use a predefined method.
+     * 
      * @param  string $query
      * @param  array $params
      * @return Item[]
@@ -92,7 +105,12 @@ class Item extends DatabaseEntity{
 
         return $itemList;
     }
-
+    
+    /**
+     * Return the number of items currently stored in the database
+     *
+     * @return void
+     */
     public static function GetItemCount(){
         $query = "SELECT COUNT(*) FROM `Item`";
         return Item::DB()->ExecuteSQLSingleVal($query);
