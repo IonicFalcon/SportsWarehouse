@@ -38,6 +38,16 @@
             
         </form>
     </div>
+    
+    <?php
+        if(sizeof($items) == 0){
+            ?>
+                <p class="searchError">
+                    Sorry, no products were found matching your search or filters. Please double check your search before trying again.
+                </p>
+            <?php
+        }
+    ?>
     <ul class="productList">
         <?php
             foreach($items as $item){

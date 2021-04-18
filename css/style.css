@@ -548,6 +548,13 @@ a.breadcrumb-element{
     margin-bottom: 0.25em;
 }
 
+.searchError{
+    display: block;
+    background-color: #ccc;
+    padding: 1em;
+    margin: 1em;
+}
+
 @media only screen and (min-width: 450px){
     .wrapper{
         width: 90%;
