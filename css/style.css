@@ -900,5 +900,8 @@ a.breadcrumb-element{
         display: block;
         width: 150px;
     }
-    
+
+    .itemSearch .productList{
+        grid-template-columns: auto auto auto;
+    }
 }
