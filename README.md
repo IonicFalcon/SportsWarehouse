@@ -16,13 +16,13 @@ filled out by the visitors of the website to ask questions
 Use the provided Photoshop design to create the website home page using HTML and CSS.
 It will be given to the design manager for approval before it is converted to a PHP website.
 
-**Due Date: 21/4/21**
+~~**Due Date: 21/4/21**~~
 
 ## Deliverable C: Customer Browsing
 Add functionality to the website to allow customers to browse and search products using
 PHP and a database.
 
-**Due Date: 5/5/21**
+~~**Due Date: 5/5/21**~~
 
 ## Deliverable D: Customer Purchasing and Administration
 Add functionality to the website to allow customers to purchase products and to allow staff
