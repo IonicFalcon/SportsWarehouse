@@ -3,6 +3,7 @@ $("#addToCart").submit(function(event) {
 
     let url = $(this).attr("action");
     let formData = new FormData(this);
+    formData.append("cartMethod", "Add");
 
     $.ajax({
         type: "POST",
