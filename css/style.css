@@ -532,7 +532,7 @@ a.breadcrumb-element{
     display: none;
 }
 
-.cartConfirmation .confirmationOptions > .linkButton{
+.linkButton{
     display: inline-block;
     width: 100%;
     background-color: var(--primaryBlue);
@@ -553,6 +553,86 @@ a.breadcrumb-element{
     background-color: #ccc;
     padding: 1em;
     margin: 1em;
+}
+
+.shoppingCart h3{
+    color: var(--primaryBlue);
+}
+
+.cartItem{
+    display: flex;
+    border-bottom: 3px solid #ccc;
+    padding: 1em 0;
+}
+
+.cartItem:first-of-type{
+    border-top: 3px solid #ccc;
+}
+
+.cartItem .productImage{
+    max-width: 30%;
+    margin-right: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cartItem .productImage >img{
+    width: 100%;
+}
+
+.cartItem .productImage .removeItem{
+    background-color: inherit;
+    border: none;
+    font-size: 0.75em;
+    margin-top: 1em;
+}
+
+.cartItem .productImage .removeItem > span::before{
+    content: "\f1f8";
+}
+
+.cartItem .productName{
+    margin: 0;
+}
+
+.cartItem .productPrice{
+    margin-bottom: 1em;
+}
+
+.cartItem .productPrice, .cartItem .productPrice.productSale span{
+    font-size: small;
+}
+
+.cartItem .productPrice.productSale > p{
+    display: inline-block;
+}
+
+.cartItem .productSubtotal{
+    font-size: 1.25em;
+    font-weight: bold;
+    color: var(--primaryBlue);
+}
+
+.shoppingCartSummary .priceCalculation > div, .shoppingCartSummary .totalPrice{
+    display: flex;
+    justify-content: space-between;
+}
+
+.shoppingCartSummary p{
+    margin: 0.5em 0;
+}
+
+.shoppingCartSummary .discount{
+    color: red;
+}
+
+.shoppingCartSummary .totalPrice{
+    font-weight: bold;
+}
+
+.shoppingCartSummary #checkout{
+    margin: 1em 0;
 }
 
 @media only screen and (min-width: 450px){
@@ -730,6 +810,7 @@ a.breadcrumb-element{
         width: 8.125em;
         border-radius: 1em;
         margin-top: 1em;
+        border-color: initial;
     }
 
     .bx-wrapper{
@@ -910,5 +991,9 @@ a.breadcrumb-element{
 
     .itemSearch .productList{
         grid-template-columns: auto auto auto;
+    }
+
+    .shoppingCart .cartDetails{
+        display: flex;
     }
 }
