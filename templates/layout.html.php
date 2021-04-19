@@ -1,10 +1,15 @@
 <?php
-    session_start();
+    if(session_status() === PHP_SESSION_NONE){
+        session_start();
+    }
 
     if(isset($_SESSION["ShoppingCart"])){
-        include "models/ShoppingCart.php";
+        include_once "models/ShoppingCart.php";
         
-        $shoppingCart = unserialize($_SESSION["ShoppingCart"]);
+        if(!isset($shoppingCart)){
+            $shoppingCart = unserialize($_SESSION["ShoppingCart"]);
+        }
+
         $cartSize = $shoppingCart->ItemCount();
     } else{
         $cartSize = "0 Items";
