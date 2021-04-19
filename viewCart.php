@@ -8,6 +8,10 @@ $categories = Category::GetAllCategories();
 
 $pageTitle = "Shopping Cart - Sports Warehouse";
 
+$JSSources = [
+    "js/viewCart.js"
+];
+
 ob_start();
 
 include "templates/viewCart.html.php";
