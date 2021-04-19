@@ -45,8 +45,11 @@ if(isset($_SESSION["ShoppingCart"])){
                                         <?php
                                     }
                                 ?>
-    
-                                <input type="number" name="quantity" id="itemQuantity" min="1" max="25" value=<?= $item->Quantity ?>>
+                                
+                                <div class="quantity">
+                                    <label for="itemQuantity">Quantity</label>
+                                    <input type="number" name="quantity" id="itemQuantity" class="itemQuantity" min="1" max="25" value=<?= $item->Quantity ?>>
+                                </div>
     
                                 <p class="productSubtotal">$<?= $item->GetSubtotalPrice() ?></p>
                             </div>
@@ -62,36 +65,17 @@ if(isset($_SESSION["ShoppingCart"])){
             <div class="priceCalculation">
                 <div class="subtotal">
                     <p>Subtotal</p>
-                    <p>
-                        <?php
-                            $subtotal = 0;
-    
-                            foreach($shoppingCart->Items as $item){
-                                $subtotal += $item->Price * $item->Quantity;
-                            }
-                            
-                            echo "$" . $subtotal;
-    
-                            $totalPrice = $shoppingCart->CalculatePrice();
-                            $discount = $subtotal - $totalPrice;
-                        ?>
-                    </p>
+                    <p>$<?= $shoppingCart->CalculateSubtotal() ?></p>
                 </div>
-                <?php
-                    if ($discount > 0){
-                        ?>
-                            <div class="discount">
-                                <p>Discount</p>
-                                <p>-$<?= $discount ?></p>
-                            </div>
-                        <?php
-                    }
-                ?>
+                <div class="discount">
+                    <p>Discount</p>
+                    <p>-$<?= $shoppingCart->CalculateDiscount() ?></p>
+                </div>
             </div>
     
             <div class="totalPrice">
                 <p>Total</p>
-                <p>$<?= $totalPrice ?></p>
+                <p>$<?= $shoppingCart->CalculatePrice() ?></p>
             </div>
     
             <a href="checkout.php" id="checkout" class="linkButton">Checkout</a>
