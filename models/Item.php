@@ -28,6 +28,18 @@ class Item extends DatabaseEntity{
         }
     }
     
+    public function GetSubtotalPrice(){
+        $price = 0;
+
+        if(isset($this->SalePrice) && $this->SalePrice > 0){
+            $price += $this->SalePrice * $this->Quantity;
+        } else{
+            $price += $this->Price * $this->Quantity;
+        }
+
+        return $price;
+    }
+
     /**
      * Return all items from database
      *
