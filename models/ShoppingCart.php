@@ -6,16 +6,40 @@ class ShoppingCart{
     /**
      * Calculate Total Price of all Items in Shopping Cart
      *
-     * @return float
+     * @return string
      */
     public function CalculatePrice(){
         $price = 0;
 
         foreach($this->Items as $item ){
-            $price += $item->GetSubtotalPrice();
+            $price += (float)$item->GetSubtotalPrice();
         }
 
-        return $price;
+        return number_format((float)$price, 2);
+    }
+    
+    /**
+     * Returns the subtotal of all shopping cart items (i.e. price of all items not accounting for discounts or sales)
+     *
+     * @return string
+     */
+    public function CalculateSubtotal(){
+        $subtotal = 0;
+
+        foreach($this->Items as $item){
+            $subtotal += $item->Price * $item->Quantity;
+        }
+
+        return number_format((float)$subtotal, 2);
+    }
+    
+    /**
+     * Returns the discount amount of all shopping cart items
+     *
+     * @return string
+     */
+    public function CalculateDiscount(){
+        return number_format((float)$this->CalculateSubtotal() - (float)$this->CalculatePrice(), 2);
     }
 
     /**

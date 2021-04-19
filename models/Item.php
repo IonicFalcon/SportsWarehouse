@@ -27,7 +27,12 @@ class Item extends DatabaseEntity{
             return $defaultPath . "placeholder.png";
         }
     }
-    
+        
+    /**
+     * Return the price of item accounting for quantity and sales
+     *
+     * @return string
+     */
     public function GetSubtotalPrice(){
         $price = 0;
 
@@ -37,7 +42,7 @@ class Item extends DatabaseEntity{
             $price += $this->Price * $this->Quantity;
         }
 
-        return $price;
+        return number_format((float)$price, 2);
     }
 
     /**
