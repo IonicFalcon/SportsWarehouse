@@ -4,6 +4,8 @@ $(".itemQuantity").change(function(event){
         itemName: $(this).parent().siblings()[0].innerText,
         cartMethod: "Edit"
     }
+
+    if(itemData.quantity > 25 || itemData.quantity <= 0) return alert("Quantity out of range. Please enter a quantity between 1 and 25");
     
     //AJAX request via JQuery seem to only like FormData objects.....
     let formData = new FormData();
