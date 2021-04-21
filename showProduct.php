@@ -1,11 +1,16 @@
 <?php
-
 if(isset($_GET["id"]) && $_GET["id"] != ""){
     require_once "models/Item.php";
     require_once "models/Category.php";
     
     $item = Item::GetItemFromID($_GET["id"]);
     $categories = Category::GetAllCategories();
+
+    //Query returned nothing, therefore no item exists with given ID; Return to homepage
+    if($item === null){
+        header("Location: index.php");
+        die();
+    }
 
     $pageTitle = $item->ItemName . " - Sports Warehouse";
     $JSSources = [
@@ -20,6 +25,6 @@ if(isset($_GET["id"]) && $_GET["id"] != ""){
     include "templates/layout.html.php";
 
 } else{
-    header("Location: searchProducts.php");
+    header("Location: index.php");
     die();
 }

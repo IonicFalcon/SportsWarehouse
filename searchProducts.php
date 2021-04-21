@@ -12,6 +12,11 @@ require_once "models/FormValidator.php";
 if(isset($_GET["cat"]) && $_GET["cat"] != ""){
     $category = Category::GetCategoryFromID($_GET["cat"]);
 
+    if ($category === null){
+        header("Location: index.php");
+        die();
+    }
+
     $baseQuery = "SELECT `ItemID`, `ItemName`, `Photo`, `Price`, `SalePrice`, `Description`, `Featured` FROM `Item` WHERE `CategoryID` = :catID ";
     $param = [
         ":catID" => $category->CategoryID

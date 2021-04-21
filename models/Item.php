@@ -31,7 +31,7 @@ class Item extends DatabaseEntity{
     /**
      * Return the price of item accounting for quantity and sales
      *
-     * @return string
+     * @return float
      */
     public function GetSubtotalPrice(){
         $price = 0;
@@ -42,7 +42,7 @@ class Item extends DatabaseEntity{
             $price += $this->Price * $this->Quantity;
         }
 
-        return number_format((float)$price, 2);
+        return $price;
     }
 
     /**
@@ -77,9 +77,11 @@ class Item extends DatabaseEntity{
             ":id" => $id
         ];
 
-        $item = Item::DB()->ExecuteSQL($query, $param, "Item")[0];
+        //PHP throws Notices for out of bounds errors, not errors or exception, which cannot be caught using a try catch statement
+        //If query returns nothing, set item to null, else set category
+        $item = Item::DB()->ExecuteSQL($query, $param, "Item")[0] ?? null;
+        if ($item) $item->Category = Category::GetCategoryFromItemID($item->ItemID);
 
-        $item->Category = Category::GetCategoryFromItemID($item->ItemID);
         return $item;
     }
     

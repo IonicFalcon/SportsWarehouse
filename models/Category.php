@@ -29,7 +29,7 @@ class Category extends DatabaseEntity{
             ":id" => $id
         ];
 
-        $category = Category::DB()->ExecuteSQL($query, $param, "Category")[0];
+        $category = Category::DB()->ExecuteSQL($query, $param, "Category")[0] ?? null;
         return $category;
     }
     
