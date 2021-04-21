@@ -33,14 +33,14 @@ if(isset($_SESSION["ShoppingCart"])){
                                     if(isset($item->SalePrice) && floatval($item->SalePrice) > 0){
                                         ?>
                                             <div class="productPrice productSale">
-                                                <span>$<?= $item->SalePrice ?></span>
-                                                <p>was <s>$<?= $item->Price ?></s></p>
+                                                <span>$<?= number_format((float) $item->SalePrice, 2)  ?></span>
+                                                <p>was <s>$<?= number_format((float) $item->Price, 2)  ?></s></p>
                                             </div>
                                         <?php
                                     } else{
                                         ?>
                                             <div class="productPrice">
-                                                <p>$<?= $item->Price ?></p>
+                                                <p>$<?= number_format((float)$item->Price, 2) ?></p>
                                             </div>
                                         <?php
                                     }
@@ -51,7 +51,7 @@ if(isset($_SESSION["ShoppingCart"])){
                                     <input type="number" name="quantity" id="itemQuantity" class="itemQuantity" min="1" max="25" value=<?= $item->Quantity ?>>
                                 </div>
     
-                                <p class="productSubtotal">$<?= $item->GetSubtotalPrice() ?></p>
+                                <p class="productSubtotal">$<?= number_format((float) $item->GetSubtotalPrice(), 2) ?></p>
                             </div>
                         </div>
                     <?php
@@ -65,17 +65,17 @@ if(isset($_SESSION["ShoppingCart"])){
             <div class="priceCalculation">
                 <div class="subtotal">
                     <p>Subtotal</p>
-                    <p>$<?= $shoppingCart->CalculateSubtotal() ?></p>
+                    <p>$<?= number_format((float)$shoppingCart->CalculateSubtotal(), 2) ?></p>
                 </div>
                 <div class="discount">
                     <p>Discount</p>
-                    <p>-$<?= $shoppingCart->CalculateDiscount() ?></p>
+                    <p>-$<?= number_format((float) $shoppingCart->CalculateDiscount(), 2) ?></p>
                 </div>
             </div>
     
             <div class="totalPrice">
                 <p>Total</p>
-                <p>$<?= $shoppingCart->CalculatePrice() ?></p>
+                <p>$<?= number_format((float) $shoppingCart->CalculatePrice(), 2) ?></p>
             </div>
     
             <a href="checkout.php" id="checkout" class="linkButton">Checkout</a>

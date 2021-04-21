@@ -12,14 +12,14 @@
                 if(isset($item->SalePrice) && floatval($item->SalePrice) > 0){
                     ?>
                         <div class="productPrice productSale">
-                            <span>$<?= $item->SalePrice ?></span>
-                            <p>was <s>$<?= $item->Price ?></s></p>
+                            <span>$<?= number_format((float) $item->SalePrice, 2) ?></span>
+                            <p>was <s>$<?= number_format((float) $item->Price, 2) ?></s></p>
                         </div>
                     <?php
                 } else{
                     ?>
                         <div class="productPrice">
-                            <p>$<?= $item->Price ?></p>
+                            <p>$<?= number_format((float) $item->Price, 2) ?></p>
                         </div>
                     <?php
                 }
