@@ -635,6 +635,79 @@ a.breadcrumb-element{
     margin: 1em 0;
 }
 
+.formInput > *[required] + label::after{
+    content: "*";
+    color: red;
+}
+
+.formInput > input{
+    width: 100%;
+    font-size: 1.125em;
+}
+
+.formInput > label{
+    position: relative;
+    top: -4em;
+    font-size: 0.75em;
+    font-weight: bold;
+}
+
+.breadcrumb-element#returnToCart{
+    color: var(--primaryOrange);
+}
+
+.breadcrumb-element#returnToCart::before{
+    content: "<";
+    color: var(--primaryBlue);
+    margin: 0 0.5em;
+}
+
+.checkout{
+    margin-bottom: 1em;
+}
+
+.checkout .checkoutContainer h2{
+    margin: 0 0.15em 0 0;
+    border-radius: 0 3em 3em 0;
+    transition: background-color 0.5s ease;
+}
+
+.checkout .checkoutContainer h2.collapsed{
+    background-color: var(--primaryBlue);
+}
+
+.checkoutContainer form{
+    padding-top: 0.5em;
+    margin: 1em;
+    max-height: 100vh;
+    transition: max-height 0.5s ease;
+    
+}
+
+.checkoutContainer form.collapsed{
+    max-height: 0;
+    overflow: hidden;
+    margin-bottom: 0;
+}
+
+main section.checkout > *{
+    padding: 0;
+}
+
+.paymentDetails .expiry{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5em;
+}
+
+.formInput span.inputErrors{
+    position: absolute;
+    left: 2em;
+    font-size: 0.75em;
+    color: red;
+}
+
+
 @media only screen and (min-width: 450px){
     .wrapper{
         width: 90%;
