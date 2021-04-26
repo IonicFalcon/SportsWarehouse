@@ -109,6 +109,27 @@ function PaymentInfoValidation(){
         invalidFields.push(errorField);
     }
 
+    let CVV = inputFields[3];
+
+    if(CVV.value.length != 3){
+        let errorField = [
+            CVV,
+            "- Invalid CVV"
+        ]
+
+        invalidFields.push(errorField);
+    }
+
+    if(invalidFields.length === 0){
+        return true;
+    } else{
+        for(let error of invalidFields){
+            $(error[0]).siblings()[1].innerText = error[1];
+        }
+
+        return false;
+    }
+
 
 }
 
