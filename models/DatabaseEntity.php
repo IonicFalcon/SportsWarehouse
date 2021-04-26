@@ -6,8 +6,8 @@
 abstract class DatabaseEntity{
     protected static function DB(){
         include_once "Database.php";
-        
-        if($_SERVER["SERVER_NAME"] == "localhost" || $_SERVER["SERVER_ADDR" == "127.0.0.1"]){
+
+        if($_SERVER["SERVER_NAME"] == "localhost" || $_SERVER["SERVER_ADDR"] == "127.0.0.1"){
             $serverName = "localhost";
             $username = "root";
             $password = "";
