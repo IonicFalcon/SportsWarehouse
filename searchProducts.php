@@ -17,7 +17,7 @@ if(isset($_GET["cat"]) && $_GET["cat"] != ""){
         die();
     }
 
-    $baseQuery = "SELECT `ItemID`, `ItemName`, `Photo`, `Price`, `SalePrice`, `Description`, `Featured` FROM `Item` WHERE `CategoryID` = :catID ";
+    $baseQuery = "SELECT `ItemID`, `ItemName`, `Photo`, `Price`, `SalePrice`, `Description`, `Featured` FROM `item` WHERE `CategoryID` = :catID ";
     $param = [
         ":catID" => $category->CategoryID
     ];
@@ -25,7 +25,7 @@ if(isset($_GET["cat"]) && $_GET["cat"] != ""){
     $pageTitle = $category->CategoryName . " - Sports Warehouse";
 
 } else{
-    $baseQuery = "SELECT `ItemID`, `ItemName`, `Photo`, `Price`, `SalePrice`, `Description`, `Featured` FROM `Item` WHERE `ItemName` LIKE :query ";
+    $baseQuery = "SELECT `ItemID`, `ItemName`, `Photo`, `Price`, `SalePrice`, `Description`, `Featured` FROM `item` WHERE `ItemName` LIKE :query ";
     $param = [
         ":query" => "%"  . $_GET["search"] . "%"
     ];

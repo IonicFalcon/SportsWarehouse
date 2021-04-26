@@ -53,7 +53,7 @@ class Item extends DatabaseEntity{
     public static function GetAllItems(){
         include_once "Category.php";
 
-        $query = "SELECT `ItemID`, `ItemName`, `Photo`, `Price`, `SalePrice`, `Description`, `Featured` FROM `Item`";
+        $query = "SELECT `ItemID`, `ItemName`, `Photo`, `Price`, `SalePrice`, `Description`, `Featured` FROM `item`";
         $itemList = Item::DB()->ExecuteSQL($query, null, "Item");
 
         foreach($itemList as $item){
@@ -72,7 +72,7 @@ class Item extends DatabaseEntity{
     public static function GetItemFromID($id){
         include_once "Category.php";
 
-        $query = "SELECT `ItemID`, `ItemName`, `Photo`, `Price`, `SalePrice`, `Description`, `Featured` FROM `Item` WHERE `ItemID` = :id";
+        $query = "SELECT `ItemID`, `ItemName`, `Photo`, `Price`, `SalePrice`, `Description`, `Featured` FROM `item` WHERE `ItemID` = :id";
         $param = [
             ":id" => $id
         ];
@@ -93,7 +93,7 @@ class Item extends DatabaseEntity{
     public static function GetFeaturedItems(){
         include_once "Category.php";
 
-        $query = "SELECT `ItemID`, `ItemName`, `Photo`, `Price`, `SalePrice`, `Description`, `Featured` FROM `Item` WHERE `Featured` = 1";
+        $query = "SELECT `ItemID`, `ItemName`, `Photo`, `Price`, `SalePrice`, `Description`, `Featured` FROM `item` WHERE `Featured` = 1";
         $itemList = Item::DB()->ExecuteSQL($query, null, "Item");
 
         foreach($itemList as $item){
@@ -131,7 +131,7 @@ class Item extends DatabaseEntity{
      * @return void
      */
     public static function GetItemCount(){
-        $query = "SELECT COUNT(*) FROM `Item`";
+        $query = "SELECT COUNT(*) FROM `item`";
         return Item::DB()->ExecuteSQLSingleVal($query);
     }
 }

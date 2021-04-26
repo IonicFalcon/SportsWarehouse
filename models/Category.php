@@ -11,7 +11,7 @@ class Category extends DatabaseEntity{
      * @return Category[]
      */
     public static function GetAllCategories(){
-        $query = "SELECT `CategoryID`, `CategoryName` FROM `Category`";
+        $query = "SELECT `CategoryID`, `CategoryName` FROM `category`";
         $categoryList = Category::DB()->ExecuteSQL($query, null, "Category");
 
         return $categoryList;
@@ -24,7 +24,7 @@ class Category extends DatabaseEntity{
      * @return Category
      */
     public static function GetCategoryFromID($id){
-        $query = "SELECT `CategoryID`, `CategoryName` FROM `Category` WHERE `CategoryID` = :id";
+        $query = "SELECT `CategoryID`, `CategoryName` FROM `category` WHERE `CategoryID` = :id";
         $param = [
             ":id" => $id
         ];
@@ -40,7 +40,7 @@ class Category extends DatabaseEntity{
      * @return Category
      */
     public static function GetCategoryFromItemID($itemID){
-        $query = "SELECT cat.CategoryID, cat.CategoryName FROM `Category` AS cat, `Item` AS item WHERE item.CategoryID = cat.CategoryID AND item.ItemID = :itemID";
+        $query = "SELECT cat.CategoryID, cat.CategoryName FROM `category` AS cat, `item` WHERE item.CategoryID = cat.CategoryID AND item.ItemID = :itemID";
         $param = [
             ":itemID" => $itemID
         ];
