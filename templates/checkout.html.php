@@ -21,27 +21,27 @@ if(isset($_SESSION["ShoppingCart"])){
             <h2 class="collapsible">Shipping</h2>
             <form action="controllers/checkoutController.php" method="post" id="shippingInfo" onsubmit="return false">
                 <p class="formInput">
-                    <input type="text" name="firstName" id="firstName" required>
+                    <input type="text" name="FirstName" id="firstName" required>
                     <label for="firstName">First Name</label>
                     <span class="inputErrors"></span>
                 </p>
                 <p class="formInput">
-                    <input type="text" name="lastName" id="lastName" required>
+                    <input type="text" name="LastName" id="lastName" required>
                     <label for="lastName">Last Name</label>
                     <span class="inputErrors"></span>
                 </p>
                 <p class="formInput">
-                    <input type="text" name="address" id="address" required>
+                    <input type="text" name="Address" id="address" required>
                     <label for="address">Delivery Address</label>
                     <span class="inputErrors"></span>
                 </p>
                 <p class="formInput">
-                    <input type="tel" name="contact" id="contact" required>
+                    <input type="tel" name="ContactNumber" id="contact" required>
                     <label for="contact">Contact Number</label>
                     <span class="inputErrors"></span>
                 </p>
                 <p class="formInput">
-                    <input type="email" name="email" id="email" required>
+                    <input type="email" name="Email" id="email" required>
                     <label for="email">Email</label>
                     <span class="inputErrors"></span>
                 </p>
@@ -54,29 +54,29 @@ if(isset($_SESSION["ShoppingCart"])){
             <h2 class="collapsible collapsed">Payment</h2>
             <form action="controllers/checkoutController.php" method="post" id="paymentInfo" class="collapsed" onsubmit="return false">
                 <p class="formInput">
-                    <input type="text" name="creditCard" id="creditCard" pattern="\d{16}" maxlength="16" required placeholder="0000 0000 0000 0000">
+                    <input type="text" name="CreditCardNumber" id="creditCard" pattern="\d{16}" maxlength="16" required placeholder="0000 0000 0000 0000">
                     <label for="creditCard">Credit Card Number</label>
                     <span class="inputErrors"></span>
                 </p>
                 <div class="expiry">
                     <div class="expiryMonth formInput">
-                        <input type="text" name="expiryMonth" id="expiryMonth" pattern="\d*" maxlength="2" required placeholder="MM" required>
+                        <input type="text" name="ExpiryMonth" id="expiryMonth" pattern="\d*" maxlength="2" required placeholder="MM" required>
                         <label for="expiryMonth">Expiry Month</label>
                         <span class="inputErrors"></span>
                     </div>
                     <div class="expiryYear formInput">
-                        <input type="text" name="expiryYear" id="expiryYear" pattern="\d*" maxlength="2" required placeholder="YY">
+                        <input type="text" name="ExpiryYear" id="expiryYear" pattern="\d*" maxlength="2" required placeholder="YY">
                         <label for="expiryYear">Expiry Year</label>
                         <span class="inputErrors"></span>
                     </div>
                 </div>
                 <p class="formInput">
-                    <input type="text" name="CVV" id="CVV" pattern="\d{3}" maxlength="3" required>
+                    <input type="text" name="CSV" id="CVV" pattern="\d{3}" maxlength="3" required>
                     <label for="CVV">CVV</label>
                     <span class="inputErrors"></span>
                 </p>
                 <p class="formInput">
-                    <input type="text" name="cardName" id="cardName" required>
+                    <input type="text" name="NameOnCard" id="cardName" required>
                     <label for="cardName">Name on Card</label>
                     <span class="inputErrors"></span>
                 </p>
