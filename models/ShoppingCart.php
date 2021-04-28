@@ -1,5 +1,7 @@
 <?php
 
+include_once "Item.php";
+
 class ShoppingCart{
     public $Items = [];
 
