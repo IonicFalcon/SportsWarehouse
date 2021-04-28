@@ -1,8 +1,10 @@
 $(document).ready(function(){
-    $(".slider").bxSlider({
-        auto: true,
-        stopAutoOnClick: true,
-        slideWidth: 1000,
-        controls: false
-    })
+    if(screen.width > 450){
+        $(".slider").bxSlider({
+            auto: true,
+            stopAutoOnClick: true,
+            slideWidth: 1000,
+            controls: false
+        })
+    }
 })

@@ -20,7 +20,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title><?= $pageTitle ?></title>
     <link rel="stylesheet" href="css/style.css">
     <script src="https://kit.fontawesome.com/0b7408c7cc.js" crossorigin="anonymous"></script>
@@ -77,9 +77,11 @@
             </nav>
 
             <div class="siteBanner wrapper">
-                <a href="index.php" class="siteLogo" aria-label="Sports Warehouse">
-                    <img src="images/LogoLarge.gif" alt="Sports Warehouse Logo">
-                </a>
+                <h1>
+                    <a href="index.php" class="siteLogo" aria-label="Sports Warehouse">
+                        <img src="images/LogoLarge.gif" alt="Sports Warehouse Logo">
+                    </a>
+                </h1>
             
                 <form method="get" class="search" action="searchProducts.php">
                     <input type="text" name="search" id="searchBox" aria-label="Search Products" placeholder="Search Products">
@@ -172,11 +174,9 @@
                 </div>
             </div>
             <div class="copyrightDetails">
-                <small>
-                    <p>&copy; Copyright 2020 Sports Warehouse.</p>
-                    <p>All rights reserved.</p>
-                    <p>Website made by Awesomesauce Design</p>
-                </small>
+                <small>&copy; Copyright 2020 Sports Warehouse.</small>
+                <small>All rights reserved.</small>
+                <small>Website made by Awesomesauce Design</small>
             </div>
         </footer>
     </div>
