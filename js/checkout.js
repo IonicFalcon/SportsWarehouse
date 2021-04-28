@@ -1,3 +1,4 @@
+// Controls the togglable form sections
 $(".collapsible").click(function (){
     let header = this;
     let form = $(header).siblings()[0];
@@ -6,6 +7,7 @@ $(".collapsible").click(function (){
     form.classList.toggle("collapsed");
 })
 
+// Validate Shipping info form then goto payment form
 $("#gotoPayment").click(function (){
     if(!ShippingInfoValidation()) return false;
 
@@ -16,10 +18,26 @@ $("#gotoPayment").click(function (){
     paymentHeader.click();
 });
 
+// Submit shipping form as an AJAX request, then submit the payment info synchronously 
 $("#placeOrder").click(function(){
     if(!ShippingInfoValidation() || !PaymentInfoValidation()) return false;
 
+    let shippingInfo = new FormData(document.querySelector("#shippingInfo"));
+    shippingInfo.append("AJAXHalf", true);
 
+    let url = $("#shippingInfo").attr("action");
+
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: shippingInfo,
+        success: () =>{
+            let paymentInfo = document.querySelector("#paymentInfo");
+            paymentInfo.submit();
+        },
+        processData: false,
+        contentType: false
+    });
 })
 
 
@@ -100,7 +118,7 @@ function PaymentInfoValidation(){
         invalidFields.push(errorField);
     }
 
-    if(parseInt(expiryMonth.value) < newDate().getMonth + 1 && parseInt(expiryYear.value) == parseInt(newDate().getFullYear().toString().substr(-2))){
+    if(parseInt(expiryMonth.value) < new Date().getMonth + 1 && parseInt(expiryYear.value) == parseInt(new Date().getFullYear().toString().substr(-2))){
         let errorField = [
             expiryMonth,
             "- Card has expired"
