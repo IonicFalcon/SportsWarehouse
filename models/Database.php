@@ -153,4 +153,51 @@
 
             //Only a failed query will return a value
         }
+
+        public function ScalarSQLReturnID($query, $params = null){
+            $this->Connect();
+
+            $sql = $this->connection->prepare($query);
+
+            if(!is_null($params)){
+                foreach($params as $param => $value){
+                    if(is_array($value)){
+                        $sql->bindValue($param, $value[0], $value[1]);
+                    } else{ 
+                        $sql->bindValue($param, $value);
+                    }
+                }
+            }
+
+            $sql->execute();
+
+            //If row count doesn't equal 1, an error must have occured
+            if($sql->rowCount() != 1){
+                //Format error info in a readable fashion
+                $errorInfo = $sql->errorInfo();
+                $errorMessage = "MariaDB Error Code: " . $errorInfo[1] . "\nError Message: " . $errorInfo[2];
+                
+                //Disconnect from database
+                $this->Disconnect();
+
+                //Return error message
+                return [
+                    false,
+                    $errorMessage
+                ];
+                
+            }
+
+            $id = $this->connection->lastInsertId();
+            //Else, disconnect database
+            $this->Disconnect();
+
+            return [
+                true,
+                $id
+            ];
+
+            //Only a failed query will return a value
+        }
     }
+    
