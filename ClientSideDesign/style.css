@@ -10,10 +10,19 @@
     box-sizing: border-box;
 }
 
+html, body{
+	overflow-x: hidden;
+}
+
 body{
     font-family: "Open Sans", Arial, Helvetica, sans-serif;
     margin: 0;
 }
+
+img{
+	max-width: 100%;
+}
+
 
 .siteHeader a{
     color: white;
@@ -394,8 +403,8 @@ main section h2{
     font-size: 0.75em;
 }
 
-.copyrightDetails p{
-    margin: 0;
+.copyrightDetails small{
+	display: block;
 }
 
 @media only screen and (min-width: 450px){
@@ -697,7 +706,7 @@ main section h2{
         background-color: white;
     }
 
-    .copyrightDetails small > *{
+    .copyrightDetails small{
         display: inline;
         color: #595959;
     }
