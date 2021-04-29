@@ -28,4 +28,4 @@ PHP and a database.
 Add functionality to the website to allow customers to purchase products and to allow staff
 to maintain products.
 
-**Due Date: TBA**
+**Due Date: Week 17**
