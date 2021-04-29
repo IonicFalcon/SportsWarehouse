@@ -563,7 +563,7 @@ a.breadcrumb-element{
     margin: 1em;
 }
 
-.shoppingCart h3{
+.shoppingCart h3, .shoppingCartSummary h3{
     color: var(--primaryBlue);
 }
 
@@ -708,13 +708,26 @@ main section.checkout > *{
     gap: 1.5em;
 }
 
+.formInput{
+    position: relative;
+    margin: 1.5em 0;
+}
+
 .formInput span.inputErrors{
     position: absolute;
-    left: 2em;
+    left: 1em;
     font-size: 0.75em;
     color: red;
 }
 
+.checkout .shoppingCartSummary > *:not(h2){
+    margin: 0 1em;
+}
+
+.checkout .shoppingCartSummary > h3{
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
 
 @media only screen and (min-width: 450px){
     .wrapper{
@@ -1121,5 +1134,76 @@ main section.checkout > *{
     
     .cartItem .productInfo .productSubtotal{
         margin: 0;
+    }
+
+    .checkout{
+        display: flex;
+        justify-content: space-evenly;
+        width: 80%;
+        margin: auto;
+    }
+
+    .checkout > *{
+        border: 2px solid var(--secondaryBlue);
+        height: fit-content;
+    }
+
+    .checkout .checkoutContainer{
+        flex-basis: 55%;
+    }
+
+    .checkout .shoppingCartSummary{
+        flex-basis: 40%;
+    }
+
+    .checkout h2, .checkout .checkoutContainer h2{
+        border-radius: 0;
+        margin: 0;
+    }
+
+    .formInput{
+        margin: 2em 0;
+    }
+
+    .formInput > label{
+        text-align: right;
+        float: left;
+        position: static;
+        width: 25%;
+        padding-right: 1.5em;
+        font-size: initial;
+        font-weight: normal;
+    }
+
+    .formInput > input{
+        width: 70%;
+    }
+
+    .formInput span.inputErrors{
+        left: 25%;
+        bottom: -1.5em;
+    }
+
+    .checkout .paymentDetails .expiry{
+        width: 70%;
+        margin-left: 25%;
+        margin-top: 2em;
+    }
+
+    .checkout .paymentDetails .expiry label{
+        clear: both;
+        position: relative;
+        font-size: 0.8em;
+        text-align: left;
+        width: 100%;
+    }
+
+    .checkout .paymentDetails .expiry input{
+        width: 100%;
+
+    }
+
+    .checkout .paymentDetails .expiry .formInput{
+        margin-bottom: 0;
     }
 }
