@@ -11,37 +11,37 @@ if(isset($_SESSION["ShoppingCart"])){
 
 ?>
 
+<div class="breadcrumb">
+    <a href="viewCart.php" id="returnToCart" class="breadcrumb-element">Back to Cart</a>
+</div>
 
 <section class="checkout">
-    <div class="breadcrumb">
-        <a href="viewCart.php" id="returnToCart" class="breadcrumb-element">Back to Cart</a>
-    </div>
     <div class="checkoutContainer">
         <div class="shippingDetails">
             <h2 class="collapsible">Shipping</h2>
             <form action="controllers/checkoutController.php" method="post" id="shippingInfo" onsubmit="return false">
                 <p class="formInput">
-                    <input type="text" name="FirstName" id="firstName" required>
+                    <input type="text" name="FirstName" id="firstName" placeholder="John" required>
                     <label for="firstName">First Name</label>
                     <span class="inputErrors"></span>
                 </p>
                 <p class="formInput">
-                    <input type="text" name="LastName" id="lastName" required>
+                    <input type="text" name="LastName" id="lastName" placeholder="Smith" required>
                     <label for="lastName">Last Name</label>
                     <span class="inputErrors"></span>
                 </p>
                 <p class="formInput">
-                    <input type="text" name="Address" id="address" required>
+                    <input type="text" name="Address" id="address" placeholder="123 Street Dr, Sydney NSW 2000" required>
                     <label for="address">Delivery Address</label>
                     <span class="inputErrors"></span>
                 </p>
                 <p class="formInput">
-                    <input type="tel" name="ContactNumber" id="contact" required>
+                    <input type="tel" name="ContactNumber" id="contact" placeholder="0404 040 040" required>
                     <label for="contact">Contact Number</label>
                     <span class="inputErrors"></span>
                 </p>
                 <p class="formInput">
-                    <input type="email" name="Email" id="email" required>
+                    <input type="email" name="Email" id="email" placeholder="john.smith@email.com" required>
                     <label for="email">Email</label>
                     <span class="inputErrors"></span>
                 </p>
@@ -71,12 +71,12 @@ if(isset($_SESSION["ShoppingCart"])){
                     </div>
                 </div>
                 <p class="formInput">
-                    <input type="text" name="CSV" id="CVV" pattern="\d{3}" maxlength="3" required>
+                    <input type="text" name="CSV" id="CVV" pattern="\d{3}" maxlength="3" placeholder="000" required>
                     <label for="CVV">CVV</label>
                     <span class="inputErrors"></span>
                 </p>
                 <p class="formInput">
-                    <input type="text" name="NameOnCard" id="cardName" required>
+                    <input type="text" name="NameOnCard" id="cardName" placeholder="John Smith" required>
                     <label for="cardName">Name on Card</label>
                     <span class="inputErrors"></span>
                 </p>
@@ -85,17 +85,18 @@ if(isset($_SESSION["ShoppingCart"])){
             </form>
         </div>
     </div>
-    <div class="orderSummary" style="display: none;">
+    <div class="shoppingCartSummary">
         <h2>Order Summary</h2>
+        <h3>Products</h3>
         <?php
             foreach($shoppingCart->Items as $item){
                 ?>
-                    <div class="orderItem">
+                    <div class="cartItem">
                         <div class="productImage">
                             <img src="<?= $item->ProductImage() ?>" alt="<?= $item->ItemName ?> Image">
                         </div>
                         <div class="productInfo">
-                            <h3 class="productName"><?= $item->ItemName ?></h3>
+                            <h4 class="productName"><?= $item->ItemName ?></h3>
                             <p class="productQuantity">Quantity: <?= $item->Quantity ?></p>
                             <p class="productSubtotal">$<?= number_format((float) $item->GetSubtotalPrice(), 2) ?></p>
                         </div>
@@ -103,6 +104,8 @@ if(isset($_SESSION["ShoppingCart"])){
                 <?php
             }
         ?>
+
+        <h3>Summary</h3>
         <div class="priceCalculation">
             <div class="subtotal">
                 <p>Subtotal</p>
