@@ -4,6 +4,7 @@
     }
 
     if(isset($_SESSION["ShoppingCart"])){
+        
         include_once "models/ShoppingCart.php";
         
         if(!isset($shoppingCart)){
@@ -14,6 +15,12 @@
     } else{
         $cartSize = "0 Items";
     }
+
+    if(isset($_SESSION["LoggedInUser"])){
+        include_once "models/Admin.php";
+
+        $admin = unserialize($_SESSION["LoggedInUser"]);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -23,6 +30,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title><?= $pageTitle ?></title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <?php
+        if(isset($admin)){
+            ?>
+                <link rel="stylesheet" href="css/admin.css">
+            <?php
+        }
+    ?>
+
     <script src="https://kit.fontawesome.com/0b7408c7cc.js" crossorigin="anonymous"></script>
 
     <?php
@@ -51,27 +67,44 @@
                         <ul>
                             <li><a href="index.php">Home</a></li>
                             <li><a href="#">About SW</a></li>
-                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="contactUs.php">Contact Us</a></li>
                             <!-- <li><a href="searchProducts.php">View Products</a></li> -->
                         </ul>               
                     </nav>
     
                     <div class="userOptions">
-                        <a href="#" class="login iconButton">Login</a>
-                        <a href="viewCart.php" class="viewCart iconButton">
-                            <p>View Cart</p>
-                            <span class="cartTotal"><?= $cartSize ?></span>
-                        </a>
+                        <?php
+                            if(isset($admin)){
+                                ?>
+                                    <a href="account.php" class="iconButton account">Welcome, <?= $admin->UserName ?></a>
+                                <?php
+                            } else{
+                                ?>
+                                    <a href="login.php" class="login iconButton">Login</a>
+                                    <a href="viewCart.php" class="viewCart iconButton">
+                                        <p>View Cart</p>
+                                        <span class="cartTotal"><?= $cartSize ?></span>
+                                    </a>
+                                <?php
+                            }
+                        ?>
+
                     </div>
                 </div>
             </div>
 
             <nav class="mobileNav siteNav">
                 <ul>
-                    <li><a href="#" class="login iconButton">Login</a></li>
+                    <?php
+                        if(!isset($admin)){
+                            ?>
+                                <li><a href="login.php" class="login iconButton">Login</a></li>
+                            <?php
+                        }
+                    ?>
                     <li><a href="index.php">Home</a></li>
                     <li><a href="#">About SW</a></li>
-                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="contactUs.php">Contact Us</a></li>
                     <!-- <li><a href="searchProducts.php">View Products</a></li> -->
                 </ul>  
             </nav>
@@ -116,7 +149,7 @@
                             <ul>
                                 <li><a href="index.php">Home</a></li>
                                 <li><a href="#">About SW</a></li>
-                                <li><a href="#">Contact Us</a></li>
+                                <li><a href="contactUs.php">Contact Us</a></li>
                                 <!-- <li><a href="searchProducts.php">View Products</a></li> -->
                                 <li><a href="#">Privacy Policy</a></li>
                             </ul>
