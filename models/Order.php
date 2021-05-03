@@ -31,9 +31,11 @@ class Order extends DatabaseEntity{
     }
 
     public function ProcessOrder(){
+        $this->OrderDate = new DateTime();
+
         $query = "INSERT INTO `shoppingorder` (`orderDate`, `firstName`, `lastName`, `address`, `contactNumber`, `email`, `creditCardNumber`, `expiryDate`, `nameOnCard`, `csv`) VALUES (:orderDate, :firstName, :lastName, :address, :contactNumber, :email, :creditCard, :expiryDate, :cardName, :csv)";
         $params = [
-            ":orderDate" => date("Y-m-d H:i:s"),
+            ":orderDate" => $this->OrderDate->format("Y-m-d H:i:s"),
             ":firstName" => $this->FirstName,
             ":lastName" => $this->LastName,
             ":address" => $this->Address,
@@ -73,4 +75,6 @@ class Order extends DatabaseEntity{
 
         return Order::DB()->ScalarSQL($query, $params);
     }
+
+
 }
