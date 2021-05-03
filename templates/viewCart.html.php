@@ -8,6 +8,11 @@ if(isset($_SESSION["ShoppingCart"])){
     $shoppingCart = new ShoppingCart();
 }
 
+if(isset($_SESSION["DBError"])){
+    $errorMessage = $_SESSION["DBError"];
+    unset($_SESSION["DBError"]);
+}
+
 ?>
 
 <section class="shoppingCart">
@@ -82,3 +87,7 @@ if(isset($_SESSION["ShoppingCart"])){
         </div>
     </div>
 </section>
+
+<script>
+    <?= isset($errorMessage) ? "console.error($errorMessage)" : null ?>
+</script>
