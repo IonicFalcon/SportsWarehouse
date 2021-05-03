@@ -16,6 +16,9 @@ $("#gotoPayment").click(function (){
 
     shippingHeader.click();
     paymentHeader.click();
+
+    let creditCardInput = document.querySelector("#creditCard");
+    creditCardInput.focus();
 });
 
 // Submit shipping form as an AJAX request, then submit the payment info synchronously 
