@@ -1,0 +1,16 @@
+/* To differenciate the admin from the customer design, the admin design has the primary colours inverted, so orange is the major colour instead of blue */
+:root{
+    --primaryOrange: #00aced;
+    --primaryBlue: #ff690c;
+    --secondaryBlue: #9e4c1a;
+}
+
+.topBar{
+    line-height: 3.375em;
+}
+
+@media only screen and (min-width: 450px){
+    .topBar{
+        line-height: normal;
+    }
+}
