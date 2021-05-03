@@ -52,18 +52,18 @@ if(isset($_SESSION["OrderDetails"])){
         </tbody>
     </table>
     <div class="priceCalculation">
-            <div class="subtotal">
-                <p>Subtotal</p>
-                <p>$<?= number_format((float) $order->Cart->CalculateSubtotal(), 2) ?></p>
-            </div>
-            <div class="discount">
-                <p>Discount</p>
-                <p>-$<?= number_format((float) $order->Cart->CalculateDiscount(), 2) ?></p>
-            </div>
+        <div class="subtotal">
+            <p>Subtotal</p>
+            <p>$<?= number_format((float) $order->Cart->CalculateSubtotal(), 2) ?></p>
         </div>
+        <div class="discount">
+            <p>Discount</p>
+            <p>-$<?= number_format((float) $order->Cart->CalculateDiscount(), 2) ?></p>
+        </div>
+    </div>
 
-        <div class="totalPrice">
-            <p>Order Total</p>
-            <p>$<?= number_format((float) $order->Cart->CalculatePrice(), 2) ?></p>
-        </div>
+    <div class="totalPrice">
+        <p>Order Total</p>
+        <p>$<?= number_format((float) $order->Cart->CalculatePrice(), 2) ?></p>
+    </div>
 </section>
