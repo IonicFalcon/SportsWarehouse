@@ -27,6 +27,14 @@ h3{
     color: var(--primaryBlue);
 }
 
+textarea{
+    resize: vertical;
+}
+
+label.error{
+    color: red;
+}
+
 .siteHeader a{
     color: white;
 }
@@ -117,6 +125,10 @@ header a{
 
 .login.iconButton::before{
     content: "\f023";
+}
+
+.account::before{
+    content: "\f007";
 }
 
 .hamburgerIcon::before{
@@ -647,14 +659,16 @@ a.breadcrumb-element{
     color: red;
 }
 
-.formInput > input{
+.formInput > input, .formInput > textarea{
     width: 100%;
     font-size: 1.125em;
+    position: relative;
 }
 
 .formInput > label{
-    position: relative;
-    top: -4em;
+    position: absolute;
+    top: -1.5em;
+    left: 0;
     font-size: 0.75em;
     font-weight: bold;
 }
@@ -778,6 +792,31 @@ main section.checkout > *{
     background-color: #eee;
 }
 
+.contactUs{
+    margin-bottom: 1em;
+}
+
+.formButtons > button:not(:first-child){
+    margin-top: 1em;
+}
+
+.formButtons > button[type="reset"], .formButtons > button#cancel{
+    background-color: var(--primaryOrange);
+}
+
+.contactUs > *:not(h2){
+    max-width: 750px;
+    margin: auto;
+    margin-top: revert;
+    margin-bottom: revert;
+}
+
+.contactThanks > *:not(h2){
+    max-width: 750px;
+    margin: auto;
+    margin-top: revert;
+    margin-bottom: revert;
+}
 
 @media only screen and (min-width: 450px){
     .wrapper{
@@ -1229,7 +1268,7 @@ main section.checkout > *{
         font-weight: normal;
     }
 
-    .formInput > input{
+    .formInput > input, .formInput > textarea{
         width: 70%;
     }
 
