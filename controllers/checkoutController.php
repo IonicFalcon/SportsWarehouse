@@ -28,15 +28,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         //Else destroy the shopping cart session, store order details, and redirect to confirmation page
         unset($_SESSION["ShoppingCart"]);
         $_SESSION["OrderDetails"] = serialize($order);
-        header("Location: orderConfirm.php");
+        header("Location: ../orderConfirm.php");
         die();
     } else{
         $_SESSION["DBError"] = $errorMessage;
-        header("Location: viewCart.php");
+        header("Location: ../viewCart.php");
         die();
     }
 
 } else{
-    header("Location: index.php");
+    header("Location: ../index.php");
     die();
 }
