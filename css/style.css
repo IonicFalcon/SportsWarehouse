@@ -23,6 +23,10 @@ img{
     max-width: 100%;
 }
 
+h3{
+    color: var(--primaryBlue);
+}
+
 .siteHeader a{
     color: white;
 }
@@ -436,7 +440,6 @@ a.breadcrumb-element{
     text-decoration: none;
 }
 
-
 .productInfo img{
     width: 100%;
 }
@@ -563,10 +566,6 @@ a.breadcrumb-element{
     margin: 1em;
 }
 
-.shoppingCart h3, .shoppingCartSummary h3{
-    color: var(--primaryBlue);
-}
-
 .cartItem{
     display: flex;
     border-bottom: 3px solid #ccc;
@@ -622,20 +621,20 @@ a.breadcrumb-element{
     color: var(--primaryBlue);
 }
 
-.shoppingCartSummary .priceCalculation > div, .shoppingCartSummary .totalPrice{
+.priceCalculation > div, .totalPrice{
     display: flex;
     justify-content: space-between;
 }
 
-.shoppingCartSummary p{
+.priceCalculation p{
     margin: 0.5em 0;
 }
 
-.shoppingCartSummary .discount{
+.discount{
     color: red;
 }
 
-.shoppingCartSummary .totalPrice{
+.totalPrice{
     font-weight: bold;
 }
 
@@ -728,6 +727,57 @@ main section.checkout > *{
     margin-top: 1em;
     margin-bottom: 1em;
 }
+
+.orderConfirm{
+    margin-top: 1em;
+}
+
+.orderConfirm > *:not(h2){
+    max-width: 750px;
+    margin: auto;
+    margin-top: revert;
+    margin-bottom: revert;
+}
+
+.orderConfirm .orderOverview{
+    background-color: #f8f8f8;
+    list-style-type: none;
+    padding: 1em;
+}
+
+.orderConfirm .orderOverview > li{
+    padding: 1em 0;
+    border-top: 2px dashed #ccc;
+}
+
+.orderConfirm .orderOverview > li:last-child{
+    border-bottom: 2px dashed #ccc;
+}
+
+.orderConfirm .orderOverview p{
+    margin: 0;
+    font-size: 0.875em;
+}
+
+.orderConfirm .orderDetails{
+    background-color: #eee;
+    width: 100%;
+    text-align: left;
+    padding-bottom: 1em;
+}
+
+.orderConfirm .orderDetails > tbody{
+    background-color: #f8f8f8;
+}
+
+.orderConfirm .orderDetails th, .orderConfirm .orderDetails td{
+    padding: 0.5em;
+}
+
+.orderConfirm .priceCalculation, .orderConfirm .totalPrice{
+    background-color: #eee;
+}
+
 
 @media only screen and (min-width: 450px){
     .wrapper{
@@ -1087,6 +1137,10 @@ main section.checkout > *{
         grid-template-columns: auto auto auto;
     }
 
+    .shoppingCart{
+        margin-bottom: 1em;
+    }
+
     .shoppingCart .cartDetails{
         display: flex;
         justify-content: space-between;
@@ -1206,4 +1260,5 @@ main section.checkout > *{
     .checkout .paymentDetails .expiry .formInput{
         margin-bottom: 0;
     }
+
 }
