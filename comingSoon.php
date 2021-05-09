@@ -1,5 +1,7 @@
 <?php
-    session_start();
+    if(session_status() === PHP_SESSION_NONE){
+        session_start();
+    }
 
     //Get returned errors if there are any
     $errorList = $_SESSION["ErrorFields"] ?? [];

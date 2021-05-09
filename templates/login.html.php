@@ -1,3 +1,14 @@
+<?php
+    if(session_status() === PHP_SESSION_NONE){
+        session_start();
+    }
+
+    if(isset($_SESSION["ErrorInfo"])){
+        $error = $_SESSION["ErrorInfo"];
+        unset($_SESSION["ErrorInfo"]);
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +27,14 @@
             </a>
         </h1>
 
+        <?php
+            if(isset($error)){
+                ?>
+                    <p class="errorMessage"><?= $error ?></p>
+                <?php
+            }
+        ?>
+
         <form action="controllers/loginController.php" method="post">
             <fieldset>
                 <p class="formInput">
@@ -29,7 +48,7 @@
 
                 <div class="formButtons">
                     <button type="submit" class="linkButton" id="login">Login</button>
-                    <button class="linkButton" id="cancel">Cancel</button>
+                    <button class="linkButton" id="cancel" onclick="window.location.replace('index.php')">Cancel</button>
                 </div>
 
             </fieldset>
