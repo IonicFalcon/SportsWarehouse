@@ -59,7 +59,7 @@
             <div class="topBar">
                 <div class="wrapper">
                     <div class="hamburgerMenu">
-                        <input type="checkbox" name="mobileHamburger" id="mobileHamburger" onchange="mobileMenu(this)">
+                        <input type="checkbox" name="mobileHamburger" id="mobileHamburger" onchange="mobileMenuToggle()">
                         <label for="mobileHamburger" class="iconButton hamburgerIcon">Menu</label>
                     </div>
     
@@ -76,7 +76,13 @@
                         <?php
                             if(isset($admin)){
                                 ?>
-                                    <a href="account.php" class="iconButton account">Welcome, <?= $admin->UserName ?></a>
+                                    <span class="iconButton account">Welcome, <?= $admin->UserName ?></span>
+                                    <div class="accountPopup">
+                                        <ul>
+                                            <li><a href="account.php" class="accountManagement iconButton">Manage Account</a></li>
+                                            <li><a href="logout.php" class="logout iconButton">Log Out</a></li>
+                                        </ul>
+                                    </div>
                                 <?php
                             } else{
                                 ?>
@@ -93,6 +99,14 @@
                 </div>
             </div>
 
+            <?php
+                if(isset($admin)){
+                    ?>
+                        <div class="overlay"></div>
+                    <?php
+                }
+            ?>
+
             <nav class="mobileNav siteNav">
                 <ul>
                     <?php
@@ -105,6 +119,14 @@
                     <li><a href="index.php">Home</a></li>
                     <li><a href="#">About SW</a></li>
                     <li><a href="contactUs.php">Contact Us</a></li>
+                    <?php
+                        if(isset($admin)){
+                            ?>
+                                <li><a href="account.php" class="accountManagement iconButton">Manage Account</a></li>
+                                <li><a href="logout.php" class="logout iconButton">Log Out</a></li>
+                            <?php
+                        }
+                    ?>
                     <!-- <li><a href="searchProducts.php">View Products</a></li> -->
                 </ul>  
             </nav>
