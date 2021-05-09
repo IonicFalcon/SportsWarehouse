@@ -1,7 +1,4 @@
-@keyframes fadeIn{
-    from {opacity: 0;}
-    to {opacity: 1;}
-}
+@import url("animations.css");
 
 *{
     box-sizing: border-box;
@@ -39,6 +36,14 @@ fieldset{
 
 .formInput > *[required] + label::after{
     content: "";
+}
+
+.errorMessage{
+    display: block;
+    padding: 1em;
+    background-color: #eee;
+    border-radius: 1em;
+    margin-bottom: 1em !important;
 }
 
 @media only screen and (min-width: 450px){
