@@ -2,15 +2,79 @@
 :root{
     --primaryOrange: #00aced;
     --primaryBlue: #ff690c;
-    --secondaryBlue: #9e4c1a;
+    --secondaryBlue: #d66926;
 }
 
 .topBar{
     line-height: 3.375em;
 }
 
+.topBar > .wrapper{
+    position: relative;
+}
+
+span.account{
+    cursor: pointer;
+}
+
+.accountPopup{
+    display: none;
+}
+
+.accountPopup.open{
+    display: initial;
+}
+
+.topBar > .wrapper .accountPopup{
+    position: absolute;
+    padding: 1em 0.5em;
+    top: 120%;
+    right: 0;
+    background-color: var(--secondaryBlue);
+    z-index: 2;
+}
+
+.topBar > .wrapper .accountPopup::before{
+    content: "";
+    top: -2em;
+    left: 20%;
+    position: absolute;
+    border: 1em solid transparent;
+    border-bottom-color: var(--secondaryBlue);
+}
+
+.topBar > .wrapper .accountPopup > ul{
+    margin: 0;
+    padding: 0;
+}
+
+.topBar > .wrapper .accountPopup > ul > li{
+    display: block;
+    padding: 0.5em 1em;
+}
+
+.topBar > .wrapper .accountPopup > ul > li:not(:last-of-type){
+    border-bottom: 1px solid #00000022;
+}
+
+.overlay.modalOpen{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.root.modalOpen{
+    height: 100vh;
+    overflow-y: hidden;
+}
+
 @media only screen and (min-width: 450px){
     .topBar{
         line-height: normal;
     }
+
+
 }
