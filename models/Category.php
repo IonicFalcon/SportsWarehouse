@@ -48,4 +48,14 @@ class Category extends DatabaseEntity{
         $category = Category::DB()->ExecuteSQL($query, $param, "Category")[0];
         return $category;
     }
+
+    public static function UpdateCategory($categoryID, $categoryName){
+        $query = "UPDATE `category` SET `categoryName` = :catName WHERE `categoryId` = :catID";
+        $params = [
+            ":catName" => $categoryName,
+            ":catID" => $categoryID
+        ];
+
+        return Category::DB()->ScalarSQL($query, $params);
+    }
 }
