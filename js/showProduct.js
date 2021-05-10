@@ -33,5 +33,5 @@ $(".cartModal .closeConfirmation").click(function(){
 
 function ToggleModal(){
     let modal = document.querySelector(".cartModal");
-    modal.classList.toggle("hidden");
+    modal.classList.toggle("active");
 }
