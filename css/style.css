@@ -35,6 +35,11 @@ label.error{
     color: red;
 }
 
+.root.modalOpen{
+    height: 100vh;
+    overflow-y: hidden;
+}
+
 .siteHeader a{
     color: white;
 }
@@ -129,6 +134,14 @@ header a{
 
 .logout.iconButton::before{
     content: "\f2f5";
+}
+
+.edit.iconButton::before{
+    content: "\f044";
+}
+
+.delete.iconButton::before{
+    content: "\f1f8";
 }
 
 .account::before, .accountManagement.iconButton::before{
@@ -515,23 +528,23 @@ a.breadcrumb-element{
     font-size: 1.125em;
 }
 
-.cartModal{
+.modal{
     background-color: rgba(0,0,0,0.5);
     position: fixed;
     left: 0;
     top: 0;
     height: 100%;
     width: 100%;
-    display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.cartModal.hidden{
     display: none;
 }
 
-.cartModal .cartConfirmation{
+.modal.active{
+    display: flex;
+}
+
+.modal .modalBody{
     background-color: white;
     max-width: 750px;
     margin: 1em;
@@ -539,11 +552,17 @@ a.breadcrumb-element{
     text-align: right;
 }
 
-.cartConfirmation .closeConfirmation{
+.modalBody h2{
+    text-align: left;
+}
+
+.modalBody .closeConfirmation{
     border: none;
     background-color: inherit;
     font-size: 1.25em;
     color: var(--grey);
+    margin-bottom: 0.5em;
+    cursor: pointer;
 }
 
 .cartConfirmation .confirmationDetails{
@@ -572,7 +591,7 @@ a.breadcrumb-element{
     cursor: pointer;
 }
 
-.cartConfirmation .confirmationOptions > .linkButton:not(:last-child){
+.modalButtons > .linkButton:not(:last-child){
     margin-bottom: 0.25em;
 }
 
@@ -908,7 +927,7 @@ main section.checkout > *{
     }
 
     .categoryBar .categoryNav ul{
-        flex-wrap: nowrap;
+        /* flex-wrap: nowrap; */
         justify-content: initial;
         padding: 0.625em 2em;
     }
@@ -1164,7 +1183,7 @@ main section.checkout > *{
         padding-bottom: 1.27em;
     }
     
-    .cartModal .cartConfirmation{
+    .cartModal .modalBody{
         width: 60%;
     }
 
@@ -1304,6 +1323,10 @@ main section.checkout > *{
 
     .checkout .paymentDetails .expiry .formInput{
         margin-bottom: 0;
+    }
+
+    .modalButtons .linkButton{
+        width: auto;
     }
 
 }

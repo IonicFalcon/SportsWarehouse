@@ -66,9 +66,63 @@ span.account{
     z-index: 1;
 }
 
-.root.modalOpen{
-    height: 100vh;
-    overflow-y: hidden;
+section.itemSearch > h2{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+section.itemSearch > h2 > .editCategory{
+    margin-right: 1em;
+    font-size: 1.25em;
+    background-color: transparent;
+    border-color: transparent;
+    color: white;
+}
+
+section.itemSearch > h2 > .editCategory:active{
+    color: #ccc;
+}
+
+.contextMenu{
+    display: none;
+    position: absolute;
+    z-index: 10;
+    background-color: var(--secondaryBlue);
+    padding: 1em 0.5em;
+}
+
+.contextMenu::before{
+    content: "";
+    position: absolute;
+    left: -1em;
+    border: 0.5em solid transparent;
+    border-right-color: var(--secondaryBlue);
+
+}
+
+.contextMenu > ul{
+    padding: 0;
+    margin: 0;
+}
+
+.contextMenu > ul > li{
+    padding: 0.5em 1em;
+    display: block;
+}
+
+.contextMenu > ul > li:not(:last-of-type){
+    border-bottom: 1px solid #00000022;
+}
+
+.contextMenu > ul > li > a{
+    color: white;
+    text-decoration: none;
+    font-size: 0.875em;
+}
+
+.contextMenu.active{
+    display: block;
 }
 
 @media only screen and (min-width: 450px){
