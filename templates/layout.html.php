@@ -16,11 +16,8 @@
         $cartSize = "0 Items";
     }
 
-    if(isset($_SESSION["LoggedInUser"])){
-        include_once "models/Admin.php";
-
-        $admin = unserialize($_SESSION["LoggedInUser"]);
-    }
+    include_once "models/Admin.php";
+    $admin = Admin::AdminFunction();
 ?>
 
 <!DOCTYPE html>
@@ -66,9 +63,21 @@
                     <nav class="siteNav desktopNav">
                         <ul>
                             <li><a href="index.php">Home</a></li>
-                            <li><a href="#">About SW</a></li>
-                            <li><a href="contactUs.php">Contact Us</a></li>
-                            <!-- <li><a href="searchProducts.php">View Products</a></li> -->
+                            <?php
+                                if(isset($admin)){
+                                    ?>
+                                        <li><a href="editCategory.php">Edit Categories</a></li>
+                                        <li><a href="editItem.php">Edit Items</a></li>
+                                    <?php
+                                } else{
+                                    ?>
+                                        <li><a href="#">About SW</a></li>
+                                        <li><a href="contactUs.php">Contact Us</a></li>
+                                        <!-- <li><a href="searchProducts.php">View Products</a></li> -->
+                                    <?php
+                                }
+                            ?>
+
                         </ul>               
                     </nav>
     
@@ -117,17 +126,22 @@
                         }
                     ?>
                     <li><a href="index.php">Home</a></li>
-                    <li><a href="#">About SW</a></li>
-                    <li><a href="contactUs.php">Contact Us</a></li>
                     <?php
                         if(isset($admin)){
                             ?>
+                                <li><a href="editCategory.php">Edit Categories</a></li>
+                                <li><a href="editItem.php">Edit Items</a></li>
                                 <li><a href="account.php" class="accountManagement iconButton">Manage Account</a></li>
                                 <li><a href="logout.php" class="logout iconButton">Log Out</a></li>
                             <?php
+                        } else{
+                            ?>
+                                <li><a href="#">About SW</a></li>
+                                <li><a href="contactUs.php">Contact Us</a></li>
+                                <!-- <li><a href="searchProducts.php">View Products</a></li> -->
+                            <?php
                         }
                     ?>
-                    <!-- <li><a href="searchProducts.php">View Products</a></li> -->
                 </ul>  
             </nav>
 
@@ -170,8 +184,20 @@
                             <h2>Site Navigation</h2>
                             <ul>
                                 <li><a href="index.php">Home</a></li>
-                                <li><a href="#">About SW</a></li>
-                                <li><a href="contactUs.php">Contact Us</a></li>
+                                <?php
+                                    if(isset($admin)){
+                                        ?>
+                                            <li><a href="editCategory.php">Edit Categories</a></li>
+                                            <li><a href="editItem.php">Edit Items</a></li>
+                                        <?php
+                                    } else{
+                                        ?>
+                                            <li><a href="#">About SW</a></li>
+                                            <li><a href="contactUs.php">Contact Us</a></li>
+                                            <!-- <li><a href="searchProducts.php">View Products</a></li> -->
+                                        <?php
+                                    }
+                                ?>
                                 <!-- <li><a href="searchProducts.php">View Products</a></li> -->
                                 <li><a href="#">Privacy Policy</a></li>
                             </ul>

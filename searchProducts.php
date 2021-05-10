@@ -58,6 +58,10 @@ if(isset($_GET["sort"]) && $_GET["sort"] != ""){
 $items = Item::SearchForItems($baseQuery, $param);
 $categories = Category::GetAllCategories();
 
+//This page has functionality only accessabile by an admin (modifying category)
+require_once "models/Admin.php";
+$admin = Admin::AdminFunction();
+
 $JSSources = [
     "js/searchProducts.js"
 ];

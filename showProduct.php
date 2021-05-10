@@ -12,6 +12,9 @@ if(isset($_GET["id"]) && $_GET["id"] != ""){
         die();
     }
 
+    require_once "models/Admin.php";
+    $admin = Admin::AdminFunction();
+
     $pageTitle = $item->ItemName . " - Sports Warehouse";
     $JSSources = [
         "js/showProduct.js"

@@ -27,31 +27,46 @@
 
             <p class="productDescription"><?= $item->Description ?></p>
 
-            <form action="controllers/shoppingCartController.php" id="addToCart">
-                <label for="itemQuantity">Quantity</label>
-                <input type="number" name="quantity" id="itemQuantity" min="1" max="25" value="1">
-                <input type="hidden" name="itemID" value="<?= $item->ItemID ?>">
-                <button type="submit">
-                    <p>
-                        <i class="fas fa-cart-plus"></i>
-                        Add to Cart
-                    </p>
-                    
-                </button>
-            </form>
+            <?php
+                if(isset($admin)){
+                    ?>
+                        <a href="editProduct.php?id=<?= $item->ItemID ?>&cat=<?= $item->Category->CategoryID ?>" class="linkButton">
+                            <i class="fas fa-edit"></i>
+                            Edit Item
+                        </a>
+                    <?php
+                } else{
+                    ?>
+                        <form action="controllers/shoppingCartController.php" id="addToCart">
+                            <label for="itemQuantity">Quantity</label>
+                            <input type="number" name="quantity" id="itemQuantity" min="1" max="25" value="1">
+                            <input type="hidden" name="itemID" value="<?= $item->ItemID ?>">
+                            <button type="submit">
+                                <p>
+                                    <i class="fas fa-cart-plus"></i>
+                                    Add to Cart
+                                </p>
+                                
+                            </button>
+                        </form>
+
+                    <?php
+                }
+            ?>
+
         </div>
     </div>
 </div>
 
-<div class="cartModal hidden">
-    <div class="cartConfirmation">
+<div class="cartModal modal">
+    <div class="cartConfirmation modalBody">
         <button class="closeConfirmation">
             <i class="fas fa-times"></i>
         </button>
         <div class="confirmationDetails">
             <img src="<?= $item->ProductImage() ?>" alt="<?= $item->ItemName ?> Image">
             <h2>Item Successfully Added to Cart!</h2>
-            <div class="confirmationOptions">
+            <div class="confirmationOptions modalButtons">
                 <a href="searchProducts.php?cat=<?= $item->Category->CategoryID ?>" id="continue" class="linkButton">Continue Shopping</a>
                 <a href="viewCart.php" id="viewCart" class="linkButton">View Cart</a>
             </div>

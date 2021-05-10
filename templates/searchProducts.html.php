@@ -18,7 +18,17 @@
     <?php
         if(isset($category)){
             ?>
-                <h2><?= $category->CategoryName ?></h2>
+                <h2>
+                    <?php
+                        echo $category->CategoryName;
+
+                        if(isset($admin)){
+                            ?>
+                                <a href="editCategory.php?id=<?= $category->CategoryID ?>" class="editCategory" aria-label="Edit Category"><i class="fas fa-edit"></i></a>
+                            <?php
+                        }
+                    ?>
+                </h2>
             <?php
         }
     ?>
