@@ -112,7 +112,7 @@
 		}
 
         /**
-         * Execute a Scalar SQL Query (DELELE, INSERT, etc)
+         * Execute a Scalar SQL Query (DELETE, INSERT, etc)
          *
          * @param string $query  Query to be executed
          * @param array $params Optional parameters for the query
