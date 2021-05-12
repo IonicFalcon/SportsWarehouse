@@ -52,7 +52,7 @@
     <?php
         if(sizeof($items) == 0){
             ?>
-                <p class="searchError">
+                <p class="error">
                     Sorry, no products were found matching your search or filters. Please double check your search before trying again.
                 </p>
             <?php
