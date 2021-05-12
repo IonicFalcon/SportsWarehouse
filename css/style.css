@@ -136,6 +136,10 @@ header a{
     content: "\f2f5";
 }
 
+.add.iconButton::before{
+    content: "\f067";
+}
+
 .edit.iconButton::before{
     content: "\f044";
 }
@@ -595,11 +599,20 @@ a.breadcrumb-element{
     margin-bottom: 0.25em;
 }
 
-.searchError{
+.error{
     display: block;
     background-color: #ccc;
     padding: 1em;
     margin: 1em;
+}
+
+.modal .error{
+    color: red;
+    text-align: center;
+    background-color: initial;
+    display: inline;
+    padding: 0;
+    margin: 0;
 }
 
 .cartItem{
