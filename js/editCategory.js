@@ -162,13 +162,6 @@ function AJAXRequest(url, data){
     })
 }
 
-function getMousePosition(e){
-    return{
-        x: e.pageX,
-        y: e.pageY
-    };
-}
-
 function updateCategories(data){
     let categoryLinks = document.querySelectorAll("nav.categoryNav > ul");
 
@@ -181,4 +174,3 @@ function updateCategories(data){
 
     }
 }
-
