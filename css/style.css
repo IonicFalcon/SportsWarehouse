@@ -550,14 +550,24 @@ a.breadcrumb-element{
 
 .modal .modalBody{
     background-color: white;
-    max-width: 750px;
+    flex-basis: 550px;
     margin: 1em;
     padding: 1em 2em;
     text-align: right;
 }
 
+.modal .modalBody > *:not(.closeConfirmation):not(h2){
+    text-align: center;
+}
+
 .modalBody h2{
     text-align: left;
+    margin-left: -1em;
+    margin-right: -1.77em;
+}
+
+.modalBody form{
+    margin-top: 2em;
 }
 
 .modalBody .closeConfirmation{
@@ -610,7 +620,6 @@ a.breadcrumb-element{
     color: red;
     text-align: center;
     background-color: initial;
-    display: inline;
     padding: 0;
     margin: 0;
 }
@@ -708,6 +717,7 @@ a.breadcrumb-element{
     left: 0;
     font-size: 0.75em;
     font-weight: bold;
+    white-space: nowrap;
 }
 
 .breadcrumb-element#returnToCart{
@@ -1198,6 +1208,7 @@ main section.checkout > *{
     
     .cartModal .modalBody{
         width: 60%;
+        flex-basis: unset;
     }
 
     .cartConfirmation .confirmationDetails{
@@ -1338,8 +1349,8 @@ main section.checkout > *{
         margin-bottom: 0;
     }
 
-    .modalButtons .linkButton{
-        width: auto;
+    .modalButtons .linkButton:first-child{
+        background-color: var(--primaryOrange);
     }
 
 }
