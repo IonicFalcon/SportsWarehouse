@@ -52,13 +52,20 @@ $("#categories tbody").on("dblclick", "tr", function (){
     alert("Test");
 });
 
-$(".contextMenu .edit.iconButton").click((event) =>{
+$(".contextMenu .add.iconButton").click(event =>{
+    event.preventDefault();
+
+    document.querySelector(".addModal").classList.add("active");
+    document.querySelector(".root").classList.add("modalOpen");
+})
+
+$(".contextMenu .edit.iconButton").click(event =>{
     event.preventDefault();
 
     document.querySelector(".editModal").classList.add("active");
     document.querySelector(".root").classList.add("modalOpen");
 
-    let categoryName = document.querySelector("#categoryName");
+    let categoryName = document.querySelector("#categoryName_edit");
     categoryName.value = document.querySelector("#rowName").value;
 });
 
@@ -69,34 +76,89 @@ $(".modal .close").click(event =>{
     document.querySelector(".root").classList.remove("modalOpen");
 })
 
+$("#add").click(event=>{
+    event.preventDefault();
+
+    let value = document.querySelector("#categoryName_add").value;
+    if(value.trim().length == 0) return false;
+
+    let url = $(".addModal form").attr("action");
+
+    let data = {
+        categoryName: value,
+        method: "Add"
+    };
+
+    AJAXRequest(url, data);
+})
+
 $("#edit").click(event =>{
     event.preventDefault();
+    
+    let originalValue = document.querySelector("#rowName").value;
+    let newValue = document.querySelector("#categoryName_edit").value;
+
+    if(newValue === originalValue) return false;
+    if(newValue.trim().length == 0) return false;
 
     let url = $(".editModal form").attr("action");
 
     let data = {
         categoryID: document.querySelector("#rowID").value,
-        categoryName:  document.querySelector("#categoryName").value,
+        categoryName:  newValue,
         method: "Edit"
     };
 
+    AJAXRequest(url, data);
+});
+
+function AJAXRequest(url, data){
     $.ajax({
         type: "POST",
         url: url,
         data: data
-    }).done(()=>{
+    }).done(data=>{
+        data = JSON.parse(data);
+
+        updateCategories(data);
+
         window.CategoryTable.ajax.reload();
-        $(".modal .close").click();
-        
-    }).fail((xhr, status, error) =>{
-        console.log();
+        $(".modal.active .close").click();
+    }).fail(xhr =>{
+        let data = JSON.parse(xhr.responseText);
+        let errorMessage;
+
+        //Server errors are out of user's control. Log error in console and display generic message
+        if(xhr.status == 500){
+            errorMessage = "A server error has occured. Sorry for the inconvience.";
+            console.error(data.error);
+        } 
+        //Client errors are the user's fault. Display appropriate error message
+        else{
+            errorMessage = data.error;
+        }
+
+        document.querySelector(".modal.active .error").innerText = errorMessage;
     })
-});
+}
 
 function getMousePosition(e){
     return{
         x: e.pageX,
         y: e.pageY
     };
-
 }
+
+function updateCategories(data){
+    let categoryLinks = document.querySelectorAll("nav.categoryNav > ul");
+
+    for(const linkSection of categoryLinks) {
+       $(linkSection).empty();
+
+       for (const category of data) {
+           $(linkSection).append(`<li><a href="searchProducts.php?cat=${category.CategoryID}">${category.CategoryName}</a></li>`);
+       }
+
+    }
+}
+

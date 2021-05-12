@@ -49,6 +49,15 @@ class Category extends DatabaseEntity{
         return $category;
     }
 
+    public static function AddCategory($categoryName){
+        $query = "INSERT INTO `category` (`categoryName`) VALUES (:catName)";
+        $param = [
+            ":catName" => $categoryName
+        ];
+
+        return Category::DB()->ScalarSQL($query, $param);
+    }
+
     public static function UpdateCategory($categoryID, $categoryName){
         $query = "UPDATE `category` SET `categoryName` = :catName WHERE `categoryId` = :catID";
         $params = [
