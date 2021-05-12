@@ -6,6 +6,10 @@ $admin = Admin::RestrictPage();
 require_once "models/Category.php";
 $categories = Category::GetAllCategories();
 
+if(isset($_GET["id"])){
+    $editCategory = Category::GetCategoryFromID($_GET["id"]);
+}
+
 $JSSources = [
     "https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js",
     "js/editCategory.js"
