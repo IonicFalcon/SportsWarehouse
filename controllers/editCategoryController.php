@@ -36,8 +36,16 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
             break;
 
         case "Delete":
+            try{
+                $errorMessage = Category::DeleteCategory($_POST["categoryID"]);
+            } catch(Exception $e){
+                $statusCode = 409;
+                $errorMessage = "Category couldn't be deleted as items are categorised under it. Please modify any items that have this category before continuing";
+            }
+
             break;
     }
+    
 
     if($errorMessage){
         //Unless otherwise stated, HTTP code will be 500

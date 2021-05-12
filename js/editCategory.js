@@ -69,6 +69,13 @@ $(".contextMenu .edit.iconButton").click(event =>{
     categoryName.value = document.querySelector("#rowName").value;
 });
 
+$(".contextMenu .delete.iconButton").click(event =>{
+    event.preventDefault();
+
+    document.querySelector(".deleteModal").classList.add("active");
+    document.querySelector(".root").classList.add("modalOpen");
+})
+
 $(".modal .close").click(event =>{
     event.preventDefault();
 
@@ -111,6 +118,19 @@ $("#edit").click(event =>{
 
     AJAXRequest(url, data);
 });
+
+$("#delete").click(event=>{
+    event.preventDefault();
+
+    let url = $(".deleteModal form").attr("action");
+
+    let data = {
+        categoryID: document.querySelector("#rowID").value,
+        method: "Delete"
+    };
+
+    AJAXRequest(url, data);
+})
 
 function AJAXRequest(url, data){
     $.ajax({

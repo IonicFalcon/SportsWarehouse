@@ -37,7 +37,7 @@
                 </p>
 
                 <div class="modalButtons">
-                    <button class="linkButton" id="add">Add New</button>
+                    <button class="linkButton" id="add">Add New Category</button>
                     <button class="linkButton close">Cancel</button>
                 </div>
             </form>
@@ -52,7 +52,7 @@
 
             <h2>Edit Category</h2>
             <p class="error"></p>
-            
+
             <form action="controllers/editCategoryController.php" method="post" onsubmit="return false">
                 <p class="formInput">
                     <input type="text" id="categoryName_edit" name="categoryName" value="<?= isset($editCategory) ? $editCategory->CategoryName : null ?>">
@@ -61,9 +61,30 @@
             </form>
 
             <div class="modalButtons">
-                <button class="linkButton" id="edit">Edit</button>
+                <button class="linkButton" id="edit">Edit Category</button>
                 <button class="linkButton close">Cancel</button>
             </div>
+        </div>
+    </div>
+
+    <div class="deleteModal modal">
+        <div class="modalBody">
+            <button class="closeConfirmation close">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <h2>Delete Category</h2>
+            <p class="error"></p>
+
+            <form action="controllers/editCategoryController.php" method="post" onsubmit="return false">
+                <p>Are you sure you want to delete this category?</p>
+        
+                <div class="modalButtons">
+                    <button class="linkButton" id="delete">Delete Category</button>
+                    <button class="linkButton close">Cancel</button>
+                </div>
+            </form>
+
         </div>
     </div>
 

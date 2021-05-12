@@ -67,4 +67,13 @@ class Category extends DatabaseEntity{
 
         return Category::DB()->ScalarSQL($query, $params);
     }
+
+    public static function DeleteCategory($categoryID){
+        $query = "DELETE FROM `category` WHERE `categoryID` = :catID";
+        $param = [
+            ":catID" => $categoryID
+        ];
+
+        return Category::DB()->ScalarSQL($query, $param);
+    }
 }
