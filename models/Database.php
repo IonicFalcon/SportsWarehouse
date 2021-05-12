@@ -139,6 +139,12 @@
             if($sql->rowCount() != 1){
                 //Format error info in a readable fashion
                 $errorInfo = $sql->errorInfo();
+
+                //Foreign key constraint error, should be treated differently as caused by user
+                if($errorInfo[0] == "23000"){
+                    throw new Exception($errorInfo[2], $errorInfo[0]);
+                }
+
                 $errorMessage = "MariaDB Error Code: " . $errorInfo[1] . "\nError Message: " . $errorInfo[2];
                 
                 //Disconnect from database
