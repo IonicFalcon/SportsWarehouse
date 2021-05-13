@@ -32,7 +32,7 @@
 
             <form action="controllers/editCategoryController.php" method="post" onsubmit="return false">
                 <p class="formInput">
-                    <input type="text" name="categoryName" id="categoryName_add">
+                    <input type="text" name="categoryName" id="categoryName_add" required>
                     <label for="categoryName_add">Category Name</label>
                 </p>
 
@@ -55,15 +55,15 @@
 
             <form action="controllers/editCategoryController.php" method="post" onsubmit="return false">
                 <p class="formInput">
-                    <input type="text" id="categoryName_edit" name="categoryName" value="<?= isset($editCategory) ? $editCategory->CategoryName : null ?>">
+                    <input type="text" id="categoryName_edit" name="categoryName" value="<?= isset($editCategory) ? $editCategory->CategoryName : null ?>" required>
                     <label for="categoryName_edit">Category Name</label>
                 </p>
-            </form>
 
-            <div class="modalButtons">
-                <button class="linkButton" id="edit">Edit Category</button>
-                <button class="linkButton close">Cancel</button>
-            </div>
+                <div class="modalButtons">
+                    <button class="linkButton" id="edit">Edit Category</button>
+                    <button class="linkButton close">Cancel</button>
+                </div>
+            </form>
         </div>
     </div>
 
