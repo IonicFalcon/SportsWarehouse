@@ -7,9 +7,7 @@ $(document).ready(function(){
             {"data": "CategoryName"}
         ]
     });
-})
-
-$(document).click(function(event){
+}).click(function(event){
     let rows = document.querySelectorAll("#categories td");
     rows = Array.prototype.slice.call(rows);
 
