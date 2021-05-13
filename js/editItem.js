@@ -14,7 +14,14 @@ $(document).ready(function(){
         ],
         scrollX: true
     });
-});
+}).click(function(event){
+    let rows = document.querySelectorAll("#items td");
+    row = Array.prototype.slice.call(rows);
+
+    let contextMenu = document.querySelector(".contextMenu");
+
+    if(!rows.includes(event.target)) contextMenu.classList.remove("active");
+})
 
 $("#items tbody").on("click", "tr", function(event){
     let contextMenu = document.querySelector(".contextMenu");
