@@ -16,7 +16,7 @@ $(document).ready(function(){
     });
 }).click(function(event){
     let rows = document.querySelectorAll("#items td");
-    row = Array.prototype.slice.call(rows);
+    rows = Array.prototype.slice.call(rows);
 
     let contextMenu = document.querySelector(".contextMenu");
 
@@ -48,4 +48,24 @@ $("#items tbody").on("click", "tr", function(event){
     
 }).on("dblclick", "tr", function(){
     alert("Test");
+})
+
+$(".contextMenu .add.iconButton").click(event=>{
+    event.preventDefault();
+
+    let addModal = document.querySelector(".addModal");
+
+    addModal.classList.add("active");
+    document.querySelector(".root").classList.add("modalOpen");
+
+    let modalBody = document.querySelector(".addModal .modalBody");
+
+    if(modalBody.getBoundingClientRect().top < 0) addModal.classList.add("overflow");
+})
+
+$(".modal .close").click(event=>{
+    event.preventDefault();
+
+    $(event.target).parents(".modal")[0].classList.remove("active");
+    document.querySelector(".root").classList.remove("modalOpen");
 })

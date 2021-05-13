@@ -542,6 +542,11 @@ a.breadcrumb-element{
     justify-content: center;
     align-items: center;
     display: none;
+    overflow-y: scroll;
+}
+
+.modal.overflow{
+    align-items: baseline;
 }
 
 .modal.active{
@@ -579,6 +584,10 @@ a.breadcrumb-element{
     cursor: pointer;
 }
 
+.modalBody fieldset{
+    text-align: left;
+}
+
 .cartConfirmation .confirmationDetails{
     display: flex;
     flex-direction: column;
@@ -603,6 +612,10 @@ a.breadcrumb-element{
     text-decoration: none;
     border: 2px solid black;
     cursor: pointer;
+}
+
+.linkButton:active{
+    background-color: var(--primaryOrange);
 }
 
 .modalButtons > .linkButton:not(:last-child){
@@ -705,10 +718,14 @@ a.breadcrumb-element{
     color: red;
 }
 
-.formInput > input, .formInput > textarea{
+.formInput > input, .formInput > textarea, .formInput > select{
     width: 100%;
     font-size: 1.125em;
     position: relative;
+}
+
+.formInput > textarea{
+    font-size: unset;
 }
 
 .formInput > label{
@@ -718,6 +735,34 @@ a.breadcrumb-element{
     font-size: 0.75em;
     font-weight: bold;
     white-space: nowrap;
+}
+
+.formInput > input[type="file"]{
+    display: none;
+}
+
+.formInput > input[type="file"] + label{
+    position: unset;
+    font-size: unset;
+    font-weight: unset;
+    white-space: unset;
+    float: unset;
+    width: 100%;
+    text-align: center;
+}
+
+.formInput > input:disabled + label{
+    color: #aaa;
+}
+
+/* Remove spinner buttons on money input  */
+.formInput > input.money{
+    -moz-appearance: textfield;
+}
+.formInput > input.money::-webkit-outer-spin-button,
+.formInput > input.money::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .breadcrumb-element#returnToCart{
@@ -1316,7 +1361,7 @@ main section.checkout > *{
         font-weight: normal;
     }
 
-    .formInput > input, .formInput > textarea{
+    .formInput > input, .formInput > textarea, .formInput > select{
         width: 70%;
     }
 
