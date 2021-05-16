@@ -68,4 +68,16 @@ $(".modal .close").click(event=>{
 
     $(event.target).parents(".modal")[0].classList.remove("active");
     document.querySelector(".root").classList.remove("modalOpen");
+});
+
+$("#itemOnSale_add, #itemOnSale_edit").change(event=>{
+    console.log(event);
+    let saleInput = $(event.target).parent().siblings().children("input")[0];
+
+    if(event.target.checked){
+        $(saleInput).prop("disabled", false);
+    } else{
+        saleInput.value = "";
+        $(saleInput).prop("disabled", true);
+    }
 })
