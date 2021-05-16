@@ -145,7 +145,7 @@
                     throw new Exception($errorInfo[2], $errorInfo[0]);
                 }
 
-                $errorMessage = "MariaDB Error Code: " . $errorInfo[1] . "\nError Message: " . $errorInfo[2];
+                $errorMessage = "MariaDB Error Code: " . $errorInfo[1] . " Error Message: " . $errorInfo[2];
                 
                 //Disconnect from database
                 $this->Disconnect();
@@ -181,7 +181,7 @@
             if($sql->rowCount() != 1){
                 //Format error info in a readable fashion
                 $errorInfo = $sql->errorInfo();
-                $errorMessage = "MariaDB Error Code: " . $errorInfo[1] . "\nError Message: " . $errorInfo[2];
+                $errorMessage = "MariaDB Error Code: " . $errorInfo[1] . " Error Message: " . $errorInfo[2];
                 
                 //Disconnect from database
                 $this->Disconnect();
