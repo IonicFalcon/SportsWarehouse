@@ -44,9 +44,8 @@ $("#categories tbody").on("click", "tr", function(event){
 
     contextMenu.style.left = posX;
     contextMenu.style.top = posY;
-});
-
-$("#categories tbody").on("dblclick", "tr", function (){
+    
+}).on("dblclick", "tr", function (){
     alert("Test");
 });
 
