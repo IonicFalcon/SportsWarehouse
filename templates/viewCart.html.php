@@ -28,13 +28,13 @@ if(isset($_SESSION["DBError"])){
                     ?>
                         <div class="cartItem">
                             <div class="productImage">
-                                <img src="<?= $item->ProductImage() ?>" alt="<?= $item->ItemName ?> Image">
+                                <img src="<?= $item->ProductImage() ?>" alt="<?= htmlentities($item->ItemName) ?> Image">
                                 <button class="removeItem">
                                     <span class="iconButton">Remove</span>
                                 </button>                        
                             </div>
                             <div class="productInfo">
-                                <h4 class="productName"><?= $item->ItemName ?></h4>
+                                <h4 class="productName"><?= htmlentities($item->ItemName) ?></h4>
     
                                 <?php
                                     if(isset($item->SalePrice) && floatval($item->SalePrice) > 0){

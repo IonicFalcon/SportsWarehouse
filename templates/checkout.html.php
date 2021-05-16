@@ -95,10 +95,10 @@ if(isset($_SESSION["ShoppingCart"])){
                 ?>
                     <div class="cartItem">
                         <div class="productImage">
-                            <img src="<?= $item->ProductImage() ?>" alt="<?= $item->ItemName ?> Image">
+                            <img src="<?= $item->ProductImage() ?>" alt="<?= htmlentities($item->ItemName) ?> Image">
                         </div>
                         <div class="productInfo">
-                            <h4 class="productName"><?= $item->ItemName ?></h3>
+                            <h4 class="productName"><?= htmlentities($item->ItemName) ?></h3>
                             <p class="productQuantity">Quantity: <?= $item->Quantity ?></p>
                             <p class="productSubtotal">$<?= number_format((float) $item->GetSubtotalPrice(), 2) ?></p>
                         </div>

@@ -1,13 +1,13 @@
 <div class="productShowcase">
     <div class="breadcrumb">
         <a href="index.php" class="breadcrumb-element">Home</a>
-        <a href="searchProducts.php?cat=<?= $item->Category->CategoryID ?>" class="breadcrumb-element"><?= $item->Category->CategoryName ?></a>
-        <span class="breadcrumb-element"><?= $item->ItemName ?></span>
+        <a href="searchProducts.php?cat=<?= $item->Category->CategoryID ?>" class="breadcrumb-element"><?= htmlentities($item->Category->CategoryName) ?></a>
+        <span class="breadcrumb-element"><?= htmlentities($item->ItemName) ?></span>
     </div>
     <div class="productInfo">
-        <img src="<?= $item->ProductImage() ?>" alt="<?= $item->ItemName ?> Image">
+        <img src="<?= $item->ProductImage() ?>" alt="<?= htmlentities($item->ItemName) ?> Image">
         <div class="productInfoDescription">
-            <h2><?= $item->ItemName ?></h2>
+            <h2><?= htmlentities($item->ItemName) ?></h2>
             <?php
                 if(isset($item->SalePrice) && floatval($item->SalePrice) > 0){
                     ?>
@@ -25,7 +25,7 @@
                 }
             ?>
 
-            <p class="productDescription"><?= $item->Description ?></p>
+            <p class="productDescription"><?= htmlentities($item->Description) ?></p>
 
             <?php
                 if(isset($admin)){
@@ -64,7 +64,7 @@
             <i class="fas fa-times"></i>
         </button>
         <div class="confirmationDetails">
-            <img src="<?= $item->ProductImage() ?>" alt="<?= $item->ItemName ?> Image">
+            <img src="<?= $item->ProductImage() ?>" alt="<?= htmlentities($item->ItemName) ?> Image">
             <h2>Item Successfully Added to Cart!</h2>
             <div class="confirmationOptions modalButtons">
                 <a href="searchProducts.php?cat=<?= $item->Category->CategoryID ?>" id="continue" class="linkButton">Continue Shopping</a>

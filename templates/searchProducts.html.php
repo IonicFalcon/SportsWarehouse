@@ -4,7 +4,7 @@
         <?php
             if(isset($category)){
                 ?>
-                    <span class="breadcrumb-element"><?= $category->CategoryName ?></span>
+                    <span class="breadcrumb-element"><?= htmlentities($category->CategoryName) ?></span>
                 <?php
             } else{
                 ?>
@@ -20,7 +20,7 @@
             ?>
                 <h2>
                     <?php
-                        echo $category->CategoryName;
+                        echo htmlentities($category->CategoryName);
 
                         if(isset($admin)){
                             ?>
@@ -44,7 +44,7 @@
                 <option value="featured" <?= FormValidator::SetSelected("sort", "featured") ?>>Featured Product</option>
             </select>
             <input type="hidden" name="cat" value="<?= isset($category) ? $category->CategoryID : "" ?>">
-            <input type="hidden" name="search" value="<?= isset($_GET['search']) ? $_GET['search'] : "" ?>">
+            <input type="hidden" name="search" value="<?= isset($_GET['search']) ? htmlentities($_GET['search']) : "" ?>">
             
         </form>
     </div>
@@ -66,7 +66,7 @@
                         <a href="showProduct.php?id=<?= $item->ItemID ?>" class="productCard">
                             <article>
                                 <div class="productImage">
-                                    <img src="<?= $item->ProductImage() ?>" alt="<?= $item->ItemName?> Image">
+                                    <img src="<?= $item->ProductImage() ?>" alt="<?= htmlentities($item->ItemName)?> Image">
                                 </div>
     
                                 <?php
@@ -86,7 +86,7 @@
                                     }
                                 ?>
                                 
-                                <h3 class="productName"><?= $item->ItemName ?></h3>
+                                <h3 class="productName"><?= htmlentities($item->ItemName) ?></h3>
                             </article>
                         </a>
                     </li>

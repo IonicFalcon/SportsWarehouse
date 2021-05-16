@@ -3,6 +3,10 @@ include "../models/Category.php";
 $categories = Category::GetAllCategories();
 
 if($_SERVER["REQUEST_METHOD"] == "GET"){
+    foreach($categories as $category){
+        $category->CategoryName = htmlentities($category->CategoryName);
+    }
+    
     echo '{"data":' . json_encode($categories) . "}";
     die();
 } else{
@@ -53,7 +57,13 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
         echo '{"error": "' . $errorMessage . '"}';
         die();
     } else{
-        echo json_encode(Category::GetAllCategories());
+        $categories = Category::GetAllCategories();
+
+        foreach($categories as $category){
+            $category->CategoryName = htmlentities($category->CategoryName);
+        }
+
+        echo json_encode($categories);
         die();
     }
 }

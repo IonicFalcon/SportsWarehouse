@@ -32,7 +32,7 @@
                         <a href="showProduct.php?id=<?= $item->ItemID ?>" class="featuredProduct productCard">
                             <article>
                                 <div class="productImage">
-                                    <img src="<?= $item->ProductImage() ?>" alt="<?= $item->ItemName?> Image">
+                                    <img src="<?= $item->ProductImage() ?>" alt="<?= htmlentities($item->ItemName)?> Image">
                                 </div>
     
                                 <?php
@@ -52,7 +52,7 @@
                                     }
                                 ?>
                                 
-                                <h3 class="productName"><?= $item->ItemName ?></h3>
+                                <h3 class="productName"><?= htmlentities($item->ItemName) ?></h3>
                             </article>
                         </a>
                     </li>

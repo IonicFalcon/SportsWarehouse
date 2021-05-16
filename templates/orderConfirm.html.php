@@ -45,7 +45,7 @@ if(isset($_SESSION["OrderDetails"])){
             <?php foreach($order->Cart->Items as $item){
                 ?>
                     <tr>
-                        <td><a href="showProduct.php?id=<?= $item->ItemID ?>"><?= $item->ItemName ?></a> &times; <?= $item->Quantity ?></td>
+                        <td><a href="showProduct.php?id=<?= $item->ItemID ?>"><?= htmlentities($item->ItemName) ?></a> &times; <?= $item->Quantity ?></td>
                         <td>$<?= number_format((float) $item->GetSubtotalPrice(), 2) ?></td>
                     </tr>
                 <?php

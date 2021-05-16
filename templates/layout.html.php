@@ -85,7 +85,7 @@
                         <?php
                             if(isset($admin)){
                                 ?>
-                                    <span class="iconButton account">Welcome, <?= $admin->UserName ?></span>
+                                    <span class="iconButton account">Welcome, <?= htmlentities($admin->UserName) ?></span>
                                     <div class="accountPopup">
                                         <ul>
                                             <li><a href="account.php" class="accountManagement iconButton">Manage Account</a></li>
@@ -165,7 +165,7 @@
                         <?php
                             foreach($categories as $category){
                                 ?>
-                                    <li><a href="searchProducts.php?cat=<?= $category->CategoryID ?>"><?= $category->CategoryName ?></a></li>
+                                    <li><a href="searchProducts.php?cat=<?= $category->CategoryID ?>"><?= htmlentities($category->CategoryName) ?></a></li>
                                 <?php
                             }
                         ?>
@@ -210,7 +210,7 @@
                                 <?php
                                     foreach($categories as $category){
                                         ?>
-                                            <li><a href="searchProducts.php?cat=<?= $category->CategoryID ?>"><?= $category->CategoryName ?></a></li>
+                                            <li><a href="searchProducts.php?cat=<?= $category->CategoryID ?>"><?= htmlentities($category->CategoryName) ?></a></li>
                                         <?php
                                     }
                                 ?>

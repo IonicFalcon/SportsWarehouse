@@ -18,7 +18,7 @@
             <li><a href="#" class="iconButton delete">Delete Category</a></li>
         </ul>
         <input type="hidden" id="rowID" value="<?= isset($editCategory) ? $editCategory->CategoryID : null ?>">
-        <input type="hidden" id="rowName" value="<?= isset($editCategory) ? $editCategory->CategoryName : null ?>">
+        <input type="hidden" id="rowName" value="<?= isset($editCategory) ? htmlentities($editCategory->CategoryName) : null ?>">
     </nav>
 
     <div class="addModal modal">
@@ -55,7 +55,7 @@
 
             <form action="controllers/editCategoryController.php" method="post" onsubmit="return false">
                 <p class="formInput">
-                    <input type="text" id="categoryName_edit" name="categoryName" value="<?= isset($editCategory) ? $editCategory->CategoryName : null ?>" required>
+                    <input type="text" id="categoryName_edit" name="categoryName" value="<?= isset($editCategory) ? htmlentities($editCategory->CategoryName) : null ?>" required>
                     <label for="categoryName_edit">Category Name</label>
                 </p>
 
@@ -87,6 +87,4 @@
 
         </div>
     </div>
-
-    
 </section>
