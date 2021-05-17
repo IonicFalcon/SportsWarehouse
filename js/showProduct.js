@@ -1,3 +1,5 @@
+import {AJAXRequest} from "./modules/AJAX.js";
+
 $("#addToCart").submit(function(event) {
     event.preventDefault();
 
@@ -7,24 +9,14 @@ $("#addToCart").submit(function(event) {
 
     if(formData.get("quantity") > 25 || formData.get("quantity") <= 0) return alert("Quantity out of range. Please enter a quantity between 1 and 25");
 
-    console.log(formData.get("quantity"));
-
-    $.ajax({
-        type: "POST",
-        url: url,
-        data: formData,
-        success: (returnData) =>{
-            returnData = JSON.parse(returnData);
-            
+    AJAXRequest(url, formData).then((returnData)=>{
+        if(returnData.success){
             let shoppingCart = document.querySelector(".cartTotal");
-            shoppingCart.innerHTML = returnData.CartItems;
+            shoppingCart.innerHTML = returnData.data.CartItems;
 
             ToggleModal();
-        },
-        datatype: "json",
-        processData: false,
-        contentType: false
-    });
+        }
+    })
 });
 
 $(".cartModal .closeConfirmation").click(function(){

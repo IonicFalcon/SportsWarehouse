@@ -9,7 +9,7 @@ $categories = Category::GetAllCategories();
 $pageTitle = "Checkout - Sports Warehouse";
 
 $JSSources = [
-    "js/checkout.js"
+    ["js/checkout.js", true]
 ];
 
 ob_start();

@@ -1,3 +1,5 @@
+import {AJAXRequest} from "./modules/AJAX.js";
+
 $(".itemQuantity").change(function(event){
     let itemData = {
         quantity: $(this).val(),
@@ -6,41 +8,14 @@ $(".itemQuantity").change(function(event){
     }
 
     if(itemData.quantity > 25 || itemData.quantity <= 0) return alert("Quantity out of range. Please enter a quantity between 1 and 25");
-    
-    //AJAX request via JQuery seem to only like FormData objects.....
-    let formData = new FormData();
 
-    for(let key in itemData){
-        formData.append(key, itemData[key]);
-    }
-    
-    $.ajax({
-        type: "POST",
-        url: "controllers/shoppingCartController.php",
-        data: formData,
-        success: (returnData) => {
-            returnData = JSON.parse(returnData);
-
-            let shoppingCartButton = document.querySelector(".cartTotal");
-            shoppingCartButton.innerHTML = returnData.CartItems;
-
-            let cartSubtotal = document.querySelector(".subtotal").lastElementChild;
-            cartSubtotal.innerHTML = `$${returnData.CartSubtotal}`;
-
-            let cartDiscount = document.querySelector(".discount").lastElementChild;
-            cartDiscount.innerHTML = `-$${returnData.CartDiscount}`;
-
-            let cartTotal = document.querySelector(".totalPrice").lastElementChild;
-            cartTotal.innerHTML = `$${returnData.CartTotal}`;
+    AJAXRequest("controllers/shoppingCartController.php", itemData).then(returnData=>{
+        if(returnData.success){
+            FillData(returnData.data);
 
             let itemSubtotal = $(this).parent().siblings()[2];
-            itemSubtotal.innerHTML = `$${returnData.ItemSubtotal}`;
-
-
-        },
-        datatype: "json",
-        processData: false,
-        contentType: false
+            itemSubtotal.innerHTML = `$${returnData.data.ItemSubtotal}`;
+        }
     })
 });
 
@@ -50,35 +25,25 @@ $(".removeItem").click(function(event){
         cartMethod: "Delete"
     }
 
-    let formData = new FormData();
+    AJAXRequest("controllers/shoppingCartController.php", itemData).then(returnData=>{
+        if(returnData.success){
+            FillData(returnData.data);
 
-    for(let key in itemData){
-        formData.append(key, itemData[key]);
-    }
-
-    $.ajax({
-        type: "POST",
-        url: "controllers/shoppingCartController.php",
-        data: formData,
-        success: (returnData) => {
-            returnData = JSON.parse(returnData);
-
-            let shoppingCartButton = document.querySelector(".cartTotal");
-            shoppingCartButton.innerHTML = returnData.CartItems;
-
-            let cartSubtotal = document.querySelector(".subtotal").lastElementChild;
-            cartSubtotal.innerHTML = `$${returnData.CartSubtotal}`;
-
-            let cartDiscount = document.querySelector(".discount").lastElementChild;
-            cartDiscount.innerHTML = `-$${returnData.CartDiscount}`;
-
-            let cartTotal = document.querySelector(".totalPrice").lastElementChild;
-            cartTotal.innerHTML = `$${returnData.CartTotal}`;
-            
             $(this).parents()[1].remove();
-        },
-        datatype: "json",
-        processData: false,
-        contentType: false
+        }
     })
 });
+
+function FillData(data){
+    let shoppingCartButton = document.querySelector(".cartTotal");
+    shoppingCartButton.innerHTML = data.CartItems;
+
+    let cartSubtotal = document.querySelector(".subtotal").lastElementChild;
+    cartSubtotal.innerHTML = `$${data.CartSubtotal}`;
+
+    let cartDiscount = document.querySelector(".discount").lastElementChild;
+    cartDiscount.innerHTML = `-$${data.CartDiscount}`;
+
+    let cartTotal = document.querySelector(".totalPrice").lastElementChild;
+    cartTotal.innerHTML = `$${data.CartTotal}`;
+}

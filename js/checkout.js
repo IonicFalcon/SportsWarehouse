@@ -1,3 +1,5 @@
+import {AJAXRequest} from "./modules/AJAX.js";
+
 // Controls the togglable form sections
 $(".collapsible").click(function (){
     let header = this;
@@ -30,19 +32,11 @@ $("#placeOrder").click(function(){
 
     let url = $("#shippingInfo").attr("action");
 
-    $.ajax({
-        type: "POST",
-        url: url,
-        data: shippingInfo,
-        success: () =>{
-            let paymentInfo = document.querySelector("#paymentInfo");
-            paymentInfo.submit();
-        },
-        processData: false,
-        contentType: false
+    AJAXRequest(url, shippingInfo).then(()=>{
+        let paymentInfo = document.querySelector("#paymentInfo");
+        paymentInfo.submit();
     });
 })
-
 
 
 function ShippingInfoValidation(){

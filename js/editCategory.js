@@ -1,3 +1,5 @@
+import {AJAXRequest} from "./modules/AJAX.js";
+
 $(document).ready(function(){
     window.CategoryTable = $("#categories").DataTable({
         responsive: true,
@@ -39,8 +41,8 @@ $("#categories tbody").on("click", "tr", function(event){
     let midwayPoint = rowPos.y  + window.scrollY + rowPos.height / 2;
 
     //Position menu so that arrow points to midway point
-    posX = event.pageX + 24 + "px";
-    posY = midwayPoint - 24 + "px";
+    let posX = event.pageX + 24 + "px";
+    let posY = midwayPoint - 24 + "px";
 
     contextMenu.style.left = posX;
     contextMenu.style.top = posY;
@@ -93,7 +95,7 @@ $("#add").click(event=>{
         method: "Add"
     };
 
-    AJAXRequest(url, data);
+    SubmitRequest(url, data);
 })
 
 $("#edit").click(event =>{
@@ -113,7 +115,7 @@ $("#edit").click(event =>{
         method: "Edit"
     };
 
-    AJAXRequest(url, data);
+    SubmitRequest(url, data);
 });
 
 $("#delete").click(event=>{
@@ -126,36 +128,21 @@ $("#delete").click(event=>{
         method: "Delete"
     };
 
-    AJAXRequest(url, data);
+    SubmitRequest(url, data);
 })
 
-function AJAXRequest(url, data){
-    $.ajax({
-        type: "POST",
-        url: url,
-        data: data
-    }).done(data=>{
-        data = JSON.parse(data);
+//Deals with what to do for an AJAX request on this page (formatting data)
+function SubmitRequest(url, data){
+    //As AJAXRequest is an asynchronous function, the .then() interface is used to deal with the returned Promise
+    AJAXRequest(url, data).then(returnedData=>{
+        if(returnedData.success){
+            updateCategories(returnedData.data);
 
-        updateCategories(data);
-
-        window.CategoryTable.ajax.reload();
-        $(".modal.active .close").click();
-    }).fail(xhr =>{
-        let data = JSON.parse(xhr.responseText);
-        let errorMessage;
-
-        //Server errors are out of user's control. Log error in console and display generic message
-        if(xhr.status == 500){
-            errorMessage = "A server error has occured. Sorry for the inconvience.";
-            console.error(data.error);
-        } 
-        //Client errors are the user's fault. Display appropriate error message
-        else{
-            errorMessage = data.error;
+            window.CategoryTable.ajax.reload();
+            $(".modal.active .close").click();
+        } else{
+            document.querySelector(".modal.active .error").innerText = returnedData.data;
         }
-
-        document.querySelector(".modal.active .error").innerText = errorMessage;
     })
 }
 
