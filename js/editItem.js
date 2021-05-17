@@ -71,8 +71,6 @@ $(".modal .close").click(event=>{
 
     $(event.target).parents(".modal")[0].classList.remove("active");
     document.querySelector(".root").classList.remove("modalOpen");
-
-    
 });
 
 $('.modalBody form input[type="file"]').change(event=>{
@@ -155,8 +153,6 @@ function ValidateForm(form){
 
     let moneyFields = form.querySelectorAll("input.money");
     for (let money of moneyFields) {
-        if(money.value.charAt(0) == "$") money.value.substring(1);
-
         if($(money).parents("fieldset")[0]){
             if (money.disabled) continue;
         }
