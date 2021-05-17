@@ -114,4 +114,84 @@
             </form>
         </div>
     </div>
+    
+    <div class="editModal modal">
+        <div class="modalBody">
+            <button class="closeConfirmation close">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <h2>Edit Item</h2>
+
+            <form action="controllers/editItemController.php" method="post" onsubmit="return false">
+                <p class="formInput">
+                    <input type="text" name="itemName" id="itemName_edit" required>
+                    <label for="itemName_edit">Item Name</label>
+                    <span class="inputErrors"></span>
+                </p>
+
+                <fieldset>
+                    <legend>Item Photo</legend>
+                    <img src="images/productImages/placeholder.png" class="itemPhoto">
+                    <p class="formInput">
+                        <input type="file" name="itemPhoto" id="itemPhoto_edit" accept="image/*">
+                        <label for="itemPhoto_edit" class="linkButton">Select Item Image</label>
+                        <span class="inputErrors"></span>
+                    </p>
+                </fieldset>
+
+                <p class="formInput">
+                    <input type="number" name="itemPrice" id="itemPrice_edit" class="money" required placeholder="$9.99">
+                    <label for="itemPrice_edit">Item Price</label>
+                    <span class="inputErrors"></span>
+                </p>
+
+                <fieldset>
+                    <legend>Item Sale Price</legend>
+                    <p class="formInput">
+                        <input type="checkbox" id="itemOnSale_edit">
+                        <label for="itemOnSale_edit">On Sale</label>
+                        <span class="inputErrors"></span>
+                    </p>
+
+                    <p class="formInput">
+                        <input type="number" name="itemSalePrice" id="itemSalePrice_edit" class="money" disabled placeholder="$4.50">
+                        <label for="itemSalePrice_edit">Sale Price</label>
+                        <span class="inputErrors"></span>
+                    </p>
+                </fieldset>
+
+                <p class="formInput">
+                    <textarea name="itemDescription" id="itemDescription_edit" cols="30" rows="3"></textarea>
+                    <label for="itemDescription_edit">Item Description</label>
+                    <span class="inputErrors"></span>
+                </p>
+
+                <p class="formInput">
+                    <input type="checkbox" name="itemFeatured" id="itemFeatured_edit">
+                    <label for="itemFeatured_edit">Featured Item</label>
+                    <span class="inputErrors"></span>
+                </p>
+
+                <p class="formInput">
+                    <select name="itemCategory" id="itemCategory_edit" required>
+                        <?php
+                            foreach($categories as $category){
+                                ?>
+                                    <option value="<?= $category->CategoryID ?>"><?= htmlentities($category->CategoryName) ?></option>
+                                <?php
+                            }
+                        ?>
+                    </select>
+                    <label for="itemCategory_edit">Item Category</label>
+                    <span class="inputErrors"></span>
+                </p>
+
+                <div class="modalButtons">
+                    <button class="linkButton" id="edit">Edit Item</button>
+                    <button class="linkButton close">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </section>

@@ -63,6 +63,19 @@ $(".contextMenu .add.iconButton").click(event=>{
     if(modalBody.getBoundingClientRect().top < 0) addModal.classList.add("overflow");
 })
 
+$(".contextMenu .edit.iconButton").click(event=>{
+    event.preventDefault();
+
+    let editModal = document.querySelector(".editModal");
+    
+    editModal.classList.add("active")
+    document.querySelector(".root").classList.add("modalOpen");
+
+    let modalBody = editModal.querySelector(".modalBody");
+
+    if(modalBody.getBoundingClientRect().top < 0) editModal.classList.add("overflow");
+})
+
 $(".modal .close").click(event=>{
     event.preventDefault();
 
