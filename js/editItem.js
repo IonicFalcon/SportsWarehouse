@@ -1,3 +1,5 @@
+import {AJAXRequest} from "./modules/AJAX.js";
+
 $(document).ready(function(){
     window.ItemTable = $("#items").DataTable({
         responsive: true,
@@ -40,14 +42,12 @@ $("#items tbody").on("click", "tr", function(event){
     let rowPos = event.target.getBoundingClientRect();
     let midwayPoint = rowPos.y + window.scrollY + rowPos.height / 2;
 
-    posX = event.pageX + 24 + "px";
-    posY = midwayPoint - 24 + "px";
+    let posX = event.pageX + 24 + "px";
+    let posY = midwayPoint - 24 + "px";
 
     contextMenu.style.left = posX;
     contextMenu.style.top = posY;
     
-}).on("dblclick", "tr", function(){
-    alert("Test");
 })
 
 $(".contextMenu .add.iconButton").click(event=>{
@@ -66,12 +66,27 @@ $(".contextMenu .add.iconButton").click(event=>{
 $(".modal .close").click(event=>{
     event.preventDefault();
 
+    let imagePreview = document.querySelector(".modal.active .itemPhoto");
+    imagePreview.src = "images/productImages/placeholder.png";
+
     $(event.target).parents(".modal")[0].classList.remove("active");
     document.querySelector(".root").classList.remove("modalOpen");
+
+    
 });
 
+$('.modalBody form input[type="file"]').change(event=>{
+    let imagePreview = $(event.target).parent().siblings("img.itemPhoto")[0];
+    let image = event.target.files[0];
+
+    const validImageTypes = ["images/gif", "image/jpeg", "image/png"];
+
+    if(image && validImageTypes.includes(image["type"])){
+        imagePreview.src = URL.createObjectURL(image);
+    }
+})
+
 $("#itemOnSale_add, #itemOnSale_edit").change(event=>{
-    console.log(event);
     let saleInput = $(event.target).parent().siblings().children("input")[0];
 
     if(event.target.checked){
@@ -81,3 +96,98 @@ $("#itemOnSale_add, #itemOnSale_edit").change(event=>{
         $(saleInput).prop("disabled", true);
     }
 })
+
+$("#add").click(event=>{
+    event.preventDefault();
+
+    let form = $(event.target).parents("form")[0];
+    if (!ValidateForm(form)) return false;
+
+    document.querySelectorAll(".modal.active .inputErrors").forEach(element=>{
+        element.value = "";
+    })
+
+
+    let url = form.action;
+    let formData = new FormData(form);
+    formData.append("method", "Add");
+
+    SubmitRequest(url, formData);
+})
+
+function SubmitRequest(url, data){
+    AJAXRequest(url, data).then(returnedData=>{
+        if(returnedData.success){
+            window.ItemTable.ajax.reload();
+            $(".modal.active .close").click();
+        } else{
+            document.querySelector(".modal.active .error").innerText = returnedData.data;
+        }
+    })
+}
+
+function ValidateForm(form){
+    let formInputs = form.querySelectorAll(".formInput > *:first-child:required");
+    let invalidFields = [];
+
+    for(let field of formInputs){
+        if(field.value === ""){
+            let errorField = [
+                field,
+                "- Field must contain a value"
+            ];
+
+            invalidFields.push(errorField);
+        }
+    }
+
+    let imageInput = formInputs[1];
+    const validImageTypes = ["images/gif", "image/jpeg", "image/png"];
+
+    if(imageInput.files && !validImageType.include(imageInput.files[0].type)){
+        let errorField = [
+            imageInput,
+            "- File is not an image"
+        ];
+
+        invalidFields.push(errorField);
+    }
+
+    let moneyFields = form.querySelectorAll("input.money");
+    for (let money of moneyFields) {
+        if(money.value.charAt(0) == "$") money.value.substring(1);
+
+        if($(money).parents("fieldset")[0]){
+            if (money.disabled) continue;
+        }
+
+        if(parseFloat(money.value) == NaN){
+            console.log(money)
+            let errorField = [
+                money,
+                "- Value is not a number"
+            ];
+
+            invalidFields.push(errorField);
+        }
+    }
+
+    if (moneyFields[1].value > moneyFields[0].value){
+        let errorField = [
+            moneyFields[1],
+            "- Sale price can't be more than regular price"
+        ]
+
+        invalidFields.push(errorField);
+    }
+
+    if(invalidFields.length === 0){
+        return true;
+    } else{
+        for(let error of invalidFields){
+            $(error[0]).siblings(".inputErrors")[0].innerText = error[1];
+        }
+
+        return false;
+    }
+}

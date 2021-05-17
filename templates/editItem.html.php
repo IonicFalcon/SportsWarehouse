@@ -94,7 +94,7 @@
                 </p>
 
                 <p class="formInput">
-                    <select name="itemCategory" id="itemCategory_add">
+                    <select name="itemCategory" id="itemCategory_add" required>
                         <?php
                             foreach($categories as $category){
                                 ?>

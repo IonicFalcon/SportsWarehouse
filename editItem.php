@@ -8,7 +8,7 @@ $categories = Category::GetAllCategories();
 
 $JSSources = [
     "https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js",
-    "js/editItem.js"
+    ["js/editItem.js", true]
 ];
 
 $CSSSources = [

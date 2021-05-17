@@ -22,7 +22,7 @@ class Item extends DatabaseEntity{
     public function ProductImage(){
         $defaultPath = "images/productImages/";
 
-        if(isset($this->Photo)){
+        if($this->Photo){
             return $defaultPath . $this->Photo;
         } else{
             return $defaultPath . "placeholder.png";
@@ -134,5 +134,20 @@ class Item extends DatabaseEntity{
     public static function GetItemCount(){
         $query = "SELECT COUNT(*) FROM `item`";
         return Item::DB()->ExecuteSQLSingleVal($query);
+    }
+
+    public static function AddItem($item){
+        $query = "INSERT INTO `item` (`itemName`, `photo`, `price`, `salePrice`, `description`, `featured`, `categoryId`) VALUES (:itemName, :photo, :price, :salePrice, :description, :featured, :catID)";
+        $params = [
+            ":itemName" => $item->ItemName,
+            ":photo" => $item->Photo ?? [null, PDO::PARAM_NULL],
+            ":price" => $item->Price,
+            ":salePrice" => $item->SalePrice ?? [null, PDO::PARAM_NULL],
+            ":description" => $item->Description ?? [null, PDO::PARAM_NULL],
+            ":featured" => [$item->Featured, PDO::PARAM_BOOL], 
+            ":catID" => $item->Category->CategoryID
+        ];
+
+        return Item::DB()->ScalarSQL($query, $params);
     }
 }
