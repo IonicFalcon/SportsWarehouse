@@ -543,6 +543,7 @@ a.breadcrumb-element{
     align-items: center;
     display: none;
     overflow-y: scroll;
+    z-index: 1;
 }
 
 .modal.overflow{
@@ -1354,6 +1355,10 @@ main section.checkout > *{
         align-items: center;
     }
 
+    .expiry .formInput{
+        display: block;
+    }
+
     .formInput > label{
         text-align: right;
         position: static;
@@ -1373,8 +1378,12 @@ main section.checkout > *{
     }
 
     .formInput span.inputErrors{
-        left: 25%;
+        left: 30%;
         bottom: -1.5em;
+    }
+
+    .expiry span.inputErrors{
+        bottom: unset;
     }
 
     .checkout .paymentDetails .expiry{
@@ -1387,7 +1396,7 @@ main section.checkout > *{
         clear: both;
         position: relative;
         font-size: 0.8em;
-        top: -3.5em;
+        top: -4em;
         text-align: left;
         width: 100%;
     }
