@@ -1357,10 +1357,15 @@ main section.checkout > *{
     .formInput > label{
         text-align: right;
         position: static;
-        flex-basis: 25%;
+        width: 25%;
+        white-space: unset;
         padding-right: 1.5em;
         font-size: initial;
         font-weight: normal;
+    }
+
+    .formInput > input[type="file"] + label{
+        width: 100%;
     }
 
     .formInput > input, .formInput > textarea, .formInput > select{
