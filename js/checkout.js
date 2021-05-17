@@ -78,7 +78,7 @@ function PaymentInfoValidation(){
         if(field.value === null || field.value.trim() === ""){
             let errorField = [
                 field, 
-                "- Field must contain a value.\n"
+                "- Field must contain a value"
             ];
 
             invalidFields.push(errorField);
@@ -89,7 +89,7 @@ function PaymentInfoValidation(){
     if(!ValidateCreditCard(creditCard.value)){
         let errorField = [
             creditCard,
-            "- Credit card is invalid.\n"
+            "- Credit card is invalid"
         ]
 
         invalidFields.push(errorField);
