@@ -268,9 +268,22 @@
         //Import any other relevant files for the specific page
         if(isset($JSSources)){
             foreach($JSSources as $file){
-                ?>
-                    <script src="<?=$file?>"></script>
-                <?php
+                //Javascipt Modules have to be declared differently
+                if(is_array($file)){
+                    if($file[1] === true){
+                        ?>
+                            <script type="module" src="<?= $file[0] ?>"></script>
+                        <?php
+                    } else{
+                        ?>
+                            <script src="<?= $file[0] ?>"></script>
+                        <?php
+                    }
+                } else{
+                    ?>
+                        <script src="<?=$file?>"></script>
+                    <?php
+                }
             }
         }
     ?>
