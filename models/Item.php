@@ -150,4 +150,8 @@ class Item extends DatabaseEntity{
 
         return Item::DB()->ScalarSQL($query, $params);
     }
+
+    public static function EditItem($item){
+        $query = "UPDATE `item` SET `itemName` : "
+    }
 }

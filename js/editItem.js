@@ -74,6 +74,28 @@ $(".contextMenu .edit.iconButton").click(event=>{
     let modalBody = editModal.querySelector(".modalBody");
 
     if(modalBody.getBoundingClientRect().top < 0) editModal.classList.add("overflow");
+
+    let hiddenFields = document.querySelectorAll('nav.contextMenu input[type="hidden"]');
+
+    document.querySelector("#itemName_edit").value = hiddenFields[1].value;
+
+    if(hiddenFields[2].value != null) {
+        document.querySelector(".editModal .itemPhoto").src = "images/productImages/" + hiddenFields[2].value;
+    }
+
+    document.querySelector("#itemPrice_edit").value = hiddenFields[3].value;
+    document.querySelector("#itemOnSale_edit").checked = hiddenFields[4].value != null;
+    document.querySelector("#itemSalePrice_edit").value = hiddenFields[4].value ?? null;
+    document.querySelector("#itemDescription_edit").innerText = hiddenFields[5].value ?? null;
+    document.querySelector("#itemFeatured_edit").checked = hiddenFields[6].value == 1;
+
+    let categorySelection = document.querySelector("#itemCategory_edit");
+    for(let [i, option] of [...categorySelection.options].entries()){
+        if(option.innerText == hiddenFields[7].value){
+            categorySelection.selectedIndex = i;
+            break;
+        }
+    }
 })
 
 $(".modal .close").click(event=>{
@@ -126,8 +148,24 @@ $("#add").click(event=>{
     SubmitRequest(url, formData);
 })
 
+$("#edit").click(event=>{
+    event.preventDefault();
+
+    let form = $(event.target).parents("form")[0];
+    if(!ValidateForm(form)) return false;
+
+    let url = form.action;
+    let formData = new FormData(form);
+    formData.append("itemID", document.querySelector("#rowID").value)
+    formData.append("method", "Edit");
+
+    SubmitRequest(url, formData);
+})
+
 function SubmitRequest(url, data){
     AJAXRequest(url, data).then(returnedData=>{
+        console.log(returnedData);
+
         if(returnedData.success){
             window.ItemTable.ajax.reload();
             $(".modal.active .close").click();
@@ -142,7 +180,7 @@ function ValidateForm(form){
     let invalidFields = [];
 
     for(let field of formInputs){
-        if(field.value === ""){
+        if(field.value.trim() === ""){
             let errorField = [
                 field,
                 "- Field must contain a value"
@@ -185,6 +223,15 @@ function ValidateForm(form){
         let errorField = [
             moneyFields[1],
             "- Sale price can't be more than regular price"
+        ]
+
+        invalidFields.push(errorField);
+    }
+
+    if (moneyFields[1].value == 0){
+        let errorField = [
+            moneyFields[1],
+            "- Sale price can't be $0.00"
         ]
 
         invalidFields.push(errorField);

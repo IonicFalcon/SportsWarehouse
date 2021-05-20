@@ -18,23 +18,29 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
         case "Add":
             $newItem = new Item();
 
-            $newItem->ItemName = $_POST["itemName"];
-            $newItem->Price = $_POST["itemPrice"];
-            $newItem->SalePrice = $_POST["itemSalePrice"] ?? null;
-            $newItem->Description = $_POST["itemDescription"] ?? null;
-            $newItem->Featured = isset($_POST["itemFeatured"]) ? true : false;
-            $newItem->Category = Category::GetCategoryFromID($_POST["itemCategory"]);
-            
-            $errorMessage = empty($_FILES["itemPhoto"]["name"]) ? null : SaveItemImage($_FILES["itemPhoto"]);
+            $errorMessage = ItemFromPost($newItem);
             if($errorMessage){
                 $statusCode = $errorMessage[0];
                 $errorMessage = $errorMessage[1];
                 break;
             }
 
-            $newItem->Photo = $_FILES["itemPhoto"]["name"];
-
             $errorMessage = Item::AddItem($newItem);
+            break;
+    
+        case "Edit":
+            $editItem = new Item();
+
+            $editItem->ItemID = $_POST["itemID"];
+
+            $errorMessage = ItemFromPost($editItem);
+            if($errorMessage){
+                $statusCode = $errorMessage[0];
+                $errorMessage = $errorMessage[1];
+                break;
+            }
+
+            $errorMessage = Item::EditItem($editItem);
             break;
     }
 
@@ -45,6 +51,23 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
     } else{
         echo json_encode(null);
         die();
+    }
+}
+
+function ItemFromPost(&$item){
+    $item->ItemName = $_POST["itemName"];
+    $item->Price = $_POST["itemPrice"];
+    $item->SalePrice = $_POST["itemSalePrice"] ?? null;
+    $item->Description = $_POST["itemDescription"] ?? null;
+    $item->Featured = isset($_POST["itemFeatured"]);
+    $item->Category = Category::GetCategoryFromID(($_POST["itemCategory"]));
+
+    $errorMessage = !empty($_FILES["itemPhoto"]["name"]) ? SaveItemImage($_FILES["itemPhoto"]) : null;
+
+    if(!$errorMessage){
+        $item->Photo = $_FILES["itemPhoto"]["name"] ?? null;
+    } else{
+        return $errorMessage;
     }
 }
 
