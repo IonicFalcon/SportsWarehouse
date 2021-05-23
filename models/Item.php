@@ -166,4 +166,13 @@ class Item extends DatabaseEntity{
 
         return Item::DB()->ScalarSQL($query, $params);
     }
+
+    public static function DeleteItem($itemID){
+        $query = "DELETE FROM `item` WHERE `itemId` = :itemID";
+        $param = [
+            ":itemID" => $itemID
+        ];
+
+        return Item::DB()->ScalarSQL($query, $param);
+    }
 }

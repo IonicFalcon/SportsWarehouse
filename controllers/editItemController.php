@@ -42,6 +42,10 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
 
             $errorMessage = Item::EditItem($editItem);
             break;
+
+        case "Delete":
+            $errorMessage = Item::DeleteItem($_POST["itemID"]);
+            break;
     }
 
     if($errorMessage){

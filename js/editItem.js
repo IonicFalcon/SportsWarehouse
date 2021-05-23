@@ -100,11 +100,21 @@ $(".contextMenu .edit.iconButton").click(event=>{
     }
 })
 
+$(".contextMenu .delete.iconButton").click(event =>{
+    event.preventDefault();
+
+    document.querySelector(".deleteModal").classList.add("active");
+    document.querySelector(".root").classList.add("modalOpen");
+})
+
 $(".modal .close").click(event=>{
     event.preventDefault();
 
     let imagePreview = document.querySelector(".modal.active .itemPhoto");
-    imagePreview.src = "images/productImages/placeholder.png";
+    
+    if(imagePreview){
+        imagePreview.src = "images/productImages/placeholder.png";
+    }
 
     $(event.target).parents(".modal")[0].classList.remove("active");
     document.querySelector(".root").classList.remove("modalOpen");
@@ -148,7 +158,7 @@ $("#add").click(event=>{
     formData.append("method", "Add");
 
     SubmitRequest(url, formData);
-})
+});
 
 $("#edit").click(event=>{
     event.preventDefault();
@@ -162,7 +172,20 @@ $("#edit").click(event=>{
     formData.append("method", "Edit");
 
     SubmitRequest(url, formData);
-})
+});
+
+$("#delete").click(event =>{
+    event.preventDefault();
+
+    let url = $(".deleteModal form").attr("action");
+
+    let data = {
+        itemID: document.querySelector("#rowID").value,
+        method: "Delete"
+    }
+
+    SubmitRequest(url, data);
+});
 
 function SubmitRequest(url, data){
     AJAXRequest(url, data).then(returnedData=>{
