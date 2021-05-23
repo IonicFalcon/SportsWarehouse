@@ -17,7 +17,7 @@ if(isset($_GET["id"]) && $_GET["id"] != ""){
 
     $pageTitle = $item->ItemName . " - Sports Warehouse";
     $JSSources = [
-        ["js/showProduct.js", true]
+        ["js/showProduct.min.js", true]
     ];
 
     ob_start();

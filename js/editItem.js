@@ -1,4 +1,4 @@
-import {AJAXRequest} from "./modules/AJAX.js";
+import {AJAXRequest} from "./modules/AJAX.min.js";
 
 $(document).ready(function(){
     window.ItemTable = $("#items").DataTable({
@@ -111,7 +111,7 @@ $(".modal .close").click(event=>{
     event.preventDefault();
 
     let imagePreview = document.querySelector(".modal.active .itemPhoto");
-    
+
     if(imagePreview){
         imagePreview.src = "images/productImages/placeholder.png";
     }

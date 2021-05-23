@@ -7,7 +7,7 @@ $categories = Category::GetAllCategories();
 $pageTitle = "Contact Us - Sports Warehouse";
 
 $JSSources = [
-    "js/contact.js"
+    "js/contact.min.js"
 ];
 
 ob_start();

@@ -263,7 +263,7 @@
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="js/layout.js"></script>
+    <script src="js/layout.min.js"></script>
     <?php
         //Import any other relevant files for the specific page
         if(isset($JSSources)){

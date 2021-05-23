@@ -1,4 +1,4 @@
-import {AJAXRequest} from "./modules/AJAX.js";
+import {AJAXRequest} from "./modules/AJAX.min.js";
 
 $(document).ready(function(){
     window.CategoryTable = $("#categories").DataTable({

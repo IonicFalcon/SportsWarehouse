@@ -8,7 +8,7 @@ $CSSSources = [
 ];
 $JSSources = [
     "https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js",
-    "js/index.js"
+    "js/index.min.js"
 ];
 
 require_once "models/Item.php";

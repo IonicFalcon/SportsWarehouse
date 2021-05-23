@@ -9,7 +9,7 @@ $categories = Category::GetAllCategories();
 $pageTitle = "Shopping Cart - Sports Warehouse";
 
 $JSSources = [
-    ["js/viewCart.js", true]
+    ["js/viewCart.min.js", true]
 ];
 
 ob_start();

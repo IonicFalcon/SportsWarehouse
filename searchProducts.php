@@ -63,7 +63,7 @@ require_once "models/Admin.php";
 $admin = Admin::AdminFunction();
 
 $JSSources = [
-    "js/searchProducts.js"
+    "js/searchProducts.min.js"
 ];
 
 ob_start();

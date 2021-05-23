@@ -1,4 +1,4 @@
-import {AJAXRequest} from "./modules/AJAX.js";
+import {AJAXRequest} from "./modules/AJAX.min.js";
 
 // Controls the togglable form sections
 $(".collapsible").click(function (){
