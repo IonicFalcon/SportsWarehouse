@@ -44,7 +44,30 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
             break;
 
         case "Delete":
-            $errorMessage = Item::DeleteItem($_POST["itemID"]);
+            $deleteItem = Item::GetItemFromID($_POST["itemID"]);
+
+            $deletedPhoto = $deleteItem->Photo;
+
+            $errorMessage = Item::DeleteItem($deleteItem->ItemID);
+
+            //If item has been deleted, try to delete product image from server
+            if(!$errorMessage && $deletedPhoto){
+                //Check to see if image is used for any other product (unlikely, but still a possibility)
+                $photoUsed = false;
+                $items = Item::GetAllItems();
+                foreach($items as $item){
+                    if($item->Photo === $deletedPhoto){
+                        $photoUsed = true;
+                        break;
+                    }
+                }
+                
+                //If photo isn't used anywhere else, delete it
+                if(!$photoUsed){
+                    @unlink("../images/productImages/" . $deletedPhoto);
+                }
+            }
+
             break;
     }
 
