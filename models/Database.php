@@ -140,6 +140,11 @@
                 //Format error info in a readable fashion
                 $errorInfo = $sql->errorInfo();
 
+                //No row was affected, but no error occured. No changes have been made
+                if($errorInfo[0] == "00000"){
+                    return $this->Disconnect();
+                }
+
                 //Foreign key constraint error, should be treated differently as caused by user
                 if($errorInfo[0] == "23000"){
                     throw new Exception($errorInfo[2], $errorInfo[0]);
