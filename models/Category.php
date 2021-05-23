@@ -69,7 +69,7 @@ class Category extends DatabaseEntity{
     }
 
     public static function DeleteCategory($categoryID){
-        $query = "DELETE FROM `category` WHERE `categoryID` = :catID";
+        $query = "DELETE FROM `category` WHERE `categoryId` = :catID";
         $param = [
             ":catID" => $categoryID
         ];
