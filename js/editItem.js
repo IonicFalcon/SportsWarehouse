@@ -79,12 +79,14 @@ $(".contextMenu .edit.iconButton").click(event=>{
 
     document.querySelector("#itemName_edit").value = hiddenFields[1].value;
 
-    if(hiddenFields[2].value != null) {
+    if(hiddenFields[2].value != "") {
         document.querySelector(".editModal .itemPhoto").src = "images/productImages/" + hiddenFields[2].value;
+    } else{
+        document.querySelector(".editModal .itemPhoto").src = "images/productImages/placeholder.png";
     }
 
     document.querySelector("#itemPrice_edit").value = hiddenFields[3].value;
-    document.querySelector("#itemOnSale_edit").checked = hiddenFields[4].value != null;
+    document.querySelector("#itemOnSale_edit").checked = hiddenFields[4].value != "";
     document.querySelector("#itemSalePrice_edit").value = hiddenFields[4].value ?? null;
     document.querySelector("#itemDescription_edit").innerText = hiddenFields[5].value ?? null;
     document.querySelector("#itemFeatured_edit").checked = hiddenFields[6].value == 1;
@@ -218,23 +220,27 @@ function ValidateForm(form){
             invalidFields.push(errorField);
         }
     }
+    
+    let saleCheckbox = $(moneyFields[1]).parent().siblings().children(`input[type="checkbox"]`)[0];
 
-    if (moneyFields[1].value > moneyFields[0].value){
-        let errorField = [
-            moneyFields[1],
-            "- Sale price can't be more than regular price"
-        ]
-
-        invalidFields.push(errorField);
-    }
-
-    if (moneyFields[1].value == 0){
-        let errorField = [
-            moneyFields[1],
-            "- Sale price can't be $0.00"
-        ]
-
-        invalidFields.push(errorField);
+    if(saleCheckbox.checked){
+        if (moneyFields[1].value > moneyFields[0].value){
+            let errorField = [
+                moneyFields[1],
+                "- Sale price can't be more than regular price"
+            ]
+    
+            invalidFields.push(errorField);
+        }
+    
+        if (moneyFields[1].value == 0){
+            let errorField = [
+                moneyFields[1],
+                "- Sale price can't be $0.00"
+            ]
+    
+            invalidFields.push(errorField);
+        }
     }
 
     if(invalidFields.length === 0){

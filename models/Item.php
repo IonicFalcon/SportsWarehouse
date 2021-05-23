@@ -152,6 +152,18 @@ class Item extends DatabaseEntity{
     }
 
     public static function EditItem($item){
-        $query = "UPDATE `item` SET `itemName` : "
+        $query = "UPDATE `item` SET `itemName` = :itemName, `photo` = :photo, `price` = :price, `salePrice` = :salePrice, `description` = :description, `featured` = :featured, `categoryId` = :catID WHERE `itemId` = :itemID";
+        $params = [
+            ":itemName" => $item->ItemName,
+            ":photo" => $item->Photo ?? [null, PDO::PARAM_NULL],
+            ":price" => $item->Price,
+            ":salePrice" => $item->SalePrice ?? [null, PDO::PARAM_NULL],
+            ":description" => $item->Description ?? [null, PDO::PARAM_NULL],
+            ":featured" => [$item->Featured, PDO::PARAM_BOOL],
+            ":catID" => $item->Category->CategoryID,
+            ":itemID" => $item->ItemID
+        ];
+
+        return Item::DB()->ScalarSQL($query, $params);
     }
 }
