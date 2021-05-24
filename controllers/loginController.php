@@ -8,11 +8,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     if($admin){
         $_SESSION["LoggedInUser"] = serialize($admin);
-        header("Location: ../index.php");
+
+        header("Location: ../" . $_POST["reauthPage"] ?? "index.php");
         die();
     } else{
         $_SESSION["ErrorInfo"] = "Incorrect Username or Password. Please try again";
-        header("Location: ../login.php");
+        header("Location: ../login.php" . (isset($_POST["reauthPage"]) ? "?reauthorise=" . $_POST["reauthPage"] : null ));
         die();
     }
 } else{
