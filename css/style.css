@@ -136,6 +136,10 @@ header a{
     content: "\f2f5";
 }
 
+.changeTheme.iconButton::before{
+    content: "\f53f";
+}
+
 .add.iconButton::before{
     content: "\f067";
 }

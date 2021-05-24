@@ -88,7 +88,8 @@
                                     <span class="iconButton account">Welcome, <?= htmlentities($admin->UserName) ?></span>
                                     <div class="accountPopup">
                                         <ul>
-                                            <li><a href="account.php" class="accountManagement iconButton">Manage Account</a></li>
+                                            <li><a href="changeTheme.php" class="changeTheme iconButton">Change Theme</a></li>
+                                            <li><a href="changePassword.php" class="accountManagement iconButton">Change Password</a></li>
                                             <li><a href="logout.php" class="logout iconButton">Log Out</a></li>
                                         </ul>
                                     </div>
@@ -131,7 +132,8 @@
                             ?>
                                 <li><a href="editCategory.php">Edit Categories</a></li>
                                 <li><a href="editItem.php">Edit Items</a></li>
-                                <li><a href="account.php" class="accountManagement iconButton">Manage Account</a></li>
+                                <li><a href="changeTheme.php" class="changeTheme iconButton">Change Theme</a></li>
+                                <li><a href="changePassword.php" class="accountManagement iconButton">Change Password</a></li>
                                 <li><a href="logout.php" class="logout iconButton">Log Out</a></li>
                             <?php
                         } else{
