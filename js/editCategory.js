@@ -9,6 +9,16 @@ $(document).ready(function(){
             {"data": "CategoryName"}
         ]
     });
+
+    let editModal = document.querySelector(".editModal.active");
+
+    if(editModal){
+        let modalBody = editModal.querySelector(".modalBody");
+        if(modalBody.getBoundingClientRect().top < 0) editModal.classList.add("overflow");
+
+        document.querySelector(".root").classList.add("modalOpen");
+    }
+
 }).click(function(event){
     let rows = document.querySelectorAll("#categories td");
     rows = Array.prototype.slice.call(rows);
@@ -48,7 +58,7 @@ $("#categories tbody").on("click", "tr", function(event){
     contextMenu.style.top = posY;
     
 }).on("dblclick", "tr", function (){
-    alert("Test");
+    window.location.href = "editItem.php?cat=" + document.querySelector("#rowID").value;
 });
 
 $(".contextMenu .add.iconButton").click(event =>{

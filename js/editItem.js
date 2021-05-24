@@ -1,9 +1,16 @@
 import {AJAXRequest} from "./modules/AJAX.min.js";
 
 $(document).ready(function(){
+    const GETParams = new URLSearchParams(window.location.search);
+
+    let url = "controllers/editItemController.php";
+    if(GETParams.has("cat")){
+        url += "?cat=" + GETParams.get("cat");
+    }
+
     window.ItemTable = $("#items").DataTable({
         responsive: true,
-        ajax: "controllers/editItemController.php",
+        ajax: url,
         columns: [
             {"data": "ItemID"},
             {"data": "ItemName"},
@@ -16,6 +23,16 @@ $(document).ready(function(){
         ],
         scrollX: true
     });
+
+    let editModal = document.querySelector(".editModal.active");
+
+    if(editModal){
+        let modalBody = editModal.querySelector(".modalBody");
+        if(modalBody.getBoundingClientRect().top < 0) editModal.classList.add("overflow");
+
+        document.querySelector(".root").classList.add("modalOpen");
+    }
+
 }).click(function(event){
     let rows = document.querySelectorAll("#items td");
     rows = Array.prototype.slice.call(rows);

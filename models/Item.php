@@ -101,6 +101,22 @@ class Item extends DatabaseEntity{
             $item->Category = Category::GetCategoryFromItemID($item->ItemID);
         }
 
+        return $itemList;
+    }
+
+    public static function GetItemsOfCategory($catID){
+        include_once "Category.php";
+
+        $query = "SELECT `ItemID`, `ItemName`, `Photo`, `Price`, `SalePrice`, `Description`, `Featured` FROM `item` WHERE `categoryId` = :catID";
+        $param = [
+            ":catID" => $catID
+        ];
+
+        $itemList = Item::DB()->ExecuteSQL($query, $param, "Item");
+
+        foreach($itemList as $item){
+            $item->Category = Category::GetCategoryFromItemID($item->ItemID);
+        }
 
         return $itemList;
     }

@@ -1,4 +1,15 @@
 <section class="editItem">
+    <?php
+        if(isset($itemCategory)){
+            ?>
+                <div class="breadcrumb">
+                    <a href="index.php" class="breadcrumb-element">Home</a>
+                    <a href="editCategory.php" class="breadcrumb-element">Edit Categories</a>
+                    <span class="breadcrumb-element">Edit <?= htmlentities($itemCategory->CategoryName) ?> Items</span>
+                </div>
+            <?php
+        }
+    ?>
     <table id="items" class="stripe hover row-border cell-border">
         <thead>
             <tr>
@@ -115,7 +126,7 @@
         </div>
     </div>
     
-    <div class="editModal modal">
+    <div class="editModal modal <?= isset($editItem) ? "active" : null ?>">
         <div class="modalBody">
             <button class="closeConfirmation close">
                 <i class="fas fa-times"></i>
@@ -125,14 +136,21 @@
 
             <form action="controllers/editItemController.php" method="post" onsubmit="return false">
                 <p class="formInput">
-                    <input type="text" name="itemName" id="itemName_edit" required>
+                    <input type="text" name="itemName" id="itemName_edit" required value="<?= isset($editItem) ? htmlentities($editItem->ItemName) : null ?>">
                     <label for="itemName_edit">Item Name</label>
                     <span class="inputErrors"></span>
                 </p>
 
                 <fieldset>
                     <legend>Item Photo</legend>
-                    <img src="images/productImages/placeholder.png" class="itemPhoto">
+                    <img src="<?php
+                                    if(isset($editItem) && $editItem->Photo){
+                                        echo "images/productImages/" . $editItem->Photo;
+                                    } else{
+                                        echo "images/productImages/placeholder.png";
+                                    }
+                                ?>" 
+                         class="itemPhoto">
                     <p class="formInput">
                         <input type="file" name="itemPhoto" id="itemPhoto_edit" accept="image/*">
                         <label for="itemPhoto_edit" class="linkButton">Select Item Image</label>
@@ -141,7 +159,7 @@
                 </fieldset>
 
                 <p class="formInput">
-                    <input type="number" name="itemPrice" id="itemPrice_edit" class="money" required placeholder="$9.99">
+                    <input type="number" name="itemPrice" id="itemPrice_edit" class="money" required placeholder="$9.99" value="<?= isset($editItem) ? htmlentities($editItem->Price) : null ?>">
                     <label for="itemPrice_edit">Item Price</label>
                     <span class="inputErrors"></span>
                 </p>
@@ -149,26 +167,26 @@
                 <fieldset>
                     <legend>Item Sale Price</legend>
                     <p class="formInput">
-                        <input type="checkbox" id="itemOnSale_edit">
+                        <input type="checkbox" id="itemOnSale_edit" <?= isset($editItem) && $editItem->SalePrice ? "checked" : null ?>>
                         <label for="itemOnSale_edit">On Sale</label>
                         <span class="inputErrors"></span>
                     </p>
 
                     <p class="formInput">
-                        <input type="number" name="itemSalePrice" id="itemSalePrice_edit" class="money" disabled placeholder="$4.50">
+                        <input type="number" name="itemSalePrice" id="itemSalePrice_edit" class="money" disabled placeholder="$4.50" value="<?= isset($editItem) && $editItem->SalePrice ? htmlentities($editItem->SalePrice) : null ?>">
                         <label for="itemSalePrice_edit">Sale Price</label>
                         <span class="inputErrors"></span>
                     </p>
                 </fieldset>
 
                 <p class="formInput">
-                    <textarea name="itemDescription" id="itemDescription_edit" cols="30" rows="3"></textarea>
+                    <textarea name="itemDescription" id="itemDescription_edit" cols="30" rows="3"><?= isset($editItem) && $editItem->Description ? $editItem->Description : null ?></textarea>
                     <label for="itemDescription_edit">Item Description</label>
                     <span class="inputErrors"></span>
                 </p>
 
                 <p class="formInput">
-                    <input type="checkbox" name="itemFeatured" id="itemFeatured_edit">
+                    <input type="checkbox" name="itemFeatured" id="itemFeatured_edit" <?= isset($editItem) && $editItem->Featured ? "checked" : null ?>>
                     <label for="itemFeatured_edit">Featured Item</label>
                     <span class="inputErrors"></span>
                 </p>
@@ -178,7 +196,7 @@
                         <?php
                             foreach($categories as $category){
                                 ?>
-                                    <option value="<?= $category->CategoryID ?>"><?= htmlentities($category->CategoryName) ?></option>
+                                    <option value="<?= $category->CategoryID ?>" <?= isset($editItem) && $editItem->Category->CategoryID === $category->CategoryID ? "selected" : null ?> ><?= htmlentities($category->CategoryName) ?></option>
                                 <?php
                             }
                         ?>

@@ -1,14 +1,19 @@
 <?php
 include "../models/Item.php";
-$items = Item::GetAllItems();
-
-foreach($items as $item){
-    $item->ItemName = htmlentities($item->ItemName);
-    $item->Description = htmlentities($item->Description);
-    $item->Category->CategoryName = htmlentities($item->Category->CategoryName);
-}
 
 if($_SERVER["REQUEST_METHOD"] == "GET"){
+    if(isset($_GET["cat"])){
+        $items = Item::GetItemsOfCategory($_GET["cat"]);
+    } else{
+        $items = Item::GetAllItems();
+    }
+
+    foreach($items as $item){
+        $item->ItemName = htmlentities($item->ItemName);
+        $item->Description = htmlentities($item->Description);
+        $item->Category->CategoryName = htmlentities($item->Category->CategoryName);
+    }
+
     echo '{"data":' . json_encode($items) . "}";
     die();
 } else{
