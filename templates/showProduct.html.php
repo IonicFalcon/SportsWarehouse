@@ -30,7 +30,7 @@
             <?php
                 if(isset($admin)){
                     ?>
-                        <a href="editProduct.php?id=<?= $item->ItemID ?>&cat=<?= $item->Category->CategoryID ?>" class="linkButton">
+                        <a href="editItem.php?id=<?= $item->ItemID ?>&cat=<?= $item->Category->CategoryID ?>" class="linkButton">
                             <i class="fas fa-edit"></i>
                             Edit Item
                         </a>
