@@ -1,6 +1,7 @@
 import {AJAXRequest} from "./modules/AJAX.min.js";
 
 $(document).ready(function(){
+    //Tell AJAX datasource to filter to Category on serverside
     const GETParams = new URLSearchParams(window.location.search);
 
     let url = "controllers/editItemController.php";
@@ -217,6 +218,7 @@ function SubmitRequest(url, data){
     })
 }
 
+//Validates either the add or edit form using the form object itself
 function ValidateForm(form){
     let formInputs = form.querySelectorAll(".formInput > *:first-child:required");
     let invalidFields = [];

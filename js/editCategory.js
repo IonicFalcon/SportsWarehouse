@@ -1,6 +1,7 @@
 import {AJAXRequest} from "./modules/AJAX.min.js";
 
 $(document).ready(function(){
+    //Convert table to DataTable with AJAX datasource
     window.CategoryTable = $("#categories").DataTable({
         responsive: true,
         ajax: "controllers/editCategoryController.php",
@@ -10,6 +11,7 @@ $(document).ready(function(){
         ]
     });
 
+    //If modal is active, stop background from scrolling and make sure the modal doesn't extend above the screen
     let editModal = document.querySelector(".editModal.active");
 
     if(editModal){
@@ -58,6 +60,7 @@ $("#categories tbody").on("click", "tr", function(event){
     contextMenu.style.top = posY;
     
 }).on("dblclick", "tr", function (){
+    //Redirect to edit Item page with selected Category Filter
     window.location.href = "editItem.php?cat=" + document.querySelector("#rowID").value;
 });
 
@@ -156,6 +159,7 @@ function SubmitRequest(url, data){
     })
 }
 
+//Updates the Category links that appear in the header and footer
 function updateCategories(data){
     let categoryLinks = document.querySelectorAll("nav.categoryNav > ul");
 
