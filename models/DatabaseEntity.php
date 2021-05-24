@@ -1,9 +1,14 @@
 <?php
 
 /**
- * Relates to any object that can access a database
+ * Relates to any object that can access a database. Acts as a centralised database settings file. All model classes that access the database should inherit from this class
  */
-abstract class DatabaseEntity{
+abstract class DatabaseEntity{    
+    /**
+     * Returns a database object. Designed to allow child classes to use a related object in static methods, which would be impossible if it where an object itself
+     *
+     * @return Database
+     */
     protected static function DB(){
         include_once "Database.php";
 

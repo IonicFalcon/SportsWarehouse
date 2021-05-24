@@ -1,11 +1,21 @@
 <?php
 include_once "DatabaseEntity.php";
 
+/**
+ * Administrator to the website. Has access to the highest level of control with the ability to update Items and Categories
+ */
 class Admin extends DatabaseEntity{
     public $UserID;
     public $UserName;
     public $LoginTime;
-
+    
+    /**
+     * Login as an admin securely using password hashing.
+     *
+     * @param  mixed $username
+     * @param  mixed $password
+     * @return Admin|null If successful, return an admin object for the admin
+     */
     public static function Login($username, $password){
         $query = "SELECT `password` FROM `user` WHERE `userName` = :username";
         $param = [
@@ -30,7 +40,7 @@ class Admin extends DatabaseEntity{
     /**
      * Restrict a page to only an admin. Redirect unauthorised users to homepage
      *
-     * @return Admin|void
+     * @return Admin|void If valid, return the admin from the session
      */
     public static function RestrictPage(){
         if(session_status() === PHP_SESSION_NONE) session_start();
@@ -44,9 +54,9 @@ class Admin extends DatabaseEntity{
     }
     
     /**
-     * Add a admin function to a page. Return the logged in admin object
+     * Add a admin function to a page. This differs from RestrictPage() as AdminFunction() doesn't not redirect users away. To be used for a page used both by admins and regular users to denote that this page has functionality accessible only by admins (e.g. Editing an Item)
      *
-     * @return Admin|void
+     * @return Admin|void If valid, return admin from session
      */
     public static function AdminFunction(){
         if(session_status() === PHP_SESSION_NONE) session_start();
@@ -57,7 +67,7 @@ class Admin extends DatabaseEntity{
     }
     
     /**
-     * Reauthorise any users who have logged in more than two minutes ago.
+     * Reauthorise any users who have logged in more than two minutes ago. To be used for potentially dangerous controls that may be difficult or impossible to reverse (e.g. Changing a Password) 
      *
      * @param boolean $redirect Redirect to page where the request came from
      * @return void
@@ -78,7 +88,13 @@ class Admin extends DatabaseEntity{
             die();
         }
     }
-
+    
+    /**
+     * Change the password of an admin, hashing the password using bCrypt before storing it in the database.
+     *
+     * @param  string $newPass Plaintext password to be hashed and stored
+     * @return void|string Only errors should return something, in the form of a string
+     */
     public function ChangePassword($newPass){
         $newPass = password_hash($newPass, PASSWORD_BCRYPT);
         

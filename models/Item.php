@@ -2,6 +2,9 @@
 include_once "DatabaseEntity.php";
 include_once "Category.php";
 
+/**
+ * Model for Product Items. Includes functionality for Adding, Editting, and Deleting Items
+ */
 class Item extends DatabaseEntity{
     public $ItemID;
     public $ItemName;
@@ -15,7 +18,7 @@ class Item extends DatabaseEntity{
 
         
     /**
-     * Return a defined image path for item's image
+     * Return a defined image path for item's image. Returns a placeholder if no image was found
      *
      * @return string
      */
@@ -47,7 +50,7 @@ class Item extends DatabaseEntity{
     }
 
     /**
-     * Return all items from database
+     * Return all Items from Database
      *
      * @return Item[]
      */
@@ -65,9 +68,9 @@ class Item extends DatabaseEntity{
     }
     
     /**
-     * Return item from database given the item's ID
+     * Return Item from Database given the item's ID
      *
-     * @param  string $id
+     * @param  int $id
      * @return Item
      */
     public static function GetItemFromID($id){
@@ -87,7 +90,7 @@ class Item extends DatabaseEntity{
     }
     
     /**
-     * Return all items from database marked as Featured
+     * Return all Items from Database marked as Featured
      *
      * @return Item[]
      */
@@ -103,7 +106,13 @@ class Item extends DatabaseEntity{
 
         return $itemList;
     }
-
+    
+    /**
+     * Returns all Items of a specified Category
+     *
+     * @param  int $catID
+     * @return Item[]
+     */
     public static function GetItemsOfCategory($catID){
         include_once "Category.php";
 
@@ -151,7 +160,13 @@ class Item extends DatabaseEntity{
         $query = "SELECT COUNT(*) FROM `item`";
         return Item::DB()->ExecuteSQLSingleVal($query);
     }
-
+    
+    /**
+     * Add Item to Database
+     *
+     * @param  Item $item
+     * @return void|string
+     */
     public static function AddItem($item){
         $query = "INSERT INTO `item` (`itemName`, `photo`, `price`, `salePrice`, `description`, `featured`, `categoryId`) VALUES (:itemName, :photo, :price, :salePrice, :description, :featured, :catID)";
         $params = [
@@ -166,7 +181,13 @@ class Item extends DatabaseEntity{
 
         return Item::DB()->ScalarSQL($query, $params);
     }
-
+    
+    /**
+     * Edited an Item in the Database
+     *
+     * @param  Item $item
+     * @return void|string
+     */
     public static function EditItem($item){
         $query = "UPDATE `item` SET `itemName` = :itemName, `photo` = :photo, `price` = :price, `salePrice` = :salePrice, `description` = :description, `featured` = :featured, `categoryId` = :catID WHERE `itemId` = :itemID";
         $params = [
@@ -182,7 +203,13 @@ class Item extends DatabaseEntity{
 
         return Item::DB()->ScalarSQL($query, $params);
     }
-
+    
+    /**
+     * Removes an Item from the Database
+     *
+     * @param  int $itemID
+     * @return void|string
+     */
     public static function DeleteItem($itemID){
         $query = "DELETE FROM `item` WHERE `itemId` = :itemID";
         $param = [

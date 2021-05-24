@@ -2,6 +2,9 @@
 
 include_once "Item.php";
 
+/**
+ * Array of Item Objects with functionality to improve usability
+ */
 class ShoppingCart{
     public $Items = [];
 

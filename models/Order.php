@@ -15,7 +15,14 @@ class Order extends DatabaseEntity{
     public $NameOnCard;
     public $CSV;
     public $Cart;
-
+    
+    /**
+     * Creates an Order object using an array of values and a Cart object
+     *
+     * @param  array $orderInfo Array of values that match with the object properties
+     * @param  ShoppingCart $cart
+     * @return Order
+     */
     public function __construct($orderInfo, $cart)
     {
         foreach($orderInfo as $key => $value){
@@ -29,7 +36,12 @@ class Order extends DatabaseEntity{
         $this->ExpiryDate = $expiryDate;
         $this->Cart = $cart;
     }
-
+    
+    /**
+     * Adds Order Information to Database, including all Items from Cart
+     *
+     * @return void|string
+     */
     public function ProcessOrder(){
         $this->OrderDate = new DateTime();
 
@@ -63,7 +75,14 @@ class Order extends DatabaseEntity{
         }
     }
 
-
+    
+    /**
+     * Inserts Shopping Cart Items into the Database
+     *
+     * @param  Item $item
+     * @param  int $orderID
+     * @return void|string
+     */
     private static function InsertOrderItem($item, $orderID){
         $query = "INSERT INTO `orderitem`(`itemId`, `shoppingOrderId`, `quantity`, `price`) VALUES (:itemID, :orderID, :quantity, :price)";
         $params = [

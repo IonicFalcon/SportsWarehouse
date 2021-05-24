@@ -1,11 +1,23 @@
-<?php
+<?php  
+    /**
+     * Generic class for dealing with a Database using PDO. Includes functionality for sending different SQL requests, including Scalar queries
+     */
     class Database{
         private $serverName;
         private $username;
         private $password;
         private $dbName;
         private $connection;
-
+        
+        /**
+         * Creates and tests Database object and connection. 
+         *
+         * @param  string $serverName
+         * @param  string $username
+         * @param  string $password
+         * @param  string $dbName
+         * @return Database|Exception A failed connection cause by incorrect Database details with throw an Exception
+         */
         function __construct($serverName, $username, $password, $dbName){
             $this->serverName = $serverName;
             $this->username = $username;
@@ -24,7 +36,7 @@
         }
 
         /**
-         * Connect to Database
+         * Connects to Database by creating PDO object
          */
         private function Connect(){
             $dsn = "mysql:host=" . $this->serverName . ";dbname=" . $this->dbName;
@@ -32,19 +44,18 @@
         }
         
         /**
-         * Disconnect from Database
+         * Destroys PDO object, hence disconnecting Database
          */
         private function Disconnect(){
             $this->connection = NULL;
         }
 		
-		//PHP doesn't support method overloading
         /**
-         * Execute SQL Query
+         * Execute SQL Query and returns values in the form of an array
          *
-         * @param string $query Query to be Execute
-         * @param array $params Optional Parameters for the query in an Associative Array
-         * @param string $className Optional Class name for filling returned values into a Class
+         * @param string $query
+         * @param array $params Parameters for the query in an Associative Array
+         * @param string $className Class name for filling returned values into a Class
          * @return array
          */
         public function ExecuteSQL($query, $params = null, $className = null){
@@ -86,7 +97,7 @@
          * Execute SQL Query and return a single value
          *
          * @param string $query
-         * @param array $params
+         * @param array $params Parameter for query in associative array
          * @return mixed
          */
 		public function ExecuteSQLSingleVal($query, $params = null){
@@ -114,8 +125,8 @@
         /**
          * Execute a Scalar SQL Query (DELETE, INSERT, etc)
          *
-         * @param string $query  Query to be executed
-         * @param array $params Optional parameters for the query
+         * @param string $query 
+         * @param array $params Parameters for the query in associative array
          * @return void|string   Returns string on error, else returns nothing
          */
         public function ScalarSQL($query, $params = null){
@@ -164,7 +175,14 @@
 
             //Only a failed query will return a value
         }
-
+        
+        /**
+         * Executes a Scalar SQL Query and returns auto-generated ID of row affected
+         *
+         * @param  mixed $query
+         * @param  mixed $params Parameters for the query in an associative array
+         * @return array Returns array with first value determining success and second value either being the returned ID or an error message
+         */
         public function ScalarSQLReturnID($query, $params = null){
             $this->Connect();
 
@@ -207,8 +225,6 @@
                 true,
                 $id
             ];
-
-            //Only a failed query will return a value
         }
     }
     

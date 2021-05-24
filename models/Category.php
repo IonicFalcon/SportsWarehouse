@@ -1,12 +1,15 @@
 <?php
 include_once "DatabaseEntity.php";
 
+/**
+ * Model of Item Categories. Includes functionality for Add, Editing, and Deleting Categories
+ */
 class Category extends DatabaseEntity{
     public $CategoryID;
     public $CategoryName;
     
     /**
-     * Get all categories from database
+     * Get all Categories from Database
      *
      * @return Category[]
      */
@@ -18,7 +21,7 @@ class Category extends DatabaseEntity{
     }
     
     /**
-     * Get category from databse given the category's ID
+     * Get Category from Database given the Category's ID
      *
      * @param  string $id
      * @return Category
@@ -34,7 +37,7 @@ class Category extends DatabaseEntity{
     }
     
     /**
-     * Get category from database given an item ID
+     * Get Category from Database given an Item ID
      *
      * @param  string $itemID
      * @return Category
@@ -48,7 +51,13 @@ class Category extends DatabaseEntity{
         $category = Category::DB()->ExecuteSQL($query, $param, "Category")[0];
         return $category;
     }
-
+    
+    /**
+     * Add Category to the Database
+     *
+     * @param  string $categoryName
+     * @return void|string Errors will return a string denoting error details. Normally should be void
+     */
     public static function AddCategory($categoryName){
         $query = "INSERT INTO `category` (`categoryName`) VALUES (:catName)";
         $param = [
@@ -57,7 +66,14 @@ class Category extends DatabaseEntity{
 
         return Category::DB()->ScalarSQL($query, $param);
     }
-
+    
+    /**
+     * Update Category in Database
+     *
+     * @param  int $categoryID
+     * @param  string $categoryName
+     * @return void|string Errors will return a string denoting error details. Normally should be void
+     */
     public static function UpdateCategory($categoryID, $categoryName){
         $query = "UPDATE `category` SET `categoryName` = :catName WHERE `categoryId` = :catID";
         $params = [
@@ -67,7 +83,13 @@ class Category extends DatabaseEntity{
 
         return Category::DB()->ScalarSQL($query, $params);
     }
-
+    
+    /**
+     * Remove a Category from the Database
+     *
+     * @param  int $categoryID
+     * @return void|string|Exception Errors may return either a string denoted error details, or an exception in the case of violating of foreign key restraints. Normally should be void
+     */
     public static function DeleteCategory($categoryID){
         $query = "DELETE FROM `category` WHERE `categoryId` = :catID";
         $param = [
