@@ -125,10 +125,37 @@ section.itemSearch > h2 > .editCategory:active{
     display: block;
 }
 
+.themeSelect{
+    border: 3px solid black;
+    border-radius: 2.5em;
+    padding: 3em;
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.themeSelect > input[type="radio"]{
+    display: none;
+}
+
+#lightMode{
+    background-image: url("../images/lightMode.png");
+    background-color: white;
+}
+
+#darkMode{
+    background-image: url("../images/darkMode.png");
+    background-color: rgb(53, 57, 53);
+}
+
 @media only screen and (min-width: 450px){
     .topBar{
         line-height: normal;
     }
 
+    .changeTheme{
+        max-width: 1000px;
+        margin: auto;
+    }
 
 }
