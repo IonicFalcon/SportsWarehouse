@@ -16,7 +16,10 @@
         </p>
 
         <fieldset class="customTheme">
-            <p>Test</p>
+            <div class="formInput">
+                <input type="color" name="" id="customColour">
+                <label for="customColour">Colour</label>
+            </div>
         </fieldset>
     </form>
 </section>

@@ -294,6 +294,10 @@ main section h2{
     text-align: center;
 }
 
+.productCard > article{
+    background-color: white;
+}
+
 .productCard .productImage{
     min-height: 180px;
     display: flex;
@@ -475,6 +479,12 @@ main section h2{
 
 a.breadcrumb-element{
     text-decoration: none;
+}
+
+.productInfo{
+    background-color: white;
+    color: black;
+    padding: 1em;
 }
 
 .productInfo img{

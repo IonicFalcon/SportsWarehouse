@@ -5,6 +5,15 @@
     --secondaryBlue: #d66926;
 }
 
+.root.darkMode{
+    background-color:#353935;
+    color: white;
+}
+
+.root.darkMode .breadcrumb-element:last-child{
+    color: white;
+}
+
 .topBar{
     line-height: 3.375em;
 }
@@ -125,27 +134,68 @@ section.itemSearch > h2 > .editCategory:active{
     display: block;
 }
 
+.root.darkMode .dataTables_wrapper{
+    color: white !important;
+}
+
+table.dataTable tbody{
+    color: black;
+}
+
 .themeSelect{
-    border: 3px solid black;
+    border: 3px outset var(--primaryOrange);
     border-radius: 2.5em;
-    padding: 3em;
     text-align: center;
     background-repeat: no-repeat;
     background-position: center;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.75);
+    background-image: url("../images/themeSelect.png");
+    padding: 4em;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.themeSelect > label{
+    cursor: pointer;
+    position: absolute;
+    bottom: 0.5em;
+    font-weight: lighter;
+    padding: 0.25em 5em;
+    background-image: linear-gradient(90deg, transparent, var(--primaryBlue), transparent);
+    color: white;
+}
+
+.themeSelect:active, .themeSelect.selected{
+    border: 3px inset var(--primaryBlue);
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.75);
 }
 
 .themeSelect > input[type="radio"]{
     display: none;
 }
 
+.customTheme{
+    display: none;
+    background-color: white;
+    width: 100%;
+}
+
+.customTheme.selected{
+    display: initial;
+}
+
 #lightMode{
-    background-image: url("../images/lightMode.png");
     background-color: white;
 }
 
 #darkMode{
-    background-image: url("../images/darkMode.png");
     background-color: rgb(53, 57, 53);
+}
+
+#custom{
+    background:  url("../images/themeSelect.png") no-repeat center, url("../images/customBackground.png") center/100%;
 }
 
 @media only screen and (min-width: 450px){

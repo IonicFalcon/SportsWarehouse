@@ -33,6 +33,16 @@
             ?>
                 <link rel="stylesheet" href="css/admin.css">
             <?php
+
+            if(isset($_COOKIE["theme"]) && $_COOKIE["theme"] == "custom"){
+                ?>
+                    <style>
+                        .root{
+                            background-color: <?= $_COOKIE["customTheme"] ?>;
+                        }
+                    </style>
+                <?php
+            }
         }
     ?>
 
@@ -51,7 +61,13 @@
 
 </head>
 <body>
-    <div class="root">
+    <div class="root
+        <?php
+            if(isset($admin)){
+                if(isset($_COOKIE["theme"]) && $_COOKIE["theme"] == "dark") echo "darkMode";
+            }
+        ?>
+    ">
         <header class="siteHeader">
             <div class="topBar">
                 <div class="wrapper">

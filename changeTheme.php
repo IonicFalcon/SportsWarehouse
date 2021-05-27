@@ -10,6 +10,10 @@ $pageTitle = "Change Theme - Sports Warehouse";
 
 ob_start();
 
+$JSSources = [
+    "js/changeTheme.js"
+];
+
 include "templates/changeTheme.html.php";
 
 $mainOutput = ob_get_clean();
