@@ -179,6 +179,7 @@ table.dataTable tbody{
 .customTheme{
     display: none;
     background-color: white;
+    color: black;
     width: 100%;
 }
 
