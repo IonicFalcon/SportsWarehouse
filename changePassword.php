@@ -8,7 +8,7 @@ $admin->Reauthorise(true);
 $pageTitle = "Change Password - Sports Warehouse";
 
 $JSSources = [
-    "js/changePassword.js"
+    "js/changePassword.min.js"
 ];
 
 ob_start();

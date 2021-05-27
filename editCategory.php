@@ -13,7 +13,7 @@ if(isset($_GET["id"])){
 $JSSources = [
     "https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js",
     [
-        "js/editCategory.js",
+        "js/editCategory.min.js",
         true
     ]
 ];
