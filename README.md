@@ -24,3 +24,4 @@ Several different technologies and methodologies where used throughout the cours
 - JavaScript
 - JQuery
 - AJAX
+- Git
