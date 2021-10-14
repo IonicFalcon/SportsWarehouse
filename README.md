@@ -1,5 +1,5 @@
 # Sports Warehouse
-*Diploma of Web Development Final Project*
+*Diploma of Website Development Final Project*
 
 ## Who are Sports Warehouse?
 
